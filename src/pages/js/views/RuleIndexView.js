@@ -164,7 +164,7 @@ var RuleIndexView = Backbone.View.extend({
       rules = selectedRules.length ? selectedRules : this.rulesCollection.models;
 
     var rulesAttributes = _.pluck(rules, 'attributes');
-    Backbone.trigger('file:save', JSON.stringify(rulesAttributes), 'requestly_rules');
+    Backbone.trigger('file:save', JSON.stringify(rulesAttributes,null,2), 'requestly_rules');
 
     // Commenting due to #95 Event passing strategy Improvement for analytics tracking
     //RQ.Utils.submitEvent('rules', RQ.GA_EVENTS.ACTIONS.EXPORTED, 'Rules ' + RQ.GA_EVENTS.ACTIONS.EXPORTED);
