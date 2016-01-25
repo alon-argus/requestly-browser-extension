@@ -9,6 +9,7 @@
     {
       "matches": [ "*://web.requestly.in/*" ],
       "js": [
+        "src/libs/firebase.js",
         "src/background/storageService.js",
 
         "src/libs/jquery-1.9.1.js",
