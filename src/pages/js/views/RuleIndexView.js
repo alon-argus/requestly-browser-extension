@@ -7,7 +7,8 @@ var RuleIndexView = Backbone.View.extend({
     'click .select-all-rules-checkbox': 'selectAllRules',
     'click .select-rule-checkbox': 'selectRule',
     'click .export-rules-button': 'exportRules',
-    'click .import-rules-button': 'importRules'
+    'click .import-rules-button': 'importRules',
+    'click .login-button': 'showLoginModal'
   },
 
   initialize: function() {
@@ -18,6 +19,13 @@ var RuleIndexView = Backbone.View.extend({
     this.listenTo(this.rulesCollection, 'loaded', this.render);
     this.listenTo(this.rulesCollection, 'change', this.render);
     this.listenTo(this.rulesCollection, 'remove', this.render);
+  },
+
+  initWidgets: function() {
+    var $el = $(this.el);
+
+    $el.find('.status-toggle').bootstrapToggle();
+    $el.find('[data-toggle="tooltip"]').tooltip({animation: true, delay: {show: 300, hide: 300}});
   },
 
   updateCollection: function() {
@@ -48,7 +56,7 @@ var RuleIndexView = Backbone.View.extend({
       $el.html(markup);
     }
 
-    $el.find('.status-toggle').bootstrapToggle();
+    this.initWidgets();
   },
 
   showRuleEditor: function(event) {
@@ -186,5 +194,9 @@ var RuleIndexView = Backbone.View.extend({
       // Commenting due to #95 Event passing strategy Improvement for analytics tracking
       //RQ.Utils.submitEvent('rules', RQ.GA_EVENTS.ACTIONS.IMPORTED, 'Rules ' + RQ.GA_EVENTS.ACTIONS.IMPORTED);
     });
+  },
+
+  showLoginModal: function() {
+    // $('#login-modal').modal();
   }
 });

@@ -2,26 +2,26 @@
   <span>Rules</span>
   <div class="right right-corner-icongroup">
 
-    <a href="#selectRule" class="btn-floating btn-small btn-success waves-effect waves-light select-rule-button">
+    <a href="#selectRule" class="btn-floating btn-small btn-success waves-effect waves-light select-rule-button action-button">
       <i class="fa fa-plus"></i>
     </a>
 
     {{#gt rules.length 0}}
-      <a class="btn-floating btn-small waves-effect waves-light blue export-rules-button"
-         data-toggle="tooltip" data-placement="bottom" data-original-title="Download">
+      <a class="btn-floating btn-small waves-effect waves-light blue export-rules-button action-button"
+         data-toggle="tooltip" data-placement="bottom" data-original-title="Download Rules">
         <i class="fa fa-download"></i>
       </a>
     {{/gt}}
 
-    <a class="btn-floating btn-small waves-effect waves-light blue import-rules-button"
-       data-toggle="tooltip" data-placement="bottom" data-original-title="Upload">
+    <a class="btn-floating btn-small waves-effect waves-light blue import-rules-button action-button"
+       data-toggle="tooltip" data-placement="bottom" data-original-title="Upload Rules">
       <i class="fa fa-upload"></i>
     </a>
 
-    <!--
-    <a href="#settings/requestly" role="button" class="settings-button">
-      <span class="glyphicon glyphicon-cog settings-icon"></span>
-    </a>
-    -->
+    <button class="btn-floating btn-small waves-effect waves-light login-button action-button"
+       data-toggle="modal" data-target="#login-modal">
+      <i class="fa fa-user"></i>
+    </button>
+
   </div>
 </nav>

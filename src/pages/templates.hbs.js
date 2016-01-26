@@ -102,13 +102,13 @@ Handlebars.registerPartial("StatusToggle", Handlebars.template({"1":function(dep
 },"useData":true}));
 
 Handlebars.registerPartial("Toolbar", Handlebars.template({"1":function(depth0,helpers,partials,data) {
-    return "      <a class=\"btn-floating btn-small waves-effect waves-light blue export-rules-button\"\n         data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Download\">\n        <i class=\"fa fa-download\"></i>\n      </a>\n";
+    return "      <a class=\"btn-floating btn-small waves-effect waves-light blue export-rules-button action-button\"\n         data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Download Rules\">\n        <i class=\"fa fa-download\"></i>\n      </a>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "<nav class=\"content-header rq-dimgrey\">\n  <span>Rules</span>\n  <div class=\"right right-corner-icongroup\">\n\n    <a href=\"#selectRule\" class=\"btn-floating btn-small btn-success waves-effect waves-light select-rule-button\">\n      <i class=\"fa fa-plus\"></i>\n    </a>\n\n"
+  return "<nav class=\"content-header rq-dimgrey\">\n  <span>Rules</span>\n  <div class=\"right right-corner-icongroup\">\n\n    <a href=\"#selectRule\" class=\"btn-floating btn-small btn-success waves-effect waves-light select-rule-button action-button\">\n      <i class=\"fa fa-plus\"></i>\n    </a>\n\n"
     + ((stack1 = (helpers.gt || (depth0 && depth0.gt) || helpers.helperMissing).call(depth0,((stack1 = (depth0 != null ? depth0.rules : depth0)) != null ? stack1.length : stack1),0,{"name":"gt","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\n    <a class=\"btn-floating btn-small waves-effect waves-light blue import-rules-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Upload\">\n      <i class=\"fa fa-upload\"></i>\n    </a>\n\n    <!--\n    <a href=\"#settings/requestly\" role=\"button\" class=\"settings-button\">\n      <span class=\"glyphicon glyphicon-cog settings-icon\"></span>\n    </a>\n    -->\n  </div>\n</nav>";
+    + "\n    <a class=\"btn-floating btn-small waves-effect waves-light blue import-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Upload Rules\">\n      <i class=\"fa fa-upload\"></i>\n    </a>\n\n    <button class=\"btn-floating btn-small waves-effect waves-light login-button action-button\"\n       data-toggle=\"modal\" data-target=\"#login-modal\">\n      <i class=\"fa fa-user\"></i>\n    </button>\n\n  </div>\n</nav>";
 },"useData":true}));
 
 this["RQ"]["Templates"]["CancelRuleEditor"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
@@ -193,6 +193,10 @@ this["RQ"]["Templates"]["HeadersRuleTemplate"] = Handlebars.template({"1":functi
     + "</section>\n";
 },"usePartial":true,"useData":true});
 
+this["RQ"]["Templates"]["LoginModal"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<div class=\"modal fade\" id=\"login-modal\" role=\"dialog\">\n  <div class=\"modal-dialog\">\n\n    <!-- Modal content-->\n    <div class=\"modal-content\">\n      <div class=\"modal-header text-center\">\n        <h4><i class=\"fa fa-user\"></i> Login</h4>\n      </div>\n      <div class=\"modal-body\" style=\"padding:40px 50px;\">\n        <div class=\"row\">\n          <form class=\"col-md-12\">\n            <div class=\"row\">\n              <div class=\"input-field\">\n                <i class=\"material-icons prefix\">email</i>\n                <input id=\"icon_email\" type=\"tel\" class=\"validate\">\n                <label for=\"icon_email\">Your email</label>\n              </div>\n\n              <div class=\"input-field\">\n                <i class=\"material-icons prefix\">lock</i>\n                <input id=\"password\" type=\"password\" class=\"validate\">\n                <label for=\"password\">Password</label>\n              </div>\n              <div class=\"text-right cta-container\">\n                <button type=\"button\" class=\"btn btn-link\" data-dismiss=\"modal\">Cancel</button>\n                <button type=\"button\" class=\"btn btn-primary waves-effect waves-light\">Login</button>\n              </div>\n            </div>\n          </form>\n        </div>\n      </div>\n    </div>\n    <!-- /.Modal content-->\n  </div>\n</div>\n<!-- Modal -->";
+},"useData":true});
+
 this["RQ"]["Templates"]["RedirectRuleEditor"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
@@ -261,5 +265,5 @@ this["RQ"]["Templates"]["RuleIndex"] = Handlebars.template({"1":function(depth0,
     + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.rules : depth0)) != null ? stack1.length : stack1), depth0))
     + "</span> </th>\n      <th>Name & Description</th>\n      <th class=\"status-cell\">Status</th>\n      <th>Created on</th>\n      <th></th>\n    </tr>\n    </thead>\n    <tbody>\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.rules : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "    </tbody>\n  </table>\n</section>";
+    + "    </tbody>\n  </table>\n</section>`";
 },"usePartial":true,"useData":true});

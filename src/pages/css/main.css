@@ -299,20 +299,16 @@ input[type="text"].form-control {
   height: 40px;
   line-height: 40px;
   margin-top: -9px; }
-  .right-corner-icongroup .btn-floating.select-rule-button,
-  .right-corner-icongroup .btn-floating.export-rules-button,
-  .right-corner-icongroup .btn-floating.import-rules-button {
+  .right-corner-icongroup .btn-floating.action-button {
     height: 35px;
     width: 35px;
-    margin-top: 3px;
+    margin-top: 4px;
     margin-right: 10px;
-    margin-left: 0px; }
+    margin-left: 0; }
   .right-corner-icongroup a:last-child {
     margin-right: 0; }
 
-.btn-floating.select-rule-button i,
-.btn-floating.export-rules-button i,
-.btn-floating.import-rules-button i {
+.btn-floating.action-button i {
   margin-top: 0 !important; }
 
 .settings-button {
@@ -425,6 +421,20 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
   width: 25px;
   line-height: 20px;
   padding-left: 5px; }
+
+#login-modal .modal-header h4 {
+  margin: 0; }
+  #login-modal .modal-header h4 i {
+    margin-right: 10px; }
+#login-modal .modal-content .row {
+  margin-left: -15px;
+  margin-right: -15px; }
+#login-modal .modal-content .input-field i.prefix {
+  top: 8px; }
+#login-modal .modal-content .btn-link {
+  margin-right: 8px; }
+#login-modal .modal-content .cta-container {
+  margin-bottom: -15px; }
 
 .name-container {
   width: 590px;
