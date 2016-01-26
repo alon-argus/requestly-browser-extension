@@ -1,0 +1,133 @@
+@import 'variables';
+
+@mixin rule-editor-properties($bgColor) {
+  .save-rule {
+    background-color: $bgColor;
+    border-color: $bgColor;  
+    color: #fff;
+  }
+
+  .content-header {
+    background: $bgColor;
+  }
+}
+
+@mixin source-field() {
+  .pair-container:first-child:last-child {
+    .source-value-input {
+      width: 75%;
+    }
+  }
+
+  .source-container {
+    padding: 5px 0 10px 0;
+  }
+
+  label.active {
+    margin-right: 5px;
+  }
+
+  .source-value-input {
+    display: inline-block;
+    width: 72%;
+    margin-bottom: 0;
+  }
+
+  .source-operator-select {
+    width: 100px;
+  }
+}
+
+@mixin form-control() {
+  input[type="text"],
+  input[type="url"] {
+    &.form-control {
+      padding: 0;
+      padding-left: 5px;
+    }  
+  }
+  
+}
+
+.name-container {
+  width: 590px;
+  float: left;
+}
+
+.rule-status-container {
+  height: 54px;
+  line-height: 54px;
+  text-align: right;
+  margin-top: 15px;
+}
+
+.description-container {
+  padding-bottom: 10px;
+
+  textarea.rule-description {
+    min-height: 0;
+    padding: 1rem 0 0 0;
+    height: 2rem;
+  }
+}
+
+.title {
+  padding: 5px 0;
+  color: #555;
+
+  .add-pair {
+    margin-top: -10px;
+    line-height: 20px;
+    padding: 4px;
+    color: #4b4b4b;
+  }
+}
+
+.pair-container {
+  .dropdown {
+    display: inline-block;
+
+    button {
+      background: #f5f5f5;
+      color: #909090;
+    }
+  }
+}
+
+.pair-container:first-child:last-child .delete-pair {
+  display: none;
+}
+
+.pair-container .input-group {
+  display: inline-table;
+  padding: 10px 5px;
+}
+
+.buttons-container .btn {
+  float: right;
+  border-radius: 2px;
+  margin: 5px;
+}
+
+.rule-editor {
+  @include form-control();
+}
+
+#redirect-rule-editor {
+  @include rule-editor-properties($redirect-rule-color);
+  @include source-field();
+}
+
+#cancel-rule-editor {
+  @include rule-editor-properties($cancel-rule-color);
+  @include source-field();
+}
+
+#replace-rule-editor {
+  @include rule-editor-properties($replace-rule-color);
+}
+
+#headers-rule-editor {
+  @include rule-editor-properties($headers-rule-color);
+  @include source-field();
+}

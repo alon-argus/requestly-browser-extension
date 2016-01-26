@@ -1,0 +1,51 @@
+@import 'variables';
+
+@mixin rule-card-details($bg-color) {
+  .card-up {
+    background-color: $bg-color;
+  }
+
+  .card-avatar-content {
+    background: $bg-color;
+  }  
+}
+
+.rule-card {
+  cursor: pointer;
+
+  .card-avatar-content {
+    font-size: 90px;
+    line-height: 110px;
+    text-align: center;
+    color: white;
+    border: 5px solid #fff;
+    width: 100%;
+  }
+
+  .card-content i {
+    margin-right: 5px;
+  }
+}
+
+.card-redirect-rule {
+  @include rule-card-details($redirect-rule-color);  
+}
+
+.card-cancel-rule {
+  @include rule-card-details($cancel-rule-color);  
+}
+
+.card-replace-rule {
+  @include rule-card-details($replace-rule-color);
+}
+
+.card-headers-rule {
+  @include rule-card-details($headers-rule-color);
+}
+
+.back-button {
+  padding: 0 0.5rem;
+  color: white;
+  text-decoration: none !important;
+  font-size: 14px;
+}

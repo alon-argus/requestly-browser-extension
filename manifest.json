@@ -8,6 +8,7 @@
   "content_scripts": [
     {
       "matches": [ "*://web.requestly.in/*" ],
+      "css": [ "src/pages/css/main.css" ],
       "js": [
         "src/libs/firebase.js",
         "src/background/storageService.js",
