@@ -1,0 +1,28 @@
+#replace-rule-editor {
+  .pair-container:first-child:last-child > div {
+    width: 49%;
+  }
+
+  .pair-container > div {
+    width: 48%;
+  }
+
+  label.active {
+    margin-right: 5px;
+  }
+
+  .from-input-group {
+    margin-right: 5px;
+  }
+
+  .from-input,
+  .to-input {
+    padding: 0;
+    padding-left: 5px;
+  }
+
+  .delete-pair {
+    position: relative;
+    top: -12px;
+  }
+}

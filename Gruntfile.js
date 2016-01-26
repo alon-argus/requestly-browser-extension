@@ -14,7 +14,17 @@ module.exports = function (grunt) {
         appName: 'Requestly',
         version: '4.0.1',
         files: [
-          { cwd: 'src', src: ['**', '!pages/**/*.hbs'], expand: true, dest: 'src' },
+          {
+            cwd: 'src',
+            src: [
+              '**',
+              '!pages/**/*.hbs',
+              '!pages/**/*/scss',
+              '!pages/**/*.css.map'
+            ],
+            expand: true,
+            dest: 'src'
+          },
           { cwd: 'resources', src: '**', expand: true, dest: 'resources' },
           { src: 'manifest.json'}
         ],
@@ -42,6 +52,14 @@ module.exports = function (grunt) {
       }
     },
 
+    sass: {
+      dist: {
+        files: {
+          'src/pages/css/main.css': 'src/pages/css/sass/main.scss'
+        }
+      }
+    },
+
     karma: {
       unit: {
         configFile: 'karma.conf.js'
@@ -52,16 +70,22 @@ module.exports = function (grunt) {
       scripts: {
         files: ['**/*.hbs'],
         tasks: ['handlebars']
+      },
+      styles: {
+        files: ['**/*.scss'],
+        tasks: ['sass']
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-zipup');
   grunt.loadNpmTasks('grunt-contrib-handlebars');
+  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('templates', ['handlebars']);
-  grunt.registerTask('dev', ['karma:unit']);
   grunt.registerTask('build', ['handlebars', 'zipup']);
+  grunt.registerTask('test', ['karma:unit']);
+  grunt.registerTask('dev', ['watch']);
 };

@@ -1,0 +1,370 @@
+@import 'variables';
+
+/* (Use different panel colors as available http://bootswatch.com/cerulean/)
+ * Color list for different types of rules
+ * 1. Redirect Rule: #73a839
+*/
+body {
+  background: #ededeb;
+}
+
+a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+table {
+  width: 100%;
+}
+
+@media only screen and (max-width: 1040px) {
+  .side-nav.fixed {
+    left: -105%;
+  }
+
+  #page {
+    left: 0;
+  }
+
+  #content {
+    width: $content-width;
+    margin: auto;
+  }
+
+  div.backdrop {
+    left: 0;
+  }
+
+  div.backdrop-message {
+    margin-left: -350px;
+  }
+
+  #footer {
+    margin: auto;
+  }
+}
+
+.dropdown-menu {
+  min-width: 100px;
+  padding: 0;
+
+  a.dropdown-option {
+    padding: 0.5rem;
+    padding-left: 10px;
+    font-size: 14px;
+    color: #333;
+  }
+}
+
+.btn {
+  line-height: 1.42857143;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.btn-default {
+  background: #fff;
+}
+
+.btn-link:hover {
+  text-decoration: none;
+  color: #333;
+}
+
+i.left {
+  margin-right: 5px;
+}
+
+.row {
+  margin: 0;
+}
+
+input[type="url"],
+input[type="text"] {
+  &.form-control {
+    display: inline-block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  }
+}
+
+.header {
+  background: #2F416E;
+  height: 35px;
+  line-height: 35px;
+  font-size: 14px;
+  text-align: center;
+  color: #eee;
+}
+
+.page {
+  position: fixed;
+  top: 0;
+  left: 240px;
+  right: 0;
+  bottom: 0;
+}
+
+.content {
+  width: 100%;
+  min-width: $content-width;
+  height: calc(100% - 35px);
+  background: #fff;
+  overflow: auto;
+}
+
+.backdrop {
+  display: none;
+  opacity: 0.65;
+  top: 0;
+  left: 240px;
+}
+
+.backdrop-message {
+  display: none;
+  width: 50rem;
+  left: 50%;
+  position: absolute;
+  margin-left: -240px;
+  top: 40%;
+  z-index: 1050;
+  text-align: center;
+  color: white;
+  background-color: #222;
+  border-color: #333;
+
+  p {
+    font-size: 16px;
+  }
+}
+
+.footer {
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  height: 35px;
+  line-height: 35px;
+  background: #3c3c3c;
+  color: #eee;
+}
+
+.footer .rq-blue {
+  margin: 0;
+}
+
+.footer-title {
+  margin-right: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.rq-banner {
+  padding: 0 50px 0 10px;
+  color: #fff;
+  font-weight: 700;
+  z-index: 10;
+  margin-left: 10px;
+}
+
+#forkme_banner {
+  background: url('/resources/images/blacktocat.png') #0090ff no-repeat 95% 50%;
+  border-radius: 2px;
+  padding: 0 50px 0 10px;
+  position: fixed;
+  right: 0;
+}
+
+#chromestore_banner {
+  background: url('/resources/images/chrome_icon.png') #53a93f no-repeat 95% 50%;
+  background-size: 30px;
+  padding: 10px 50px 10px 10px;
+}
+
+.right {
+  float: right;
+}
+
+.dropdown-container {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.input-group {
+  padding: 10px 0;
+}
+
+.icon-requestly {
+  height: 30px;
+  position: relative;
+  top: -3px;
+}
+
+.rq-white {
+  color: white;
+  font-size: 18px;
+  text-shadow: 0 0 1px;
+}
+
+.rq-blue {
+  color: #3DA4DF;
+  margin-left: -4px;
+  font-weight: bold;
+  font-size: 18px;
+  text-shadow: 0 0 1px;
+  font-family: monospace;
+  letter-spacing: -2px;
+}
+
+#rq-notifier {
+  border-radius: 2px;
+  color: whitesmoke;
+  font-weight: bold;
+  position: fixed;
+  padding: 8px;
+  z-index: 100;
+  text-align: center;
+  width: 100%;
+}
+
+.rq-success {
+  background-color: #3c763d;
+}
+
+.rq-error {
+  background-color: #a94442;
+}
+
+.rq-info {
+  background-color: #31708f;
+}
+
+.rq-notice {
+  background-color: #DF731F;
+}
+
+.content-header {
+  padding: 10px;
+  color: white;
+  font-size: 14px;
+  height: 45px;
+  line-height: 25px;
+}
+
+.rq-green {
+  background: #5B9027;
+}
+
+.rq-dimgrey {
+  background: dimgrey;
+}
+
+.content .rule-body {
+  padding: 16px;
+}
+
+.margin-r-0-5 {
+  margin-right: 0.5rem;
+}
+
+/* customization of bootstrap toggle component */
+.toggle {
+  min-height: 1rem !important;
+  min-width: 1rem !important;
+  width: 80px !important;
+  height: 25px !important;
+  background-color: #adadad !important;
+  border-color: #adadad !important;
+}
+
+.toggle-group label {
+  padding-top: 1px;
+  padding-bottom: 0;
+}
+
+.toggle-group .toggle-off.btn {
+  padding-left: 20px;
+  border: none;
+}
+
+.toggle-group .toggle-on.btn {
+  padding-right: 20px;
+}
+
+#redirect-rule-editor .toggle-on.btn,
+.redirect .status-cell .toggle-on.btn {
+  background-color: #5B9027;
+}
+
+#cancel-rule-editor .toggle-on.btn,
+.cancel .status-cell .toggle-on.btn {
+  background-color: #d32a0e;
+}
+
+.replace .status-cell .toggle-on.btn,
+.status-toggle.replace + .toggle-group .toggle-on.btn {
+  background-color: #2A95E7;
+}
+
+.headers .status-cell .toggle-on.btn,
+.status-toggle.headers + .toggle-group .toggle-on.btn {
+  background-color: #dd9d12;
+}
+
+/* Left Navigation Bar */
+.side-nav {
+  a.product-name {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 45px;
+    background: dimgrey;
+    text-align: center;
+    padding-left: 0px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    line-height: 25px;
+    cursor: default;
+  }
+
+  .avatar-wrapper {
+    padding: 40px;
+    background: #ccc;
+    cursor: default;
+  }
+
+  a.product-moto {
+    position: absolute;
+    top: 235px;
+    z-index: 2;
+    color: #333;
+    text-shadow: 0 0 2px #fff;
+  }
+
+  li {
+    border-top: 1px solid #eee;
+  }
+
+  a {
+    height: 34px;
+    line-height: 34px;
+    color: #555555;
+  }
+
+  i {
+    margin-right: 10px;
+  }
+}
