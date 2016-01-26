@@ -23,6 +23,8 @@ RQ.init = function() {
     $('#content').html(this.currentView.el);
   };
 
+  this.addLoginModal();
+
   this.router = new RQ.Router();
 
   this.fetchSettings();
@@ -30,6 +32,11 @@ RQ.init = function() {
   this.addListenerForBackgroundMessages();
 
   Backbone.history.start();
+};
+
+RQ.addLoginModal = function() {
+  var loginDialogMarkup = RQ.Templates.LoginModal();
+  $(loginDialogMarkup).appendTo('body');
 };
 
 RQ.fetchSettings = function() {
