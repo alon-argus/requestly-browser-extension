@@ -1,11 +1,26 @@
 #login-modal {
+  .action-group {
+    display: inline-block;
+  }
+
   .modal-header {
+    .heading {
+      display: inline-block;
+      padding-left: 25px;
+    }
+
     h4 {
       margin: 0;
 
       i {
         margin-right: 10px;
       }
+    }
+
+    .right.action-group {
+      position: absolute;
+      right: 15px;
+      top: 40px
     }
   }
 
@@ -23,6 +38,21 @@
 
     .btn-link {
       margin-right: 8px;
+    }
+
+    .password-reset-container {
+      position: relative;
+      top: 10px;
+      left: 45px;
+    }
+
+    .buttons-container {
+      float: right;
+
+      .btn {
+        float: none;
+        margin-right: 0;
+      }
     }
 
     .cta-container {
