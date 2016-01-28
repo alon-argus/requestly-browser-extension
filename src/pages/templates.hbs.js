@@ -108,7 +108,7 @@ Handlebars.registerPartial("Toolbar", Handlebars.template({"1":function(depth0,h
 
   return "<nav class=\"content-header rq-dimgrey\">\n  <span>Rules</span>\n  <div class=\"right right-corner-icongroup\">\n\n    <a href=\"#selectRule\" class=\"btn-floating btn-small btn-success waves-effect waves-light select-rule-button action-button\">\n      <i class=\"fa fa-plus\"></i>\n    </a>\n\n"
     + ((stack1 = (helpers.gt || (depth0 && depth0.gt) || helpers.helperMissing).call(depth0,((stack1 = (depth0 != null ? depth0.rules : depth0)) != null ? stack1.length : stack1),0,{"name":"gt","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\n    <a class=\"btn-floating btn-small waves-effect waves-light blue import-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Upload Rules\">\n      <i class=\"fa fa-upload\"></i>\n    </a>\n\n    <button class=\"btn-floating btn-small waves-effect waves-light login-button action-button\"\n       data-toggle=\"modal\" data-target=\"#login-modal\">\n      <i class=\"fa fa-user\"></i>\n    </button>\n\n  </div>\n</nav>";
+    + "\n    <a class=\"btn-floating btn-small waves-effect waves-light blue import-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Upload Rules\">\n      <i class=\"fa fa-upload\"></i>\n    </a>\n\n    <button class=\"btn-floating btn-small waves-effect waves-light login-button action-button\">\n      <i class=\"fa fa-user\"></i>\n    </button>\n  </div>\n</nav>";
 },"useData":true}));
 
 this["RQ"]["Templates"]["CancelRuleEditor"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
@@ -193,10 +193,6 @@ this["RQ"]["Templates"]["HeadersRuleTemplate"] = Handlebars.template({"1":functi
     + "</section>\n";
 },"usePartial":true,"useData":true});
 
-this["RQ"]["Templates"]["LoginModal"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div class=\"modal fade\" id=\"login-modal\" role=\"dialog\">\n  <div class=\"modal-dialog\">\n\n    <!-- Modal content-->\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <div class=\"heading\">\n          <h4><i class=\"fa fa-user\"></i> Sign Up</h4>\n        </div>\n        <div class=\"right action-group\">\n          <a>I already have account</a>\n        </div>\n      </div>\n      <div class=\"modal-body\" style=\"padding:40px 50px;\">\n        <div class=\"row\">\n          <form class=\"col-md-12\">\n            <div class=\"row\">\n              <div class=\"input-field\">\n                <i class=\"material-icons prefix\">email</i>\n                <input id=\"icon_email\" type=\"tel\" class=\"validate\">\n                <label for=\"icon_email\">Your email</label>\n              </div>\n\n              <div class=\"input-field\">\n                <i class=\"material-icons prefix\">lock</i>\n                <input id=\"password\" type=\"password\" class=\"validate\">\n                <label for=\"password\">Password</label>\n              </div>\n              <div class=\"cta-container\">\n                <div class=\"left action-group password-reset-container\">\n                  <a>Forgot Password</a>\n                </div>\n                <div class=\"buttons-container\">\n                  <button type=\"button\" class=\"btn btn-link\" data-dismiss=\"modal\">Cancel</button>\n                  <button type=\"button\" class=\"btn btn-primary waves-effect waves-light\">Sign Up</button>\n                </div>\n              </div>\n            </div>\n          </form>\n        </div>\n      </div>\n    </div>\n    <!-- /.Modal content-->\n  </div>\n</div>\n<!-- Modal -->";
-},"useData":true});
-
 this["RQ"]["Templates"]["RedirectRuleEditor"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
@@ -267,3 +263,29 @@ this["RQ"]["Templates"]["RuleIndex"] = Handlebars.template({"1":function(depth0,
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.rules : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "    </tbody>\n  </table>\n</section>`";
 },"usePartial":true,"useData":true});
+
+this["RQ"]["Templates"]["SusiModal"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    return "Sign Up";
+},"3":function(depth0,helpers,partials,data) {
+    return "Login";
+},"5":function(depth0,helpers,partials,data) {
+    return "        <div class=\"right action-group switch-to-login-mode\">\n          <a>I already have account</a>\n        </div>\n";
+},"7":function(depth0,helpers,partials,data) {
+    return "        <div class=\"right action-group switch-to-signup-mode\">\n          <a>Create Account</a>\n        </div>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1, alias1=helpers.helperMissing;
+
+  return "<div class=\"modal-dialog\">\n\n  <!-- Modal content-->\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <div class=\"heading\">\n        <h4><i class=\"fa fa-user\"></i>\n          "
+    + ((stack1 = (helpers.equals || (depth0 && depth0.equals) || alias1).call(depth0,(depth0 != null ? depth0.mode : depth0),"signup",{"name":"equals","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\n          "
+    + ((stack1 = (helpers.equals || (depth0 && depth0.equals) || alias1).call(depth0,(depth0 != null ? depth0.mode : depth0),"login",{"name":"equals","hash":{},"fn":this.program(3, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\n        </h4>\n      </div>\n"
+    + ((stack1 = (helpers.equals || (depth0 && depth0.equals) || alias1).call(depth0,(depth0 != null ? depth0.mode : depth0),"signup",{"name":"equals","hash":{},"fn":this.program(5, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\n"
+    + ((stack1 = (helpers.equals || (depth0 && depth0.equals) || alias1).call(depth0,(depth0 != null ? depth0.mode : depth0),"login",{"name":"equals","hash":{},"fn":this.program(7, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "    </div>\n    <div class=\"modal-body\" style=\"padding:40px 50px;\">\n      <div class=\"row\">\n        <form class=\"col-md-12\">\n          <div class=\"row\">\n            <div class=\"input-field\">\n              <i class=\"material-icons prefix\">email</i>\n              <input id=\"icon_email\" type=\"tel\" class=\"validate\">\n              <label for=\"icon_email\">Your email</label>\n            </div>\n\n            <div class=\"input-field\">\n              <i class=\"material-icons prefix\">lock</i>\n              <input id=\"password\" type=\"password\" class=\"validate\">\n              <label for=\"password\">Password</label>\n            </div>\n            <div class=\"cta-container\">\n              <div class=\"left action-group password-reset-container\">\n                <a>Forgot Password</a>\n              </div>\n              <div class=\"buttons-container\">\n                <button type=\"button\" class=\"btn btn-link\" data-dismiss=\"modal\">Cancel</button>\n                <button type=\"button\" class=\"btn btn-primary waves-effect waves-light\">\n                  "
+    + ((stack1 = (helpers.equals || (depth0 && depth0.equals) || alias1).call(depth0,(depth0 != null ? depth0.mode : depth0),"signup",{"name":"equals","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\n                  "
+    + ((stack1 = (helpers.equals || (depth0 && depth0.equals) || alias1).call(depth0,(depth0 != null ? depth0.mode : depth0),"login",{"name":"equals","hash":{},"fn":this.program(3, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "\n                </button>\n              </div>\n            </div>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n  <!-- /.Modal content-->\n</div>\n";
+},"useData":true});
