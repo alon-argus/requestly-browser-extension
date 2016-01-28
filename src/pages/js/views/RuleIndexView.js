@@ -13,6 +13,7 @@ var RuleIndexView = Backbone.View.extend({
 
   initialize: function() {
     this.rulesCollection = new RulesCollection();
+    this.susiModal = new SusiModal();
 
     // We don't need to listen on add event because rule is always created from editor
     // And on route change we always fetch the latest rules from DB
@@ -197,6 +198,6 @@ var RuleIndexView = Backbone.View.extend({
   },
 
   showLoginModal: function() {
-    // $('#login-modal').modal();
+    this.susiModal.show();
   }
 });

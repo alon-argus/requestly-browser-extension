@@ -1,0 +1,57 @@
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="heading">
+        <h4><i class="fa fa-user"></i>
+          {{#equals mode "signup"}}Sign Up{{/equals}}
+          {{#equals mode "login"}}Login{{/equals}}
+        </h4>
+      </div>
+      {{#equals mode "signup"}}
+        <div class="right action-group switch-to-login-mode">
+          <a>I already have account</a>
+        </div>
+      {{/equals}}
+
+      {{#equals mode "login"}}
+        <div class="right action-group switch-to-signup-mode">
+          <a>Create Account</a>
+        </div>
+      {{/equals}}
+    </div>
+    <div class="modal-body" style="padding:40px 50px;">
+      <div class="row">
+        <form class="col-md-12">
+          <div class="row">
+            <div class="input-field">
+              <i class="material-icons prefix">email</i>
+              <input id="icon_email" type="tel" class="validate">
+              <label for="icon_email">Your email</label>
+            </div>
+
+            <div class="input-field">
+              <i class="material-icons prefix">lock</i>
+              <input id="password" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+            <div class="cta-container">
+              <div class="left action-group password-reset-container">
+                <a>Forgot Password</a>
+              </div>
+              <div class="buttons-container">
+                <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light">
+                  {{#equals mode "signup"}}Sign Up{{/equals}}
+                  {{#equals mode "login"}}Login{{/equals}}
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- /.Modal content-->
+</div>

@@ -1,6 +1,8 @@
 var BaseView = Backbone.View.extend({
   Mixins: [],
 
+  Model: Backbone.Model,
+
   /**
    * loadModel: loads model and binds to the view
    * @param modelOrData Backbone Model instance or just a backbone model

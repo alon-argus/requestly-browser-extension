@@ -35,6 +35,7 @@
         "src/pages/templates.hbs.js",
 
         "src/pages/js/models/BaseModel.js",
+        "src/pages/js/models/UserSettingsModel.js",
         "src/pages/js/models/BaseRuleModel.js",
         "src/pages/js/models/RedirectRuleModel.js",
         "src/pages/js/models/CancelRuleModel.js",
@@ -46,6 +47,9 @@
         "src/pages/js/mixins/InputValidation.js",
 
         "src/pages/js/views/BaseView.js",
+
+        "src/pages/js/modals/SusiModal.js",
+
         "src/pages/js/views/BaseRuleEditorView.js",
         "src/pages/js/views/RedirectRuleEditorView.js",
         "src/pages/js/views/CancelRuleEditorView.js",

@@ -8,10 +8,6 @@ RQ.TemplateHelpers = RQ.TemplateHelpers || {};
 RQ.HandlebarHelpers = RQ.HandlebarHelpers || {};
 
 RQ.init = function() {
-  this.Models = {};
-
-  this.Collections = {};
-
   this.showView = function(view, options) {
     if (this.currentView) {
       this.currentView.close();
@@ -23,7 +19,21 @@ RQ.init = function() {
     $('#content').html(this.currentView.el);
   };
 
-  this.addLoginModal();
+  this.showModalView = function(modalView, options) {
+    // Do not reRender modal if previously opened modal is same
+    if (this.currentModalView !== modalView) {
+      if (this.currentModalView) {
+        this.currentModalView.close();
+      }
+
+      this.currentModalView = modalView;
+      this.currentModalView.render(options);
+
+      $('#modal-container').html(this.currentModalView.el);
+    }
+
+    $(this.currentModalView.el).modal('show');
+  };
 
   this.router = new RQ.Router();
 
@@ -32,11 +42,6 @@ RQ.init = function() {
   this.addListenerForBackgroundMessages();
 
   Backbone.history.start();
-};
-
-RQ.addLoginModal = function() {
-  var loginDialogMarkup = RQ.Templates.LoginModal();
-  $(loginDialogMarkup).appendTo('body');
 };
 
 RQ.fetchSettings = function() {
