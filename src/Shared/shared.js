@@ -74,6 +74,14 @@ RQ.GA_EVENTS = {
   }
 };
 
+RQ.getFirebaseRef = function() {
+  if (!RQ.firebaseRef) {
+    RQ.firebaseRef = new Firebase('https://requestly.firebaseio.com');
+  }
+
+  return RQ.firebaseRef;
+};
+
 RQ.htmlEncode = function(value){
   return $('<div/>').text(value).html();
 };
