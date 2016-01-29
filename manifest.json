@@ -35,7 +35,7 @@
         "src/pages/templates.hbs.js",
 
         "src/pages/js/models/BaseModel.js",
-        "src/pages/js/models/UserSettingsModel.js",
+        "src/pages/js/models/UserModel.js",
         "src/pages/js/models/BaseRuleModel.js",
         "src/pages/js/models/RedirectRuleModel.js",
         "src/pages/js/models/CancelRuleModel.js",

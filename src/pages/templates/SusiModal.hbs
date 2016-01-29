@@ -2,56 +2,16 @@
 
   <!-- Modal content-->
   <div class="modal-content">
-    <div class="modal-header">
-      <div class="heading">
-        <h4><i class="fa fa-user"></i>
-          {{#equals mode "signup"}}Sign Up{{/equals}}
-          {{#equals mode "login"}}Login{{/equals}}
-        </h4>
+    <div class="modal-header text-center">
+      <h4><i class="fa fa-user"></i> Login with:</h4>
+      <a class="btn-sm-full gplus-bg rectangle waves-effect waves-light auth-provider" data-provider="google">
+        <i class="fa fa-google-plus"></i>
+        <span>Google +</span>
+      </a>
+      <a class="btn-sm-full fb-bg rectangle waves-effect waves-light auth-provider" data-provider="facebook">
+        <i class="fa fa-facebook"> </i>
+        <span>Facebook</span>
+      </a>
       </div>
-      {{#equals mode "signup"}}
-        <div class="right action-group switch-to-login-mode">
-          <a>I already have account</a>
-        </div>
-      {{/equals}}
-
-      {{#equals mode "login"}}
-        <div class="right action-group switch-to-signup-mode">
-          <a>Create Account</a>
-        </div>
-      {{/equals}}
-    </div>
-    <div class="modal-body">
-      <div class="row">
-        <form class="col-md-12">
-          <div class="row">
-            <div class="input-field">
-              <i class="material-icons prefix">email</i>
-              <input id="email-field" type="email" data-key="email" class="validate">
-              <label for="email-field">Your email</label>
-            </div>
-
-            <div class="input-field">
-              <i class="material-icons prefix">lock</i>
-              <input id="password" type="password" data-key="password" class="validate">
-              <label for="password">Password</label>
-            </div>
-            <div class="cta-container">
-              <div class="left action-group password-reset-container">
-                <a>Forgot Password</a>
-              </div>
-              <div class="buttons-container {{mode}}-mode">
-                <button type="button" class="btn btn-link cancel-button" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light save-button">
-                  {{#equals mode "signup"}}Sign Up{{/equals}}
-                  {{#equals mode "login"}}Login{{/equals}}
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
   </div>
-  <!-- /.Modal content-->
 </div>
