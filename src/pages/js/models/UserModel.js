@@ -1,12 +1,12 @@
-var UserSettingsModel = BaseModel.extend({
+var UserModel = BaseModel.extend({
   defaults: {
     profile: {
+      provider: '',
+      uid: '',
+      displayName: '',
       email: '',
-      password: '',
-      profileImageURL: '',
-      uid: ''
+      profileImageURL: ''
     },
-    mode: 'signup',
     isLoggedIn: false
   },
 
@@ -18,28 +18,21 @@ var UserSettingsModel = BaseModel.extend({
     return this.get('profile');
   },
 
-  setProfile: function(profile) {
-    this.set('profile', profile);
-  },
-
-  createUser: function(successCallback, errorCallback) {
+  authenticateUser: function(provider, successCallback, errorCallback) {
     var firebaseRef = this.getFirebaseRef(),
       profile = this.getProfile();
 
-    firebaseRef.createUser({
-      email: profile.email,
-      password : profile.password
-    }, function(error, authData) {
+    firebaseRef.authWithOAuthPopup(provider, function(error, authData) {
       if (!error) {
         firebaseRef.child('users')
           .child(authData.uid)
           .child('profile')
           .set({
             provider: authData.provider,
-            email: authData.password.email,
-            name: RQ.Utils.getName(authData),
             uid: authData.uid,
-            profileImageURL: authData.password.profileImageURL
+            displayName: authData[provider].displayName,
+            email: authData[provider].email,
+            profileImageURL: authData[provider].profileImageURL
           });
 
         profile.email = authData.password.email;

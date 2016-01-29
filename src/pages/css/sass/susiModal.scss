@@ -1,4 +1,6 @@
 #susi-modal {
+  margin-top: 150px;
+
   .action-group {
     display: inline-block;
   }
@@ -10,6 +12,9 @@
     }
 
     h4 {
+      height: 55px;
+      line-height: 55px;
+      vertical-align: middle;
       margin: 0;
 
       i {

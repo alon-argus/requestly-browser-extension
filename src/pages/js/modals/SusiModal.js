@@ -7,39 +7,21 @@ var SusiModal = BaseView.extend({
     role: 'dialog'
   },
 
+  Model: UserModel,
+
   getTemplate: function() {
     return RQ.Templates.SusiModal;
   },
 
-  Model: UserSettingsModel,
-
-  MODES: {
-    LOGIN: 'login',
-    SIGNUP: 'signup'
-  },
-
   events: {
-    'click .switch-to-login-mode': 'switchToLoginMode',
-    'click .switch-to-signup-mode': 'switchToSignUpMode',
-    'change #email-field': 'updateFieldInModel',
-    'change #password': 'updateFieldInModel',
-    'click .signup-mode .save-button': 'createUser'
+    'click .auth-provider': 'authenticateUser'
   },
 
-  switchToLoginMode: function() {
-    this.model.set('mode', this.MODES.LOGIN);
-    this.render();
-  },
+  authenticateUser: function(event) {
+    var provider = event.currentTarget.getAttribute('data-provider');
 
-  switchToSignUpMode: function() {
-    this.model.set('mode', this.MODES.SIGNUP);
-    this.render();
-  },
-
-  createUser: function() {
-    // TODO #93: Ask model to validate userInfo
     // TODO #93: Add Binders to success and error callback
-    this.model.createUser(this.handleUserAccountCreated, this.handleUserSignupError);
+    this.model.authenticateUser(provider, this.handleUserAccountCreated, this.handleUserSignupError);
   },
 
   handleUserAccountCreated: function() {
@@ -49,15 +31,6 @@ var SusiModal = BaseView.extend({
 
   handleUserSignupError: function(error) {
     console.log('Error creating user:', error);
-  },
-
-  updateFieldInModel: function(event) {
-    var el = event.target,
-      key = el.getAttribute('data-key'),
-      profile = this.model.getProfile();
-
-    profile[key] = el.value;
-    this.model.setProfile(profile);
   },
 
   show: function() {

@@ -264,30 +264,6 @@ this["RQ"]["Templates"]["RuleIndex"] = Handlebars.template({"1":function(depth0,
     + "    </tbody>\n  </table>\n</section>`";
 },"usePartial":true,"useData":true});
 
-this["RQ"]["Templates"]["SusiModal"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-    return "Sign Up";
-},"3":function(depth0,helpers,partials,data) {
-    return "Login";
-},"5":function(depth0,helpers,partials,data) {
-    return "        <div class=\"right action-group switch-to-login-mode\">\n          <a>I already have account</a>\n        </div>\n";
-},"7":function(depth0,helpers,partials,data) {
-    return "        <div class=\"right action-group switch-to-signup-mode\">\n          <a>Create Account</a>\n        </div>\n";
-},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    var stack1, helper, alias1=helpers.helperMissing;
-
-  return "<div class=\"modal-dialog\">\n\n  <!-- Modal content-->\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <div class=\"heading\">\n        <h4><i class=\"fa fa-user\"></i>\n          "
-    + ((stack1 = (helpers.equals || (depth0 && depth0.equals) || alias1).call(depth0,(depth0 != null ? depth0.mode : depth0),"signup",{"name":"equals","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\n          "
-    + ((stack1 = (helpers.equals || (depth0 && depth0.equals) || alias1).call(depth0,(depth0 != null ? depth0.mode : depth0),"login",{"name":"equals","hash":{},"fn":this.program(3, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\n        </h4>\n      </div>\n"
-    + ((stack1 = (helpers.equals || (depth0 && depth0.equals) || alias1).call(depth0,(depth0 != null ? depth0.mode : depth0),"signup",{"name":"equals","hash":{},"fn":this.program(5, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\n"
-    + ((stack1 = (helpers.equals || (depth0 && depth0.equals) || alias1).call(depth0,(depth0 != null ? depth0.mode : depth0),"login",{"name":"equals","hash":{},"fn":this.program(7, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "    </div>\n    <div class=\"modal-body\">\n      <div class=\"row\">\n        <form class=\"col-md-12\">\n          <div class=\"row\">\n            <div class=\"input-field\">\n              <i class=\"material-icons prefix\">email</i>\n              <input id=\"email-field\" type=\"email\" data-key=\"email\" class=\"validate\">\n              <label for=\"email-field\">Your email</label>\n            </div>\n\n            <div class=\"input-field\">\n              <i class=\"material-icons prefix\">lock</i>\n              <input id=\"password\" type=\"password\" data-key=\"password\" class=\"validate\">\n              <label for=\"password\">Password</label>\n            </div>\n            <div class=\"cta-container\">\n              <div class=\"left action-group password-reset-container\">\n                <a>Forgot Password</a>\n              </div>\n              <div class=\"buttons-container "
-    + this.escapeExpression(((helper = (helper = helpers.mode || (depth0 != null ? depth0.mode : depth0)) != null ? helper : alias1),(typeof helper === "function" ? helper.call(depth0,{"name":"mode","hash":{},"data":data}) : helper)))
-    + "-mode\">\n                <button type=\"button\" class=\"btn btn-link cancel-button\" data-dismiss=\"modal\">Cancel</button>\n                <button type=\"button\" class=\"btn btn-primary waves-effect waves-light save-button\">\n                  "
-    + ((stack1 = (helpers.equals || (depth0 && depth0.equals) || alias1).call(depth0,(depth0 != null ? depth0.mode : depth0),"signup",{"name":"equals","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\n                  "
-    + ((stack1 = (helpers.equals || (depth0 && depth0.equals) || alias1).call(depth0,(depth0 != null ? depth0.mode : depth0),"login",{"name":"equals","hash":{},"fn":this.program(3, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\n                </button>\n              </div>\n            </div>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n  <!-- /.Modal content-->\n</div>\n";
+this["RQ"]["Templates"]["SusiModal"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<div class=\"modal-dialog\">\n\n  <!-- Modal content-->\n  <div class=\"modal-content\">\n    <div class=\"modal-header text-center\">\n      <h4><i class=\"fa fa-user\"></i> Login with:</h4>\n      <a class=\"btn-sm-full gplus-bg rectangle waves-effect waves-light auth-provider\" data-provider=\"google\">\n        <i class=\"fa fa-google-plus\"></i>\n        <span>Google +</span>\n      </a>\n      <a class=\"btn-sm-full fb-bg rectangle waves-effect waves-light auth-provider\" data-provider=\"facebook\">\n        <i class=\"fa fa-facebook\"> </i>\n        <span>Facebook</span>\n      </a>\n      </div>\n  </div>\n</div>\n";
 },"useData":true});
