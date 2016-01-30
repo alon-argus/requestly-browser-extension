@@ -368,3 +368,24 @@ input[type="text"] {
     margin-right: 10px;
   }
 }
+
+/* Authentication based logic for showing profile pic icon */
+.authorized-user {
+  .avatar {
+    display: inline-block;
+  }
+
+  .login-button {
+    display: none;
+  }
+}
+
+.unauthorized-user {
+  .avatar {
+    display: none;
+  }
+
+  .login-button {
+    display: inline-block;
+  }
+}

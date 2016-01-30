@@ -7,30 +7,25 @@ var SusiModal = BaseView.extend({
     role: 'dialog'
   },
 
-  Model: UserModel,
+  events: {
+    'click .auth-provider': 'authenticateUser'
+  },
 
   getTemplate: function() {
     return RQ.Templates.SusiModal;
   },
 
-  events: {
-    'click .auth-provider': 'authenticateUser'
+  registerBinders: function() {
+    this.handleLoginError = this.handleLoginError.bind(this);
   },
 
   authenticateUser: function(event) {
     var provider = event.currentTarget.getAttribute('data-provider');
-
-    // TODO #93: Add Binders to success and error callback
-    this.model.authenticateUser(provider, this.handleUserAccountCreated, this.handleUserSignupError);
+    this.model.authenticateUser(provider, this.handleLoginError);
   },
 
-  handleUserAccountCreated: function() {
-    // TODO #93: Trigger User is SignedIn
-    // App should listen to it, Update currentUser information and ask IndexView to renderToolbar
-  },
-
-  handleUserSignupError: function(error) {
-    console.log('Error creating user:', error);
+  handleLoginError: function(error) {
+    console.log('Error signin in:', error);
   },
 
   show: function() {

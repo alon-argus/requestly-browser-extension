@@ -74,6 +74,11 @@ RQ.GA_EVENTS = {
   }
 };
 
+RQ.USER = {
+  AUTHORIZED: 'authorized-user',
+  UNAUTHORIZED: 'unauthorized-user'
+};
+
 RQ.getFirebaseRef = function() {
   if (!RQ.firebaseRef) {
     RQ.firebaseRef = new Firebase('https://requestly.firebaseio.com');

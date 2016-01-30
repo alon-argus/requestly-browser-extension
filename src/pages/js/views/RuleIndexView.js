@@ -13,8 +13,12 @@ var RuleIndexView = Backbone.View.extend({
 
   initialize: function() {
     this.rulesCollection = new RulesCollection();
-    this.susiModal = new SusiModal();
+    this.susiModal = new SusiModal({ model: RQ.currentUser });
 
+    this.registerListeners();
+  },
+
+  registerListeners: function() {
     // We don't need to listen on add event because rule is always created from editor
     // And on route change we always fetch the latest rules from DB
     this.listenTo(this.rulesCollection, 'loaded', this.render);
@@ -23,10 +27,10 @@ var RuleIndexView = Backbone.View.extend({
   },
 
   initWidgets: function() {
-    var $el = $(this.el);
+    this.$el = $(this.el);
 
-    $el.find('.status-toggle').bootstrapToggle();
-    $el.find('[data-toggle="tooltip"]').tooltip({animation: true, delay: {show: 300, hide: 300}});
+    this.$el.find('.status-toggle').bootstrapToggle();
+    this.$el.find('[data-toggle="tooltip"]').tooltip({ animation: true, delay: { show: 300, hide: 300 } });
   },
 
   updateCollection: function() {
@@ -38,7 +42,10 @@ var RuleIndexView = Backbone.View.extend({
   },
 
   getMarkup: function(template) {
-    return template({ rules: this.rulesCollection.toJSON() });
+    return template({
+      rules: this.rulesCollection.toJSON(),
+      user: RQ.currentUser.toJSON()
+    });
   },
 
   render: function(options) {

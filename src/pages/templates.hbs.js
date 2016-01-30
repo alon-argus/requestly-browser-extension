@@ -103,12 +103,22 @@ Handlebars.registerPartial("StatusToggle", Handlebars.template({"1":function(dep
 
 Handlebars.registerPartial("Toolbar", Handlebars.template({"1":function(depth0,helpers,partials,data) {
     return "      <a class=\"btn-floating btn-small waves-effect waves-light blue export-rules-button action-button\"\n         data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Download Rules\">\n        <i class=\"fa fa-download\"></i>\n      </a>\n";
+},"3":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return "      <button class=\"btn-floating btn-small waves-effect waves-light action-button avatar\">\n        <img src=\""
+    + this.escapeExpression(this.lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.profile : stack1)) != null ? stack1.profileImageURL : stack1), depth0))
+    + "\" class=\"img-circle img-responsive profile-pic\">\n      </button>\n";
+},"5":function(depth0,helpers,partials,data) {
+    return "      <button class=\"btn-floating btn-small waves-effect waves-light login-button action-button\">\n        <i class=\"fa fa-user\"></i>\n      </button>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "<nav class=\"content-header rq-dimgrey\">\n  <span>Rules</span>\n  <div class=\"right right-corner-icongroup\">\n\n    <a href=\"#selectRule\" class=\"btn-floating btn-small btn-success waves-effect waves-light select-rule-button action-button\">\n      <i class=\"fa fa-plus\"></i>\n    </a>\n\n"
     + ((stack1 = (helpers.gt || (depth0 && depth0.gt) || helpers.helperMissing).call(depth0,((stack1 = (depth0 != null ? depth0.rules : depth0)) != null ? stack1.length : stack1),0,{"name":"gt","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\n    <a class=\"btn-floating btn-small waves-effect waves-light blue import-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Upload Rules\">\n      <i class=\"fa fa-upload\"></i>\n    </a>\n\n    <button class=\"btn-floating btn-small waves-effect waves-light login-button action-button\">\n      <i class=\"fa fa-user\"></i>\n    </button>\n  </div>\n</nav>";
+    + "\n    <a class=\"btn-floating btn-small waves-effect waves-light blue import-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Upload Rules\">\n      <i class=\"fa fa-upload\"></i>\n    </a>\n\n"
+    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.user : depth0)) != null ? stack1.isLoggedIn : stack1),{"name":"if","hash":{},"fn":this.program(3, data, 0),"inverse":this.program(5, data, 0),"data":data})) != null ? stack1 : "")
+    + "  </div>\n</nav>\n";
 },"useData":true}));
 
 this["RQ"]["Templates"]["CancelRuleEditor"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {

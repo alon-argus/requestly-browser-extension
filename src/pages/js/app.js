@@ -37,6 +37,11 @@ RQ.init = function() {
 
   this.router = new RQ.Router();
 
+  // There should be only one instance of User profile/settings
+  this.currentUser = new UserModel();
+  this.addListenerForAuthenticationChanged();
+  this.currentUser.checkUserAuthentication();
+
   this.fetchSettings();
 
   this.addListenerForBackgroundMessages();
@@ -75,6 +80,17 @@ RQ.addListenerForBackgroundMessages = function() {
     if (request.isExtensionEnabled === false) {
       RQ.showBackdrop();
     }
+  });
+};
+
+RQ.addListenerForAuthenticationChanged = function() {
+  RQ.currentUser.on('change:isLoggedIn', function() {
+    var isAuthorized = RQ.currentUser.getUserLoggedIn();
+
+    $('body')
+      .removeClass(RQ.USER.AUTHORIZED)
+      .removeClass(RQ.USER.UNAUTHORIZED)
+      .addClass(isAuthorized ? RQ.USER.AUTHORIZED : RQ.USER.UNAUTHORIZED);
   });
 };
 

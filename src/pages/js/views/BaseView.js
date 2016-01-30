@@ -25,6 +25,7 @@ var BaseView = Backbone.View.extend({
 
   initialize: function(options) {
     options = options || {};
+    this.registerBinders();
     this.loadModel(options.model);
     this.loadMixins(this.Mixins);
     this.alsoInitialize();
@@ -52,6 +53,8 @@ var BaseView = Backbone.View.extend({
   getMarkup: function(template) {
     return template(this.model.toJSON());
   },
+
+  registerBinders: function() { /* No Op */ },
 
   // To be overridden by inheriting component
   alsoValidate: function() { return true; },

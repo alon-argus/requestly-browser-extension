@@ -295,6 +295,17 @@ input[type="text"].form-control {
 .side-nav i {
   margin-right: 10px; }
 
+/* Authentication based logic for showing profile pic icon */
+.authorized-user .avatar {
+  display: inline-block; }
+.authorized-user .login-button {
+  display: none; }
+
+.unauthorized-user .avatar {
+  display: none; }
+.unauthorized-user .login-button {
+  display: inline-block; }
+
 .right-corner-icongroup {
   height: 40px;
   line-height: 40px;

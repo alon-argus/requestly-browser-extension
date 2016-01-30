@@ -11,38 +11,69 @@ var UserModel = BaseModel.extend({
   },
 
   initialize: function() {
+    this.registerBinders();
+  },
 
+  registerBinders: function() {
+    this.handleUserAuthenticationChanged = this.handleUserAuthenticationChanged.bind(this);
+  },
+
+  checkUserAuthentication: function() {
+    var firebaseRef = this.getFirebaseRef();
+    firebaseRef.onAuth(this.handleUserAuthenticationChanged);
+  },
+
+  handleUserAuthenticationChanged: function(authData) {
+    var firebaseRef = this.getFirebaseRef(),
+      profile = this.getProfile(),
+      provider;
+
+    if (authData) {
+      provider = authData.provider;
+
+      profile.provider = provider;
+      profile.uid = authData.uid;
+      profile.displayName = authData[provider].displayName;
+      profile.email = authData[provider].email;
+      profile.profileImageURL = authData[provider].profileImageURL;
+
+      firebaseRef.child('users')
+        .child(authData.uid)
+        .child('profile')
+        .set(profile);
+
+      this.setUserLoggedIn(true);
+    }
+
+    this.setProfile(_.clone(profile));
+  },
+
+  authenticateUser: function(provider, successCallback, errorCallback) {
+    var firebaseRef = this.getFirebaseRef();
+
+    firebaseRef.authWithOAuthRedirect(provider, function(error) {
+      if (error) {
+        errorCallback(error);
+      }
+    }, {
+      scope: 'email'
+    });
   },
 
   getProfile: function() {
     return this.get('profile');
   },
 
-  authenticateUser: function(provider, successCallback, errorCallback) {
-    var firebaseRef = this.getFirebaseRef(),
-      profile = this.getProfile();
+  setProfile: function(profile) {
+    this.set('profile', profile);
+  },
 
-    firebaseRef.authWithOAuthPopup(provider, function(error, authData) {
-      if (!error) {
-        firebaseRef.child('users')
-          .child(authData.uid)
-          .child('profile')
-          .set({
-            provider: authData.provider,
-            uid: authData.uid,
-            displayName: authData[provider].displayName,
-            email: authData[provider].email,
-            profileImageURL: authData[provider].profileImageURL
-          });
+  setUserLoggedIn: function(isLoggedIn) {
+    this.set('isLoggedIn', isLoggedIn);
+  },
 
-        profile.email = authData.password.email;
-        profile.uid = authData.uid;
-
-        successCallback();
-      } else {
-        errorCallback(error);
-      }
-    });
+  getUserLoggedIn: function() {
+    return this.get('isLoggedIn');
   },
 
   getFirebaseRef: function() {
