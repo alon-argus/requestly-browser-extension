@@ -8,7 +8,7 @@ var RuleIndexView = Backbone.View.extend({
     'click .select-rule-checkbox': 'selectRule',
     'click .export-rules-button': 'exportRules',
     'click .import-rules-button': 'importRules',
-    'click .login-button': 'showLoginModal'
+    'click .share-rules-button': 'handleShareRulesButtonClicked'
   },
 
   initialize: function() {
@@ -30,7 +30,7 @@ var RuleIndexView = Backbone.View.extend({
     this.$el = $(this.el);
 
     this.$el.find('.status-toggle').bootstrapToggle();
-    this.$el.find('[data-toggle="tooltip"]').tooltip({ animation: true, delay: { show: 300, hide: 300 } });
+    this.$el.find('[data-toggle="tooltip"]').tooltip();
   },
 
   updateCollection: function() {
@@ -206,5 +206,15 @@ var RuleIndexView = Backbone.View.extend({
 
   showLoginModal: function() {
     this.susiModal.show();
+  },
+
+  handleShareRulesButtonClicked: function() {
+    var isUserLoggedIn = RQ.currentUser.getUserLoggedIn();
+
+    if (!isUserLoggedIn) {
+      this.showLoginModal();
+    } else {
+      // Show Share Rules Modal
+    }
   }
 });

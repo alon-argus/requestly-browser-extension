@@ -11,6 +11,7 @@ var UserModel = BaseModel.extend({
   },
 
   initialize: function() {
+    this.firebaseRef = RQ.getFirebaseRef();
     this.registerBinders();
   },
 
@@ -51,13 +52,13 @@ var UserModel = BaseModel.extend({
   authenticateUser: function(provider, successCallback, errorCallback) {
     var firebaseRef = this.getFirebaseRef();
 
-    firebaseRef.authWithOAuthRedirect(provider, function(error) {
-      if (error) {
-        errorCallback(error);
-      }
-    }, {
+    firebaseRef.authWithOAuthRedirect(provider, errorCallback, {
       scope: 'email'
     });
+  },
+
+  signOut: function() {
+    this.firebaseRef.unauth();
   },
 
   getProfile: function() {
