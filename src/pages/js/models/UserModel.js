@@ -49,7 +49,7 @@ var UserModel = BaseModel.extend({
     this.setProfile(_.clone(profile));
   },
 
-  authenticateUser: function(provider, successCallback, errorCallback) {
+  authenticateUser: function(provider, errorCallback) {
     var firebaseRef = this.getFirebaseRef();
 
     firebaseRef.authWithOAuthRedirect(provider, errorCallback, {
