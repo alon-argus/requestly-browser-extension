@@ -34,6 +34,10 @@ RQ.Utils.getName = function(authData) {
   }
 };
 
+RQ.Utils.getId = function() {
+  return Date.now();
+};
+
 RQ.Utils.submitEvent = function(category, action, label) {
   var eventObserverPlaceholder = document.getElementById('events-observer-placeholder'),
     $eventEl = $('<span></span>').attr({

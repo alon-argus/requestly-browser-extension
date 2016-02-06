@@ -14,6 +14,7 @@ var RuleIndexView = Backbone.View.extend({
   initialize: function() {
     this.rulesCollection = new RulesCollection();
     this.susiModal = new SusiModal({ model: RQ.currentUser });
+    this.shareRulesModal = new ShareRulesModal({});
 
     this.registerListeners();
   },
@@ -209,12 +210,25 @@ var RuleIndexView = Backbone.View.extend({
   },
 
   handleShareRulesButtonClicked: function() {
-    var isUserLoggedIn = RQ.currentUser.getUserLoggedIn();
+    var isUserLoggedIn = RQ.currentUser.getUserLoggedIn(),
+      selectedRules,
+      sharedUrl;
 
     if (!isUserLoggedIn) {
       this.showLoginModal();
     } else {
-      // Show Share Rules Modal
+      selectedRules = _.pluck(this.getSelectedRules(), 'attributes');
+
+      if (selectedRules.length === 0) {
+        alert('Please select one or more rules to share');
+        return;
+      }
+
+      sharedUrl = RQ.currentUser.createSharedList(RQ.Utils.getId(), selectedRules);
+      this.shareRulesModal.model.set('sharedUrl', sharedUrl);
+      this.shareRulesModal.show({
+        model: { sharedUrl: sharedUrl }
+      });
     }
   }
 });

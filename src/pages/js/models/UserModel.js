@@ -49,6 +49,23 @@ var UserModel = BaseModel.extend({
     this.setProfile(_.clone(profile));
   },
 
+  createSharedList: function(shareId, rules) {
+    var fireBaseRef = RQ.getFirebaseRef(),
+      listRef = fireBaseRef.child('public')
+      .child('sharedLists')
+      .child(shareId);
+
+    // Set uid of owner in access node
+    listRef.set({
+      access: {
+        owner: this.getProfile().uid
+      },
+      rules: rules
+    });
+
+    return RQ.WEB_URL + '#share/' + shareId;
+  },
+
   authenticateUser: function(provider, errorCallback) {
     var firebaseRef = this.getFirebaseRef();
 

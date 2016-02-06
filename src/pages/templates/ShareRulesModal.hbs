@@ -1,0 +1,35 @@
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4><i class="fa fa-share-alt"></i>Share Rules (Public Url)</h4>
+    </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="input-name-field col-md-2"><strong>List Name:</strong></div>
+        <div class="input-field col-md-10">
+          <input id="shared-list-name-field" type="text" placeholder="My Shared list">
+        </div>
+      </div>
+
+      {{#if sharedUrl}}
+        <div class="row">
+          <div class="input-name-field col-md-2"><strong>Public Url:</strong></div>
+          <div class="input-field col-md-10">{{sharedUrl}}</div>
+        </div>
+      {{/if}}
+    </div>
+
+    <div class="modal-footer">
+      <div class="footer-note left">
+        <h6 class="note">Note: Anyone with this Url can view and import these rules.</h6>
+      </div>
+      <div class="cta-container right">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div> <!-- modal-content -->
+</div>

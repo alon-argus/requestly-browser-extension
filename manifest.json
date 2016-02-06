@@ -48,7 +48,9 @@
 
         "src/pages/js/views/BaseView.js",
 
+        "src/pages/js/modals/Modal.js",
         "src/pages/js/modals/SusiModal.js",
+        "src/pages/js/modals/ShareRulesModal.js",
 
         "src/pages/js/views/BaseRuleEditorView.js",
         "src/pages/js/views/RedirectRuleEditorView.js",

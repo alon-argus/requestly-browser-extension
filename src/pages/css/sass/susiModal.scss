@@ -1,32 +1,11 @@
 @import 'variables';
 
 #susi-modal {
-  margin-top: 100px;
-
   .modal-header {
-    border-bottom: 2px solid $susi-modal-heading-border-color;
-
     .heading {
       display: inline-block;
       padding-left: 25px;
     }
-
-    h4 {
-      height: 30px;
-      font-size: 30px;
-      line-height: 30px;
-      vertical-align: middle;
-      margin: 0;
-
-      i {
-        margin-right: 10px;
-      }
-    }
-  }
-
-  .modal-footer {
-    padding: 0;
-    border: 0;
   }
 
   .modal-content {
@@ -34,6 +13,10 @@
       margin-left: -15px;
       margin-right: -15px;
     }
+  }
+
+  .modal-footer {
+    padding: 0;
   }
 
   .auth-provider {

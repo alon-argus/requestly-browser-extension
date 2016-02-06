@@ -1,11 +1,5 @@
-var SusiModal = BaseView.extend({
+var SusiModal = Modal.extend({
   id: 'susi-modal',
-
-  className: 'modal fade',
-
-  attributes: {
-    role: 'dialog'
-  },
 
   events: {
     'click .auth-provider': 'authenticateUser'
@@ -26,9 +20,5 @@ var SusiModal = BaseView.extend({
 
   handleLoginError: function(error) {
     console.log('Error signin in:', error);
-  },
-
-  show: function() {
-    RQ.showModalView(this);
   }
 });

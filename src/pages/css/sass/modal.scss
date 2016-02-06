@@ -1,0 +1,54 @@
+#modal-container {
+  .modal {
+    margin-top: 100px;
+
+    .modal-header {
+      border-bottom: 2px solid $susi-modal-heading-border-color;
+
+      h4 {
+        height: 30px;
+        font-size: 30px;
+        line-height: 30px;
+        vertical-align: middle;
+        margin: 0;
+
+        i {
+          margin-right: 10px;
+        }
+      }
+    }
+
+    .modal-footer {
+      border: 0;
+
+      .footer-note {
+        .note {
+          font-size: 12px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}
+
+#share-rules-modal {
+  &.modal {
+    .modal-header {
+      border-bottom-color: #cfcfcf;
+    }
+
+    .modal-content {
+      .input-name-field {
+        height: 60px;
+        line-height: 60px;
+        padding-right: 0;
+      }
+
+      .input-field {
+        margin-top: 0;
+        height: 60px;
+        line-height: 60px;
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@ Handlebars.registerPartial("DropdownButton", Handlebars.template({"compiler":[6,
 Handlebars.registerPartial("PairsContainerHeading", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1, helper;
 
-  return "<div class=\"title\">\n  <span class=\"left\">"
+  return "<div class=\"title\">\n  <span>"
     + this.escapeExpression(((helper = (helper = helpers.heading || (depth0 != null ? depth0.heading : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"heading","hash":{},"data":data}) : helper)))
     + "</span>\n"
     + ((stack1 = this.invokePartial(partials.AddPairCTA,depth0,{"name":"AddPairCTA","data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
@@ -263,6 +263,20 @@ this["RQ"]["Templates"]["RuleIndex"] = Handlebars.template({"1":function(depth0,
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.rules : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "    </tbody>\n  </table>\n</section>`";
 },"usePartial":true,"useData":true});
+
+this["RQ"]["Templates"]["ShareRulesModal"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    var helper;
+
+  return "        <div class=\"row\">\n          <div class=\"input-name-field col-md-2\"><strong>Public Url:</strong></div>\n          <div class=\"input-field col-md-10\">"
+    + this.escapeExpression(((helper = (helper = helpers.sharedUrl || (depth0 != null ? depth0.sharedUrl : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"sharedUrl","hash":{},"data":data}) : helper)))
+    + "</div>\n        </div>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<div class=\"modal-dialog\">\n\n  <!-- Modal content-->\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <h4><i class=\"fa fa-share-alt\"></i>Share Rules (Public Url)</h4>\n    </div>\n\n    <div class=\"modal-body\">\n      <div class=\"row\">\n        <div class=\"input-name-field col-md-2\"><strong>List Name:</strong></div>\n        <div class=\"input-field col-md-10\">\n          <input id=\"shared-list-name-field\" type=\"text\" placeholder=\"My Shared list\">\n        </div>\n      </div>\n\n"
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.sharedUrl : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "    </div>\n\n    <div class=\"modal-footer\">\n      <div class=\"footer-note left\">\n        <h6 class=\"note\">Note: Anyone with this Url can view and import these rules.</h6>\n      </div>\n      <div class=\"cta-container right\">\n        <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Close</button>\n      </div>\n    </div>\n\n  </div> <!-- modal-content -->\n</div>\n";
+},"useData":true});
 
 this["RQ"]["Templates"]["SusiModal"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<div class=\"modal-dialog\">\n\n  <!-- Modal content-->\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <h4><i class=\"fa fa-user\"></i>Register</h4>\n    </div>\n\n    <div class=\"modal-body\">\n      <p>Please login with Google to share your rules with other users.</p>\n    </div>\n\n    <div class=\"modal-footer text-right\">\n      <button type=\"button\" class=\"btn btn-link\" data-dismiss=\"modal\">Cancel</button>\n      <a class=\"btn-sm-full gplus-bg rectangle waves-effect waves-light auth-provider\" data-provider=\"google\">\n        <i class=\"fa fa-google-plus\"></i>\n        <span>Sign In</span>\n      </a>\n    </div>\n\n  </div> <!-- /modal-content -->\n</div>\n";
