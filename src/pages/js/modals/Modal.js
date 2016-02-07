@@ -7,6 +7,12 @@ var Modal = BaseView.extend({
     role: 'dialog'
   },
 
+  events: {
+    'click .cta-container .btn-primary': 'handlePrimaryButtonClicked'
+  },
+
+  handlePrimaryButtonClicked: function() { /* No Op */ },
+
   show: function(options) {
     RQ.showModalView(this, options);
   }

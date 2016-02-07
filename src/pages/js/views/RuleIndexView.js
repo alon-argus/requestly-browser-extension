@@ -25,6 +25,8 @@ var RuleIndexView = Backbone.View.extend({
     this.listenTo(this.rulesCollection, 'loaded', this.render);
     this.listenTo(this.rulesCollection, 'change', this.render);
     this.listenTo(this.rulesCollection, 'remove', this.render);
+
+    this.shareRulesModal.on('modal:closed', this.handleShareRulesModalClosed);
   },
 
   initWidgets: function() {
@@ -212,6 +214,7 @@ var RuleIndexView = Backbone.View.extend({
   handleShareRulesButtonClicked: function() {
     var isUserLoggedIn = RQ.currentUser.getUserLoggedIn(),
       selectedRules,
+      shareId = RQ.Utils.getId(),
       sharedUrl;
 
     if (!isUserLoggedIn) {
@@ -224,11 +227,17 @@ var RuleIndexView = Backbone.View.extend({
         return;
       }
 
-      sharedUrl = RQ.currentUser.createSharedList(RQ.Utils.getId(), selectedRules);
-      this.shareRulesModal.model.set('sharedUrl', sharedUrl);
+      sharedUrl = RQ.currentUser.createSharedList(shareId, selectedRules);
       this.shareRulesModal.show({
-        model: { sharedUrl: sharedUrl }
+        model: { shareId: shareId, sharedUrl: sharedUrl }
       });
     }
+  },
+
+  handleShareRulesModalClosed: function(shareData) {
+    var sharedListName = shareData.listName || 'My Shared List',
+      shareId = shareData.shareId;
+
+    RQ.currentUser.setSharedListName(shareId, sharedListName);
   }
 });

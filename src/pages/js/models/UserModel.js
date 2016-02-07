@@ -38,7 +38,7 @@ var UserModel = BaseModel.extend({
       profile.email = authData[provider].email;
       profile.profileImageURL = authData[provider].profileImageURL;
 
-      firebaseRef.child('users')
+      firebaseRef.child(RQ.FIREBASE_NODES.PUBLIC)
         .child(authData.uid)
         .child('profile')
         .set(profile);
@@ -51,8 +51,8 @@ var UserModel = BaseModel.extend({
 
   createSharedList: function(shareId, rules) {
     var fireBaseRef = RQ.getFirebaseRef(),
-      listRef = fireBaseRef.child('public')
-      .child('sharedLists')
+      listRef = fireBaseRef.child(RQ.FIREBASE_NODES.PUBLIC)
+      .child(RQ.FIREBASE_NODES.SHARED_LISTS)
       .child(shareId);
 
     // Set uid of owner in access node
@@ -64,6 +64,15 @@ var UserModel = BaseModel.extend({
     });
 
     return RQ.WEB_URL + '#share/' + shareId;
+  },
+
+  setSharedListName: function(shareId, listName) {
+    var currentUserRef = this.getCurrentUserNodeRef();
+
+    currentUserRef
+      .child(RQ.FIREBASE_NODES.SHARED_LISTS)
+      .child(shareId)
+      .set({ listName: listName });
   },
 
   authenticateUser: function(provider, errorCallback) {
@@ -96,5 +105,15 @@ var UserModel = BaseModel.extend({
 
   getFirebaseRef: function() {
     return RQ.getFirebaseRef();
+  },
+
+  getCurrentUserNodeRef: function() {
+    var firebaseRef = this.getFirebaseRef();
+
+    return this.getProfile().uid
+      ? firebaseRef
+        .child('users')
+        .child(this.getProfile().uid)
+      : null;
   }
 });

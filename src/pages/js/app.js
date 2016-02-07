@@ -20,17 +20,15 @@ RQ.init = function() {
   };
 
   this.showModalView = function(modalView, options) {
-    // Do not reRender modal if previously opened modal is same
-    if (this.currentModalView !== modalView) {
-      if (this.currentModalView) {
-        this.currentModalView.close();
-      }
-
-      this.currentModalView = modalView;
-      this.currentModalView.render(options);
-
-      $('#modal-container').html(this.currentModalView.el);
+    // Do not destruct modal if previously opened modal is same
+    if (this.currentModalView && this.currentModalView !== modalView) {
+      this.currentModalView.close();
     }
+
+    this.currentModalView = modalView;
+    this.currentModalView.render(options);
+
+    $('#modal-container').html(this.currentModalView.el);
 
     $(this.currentModalView.el).modal('show');
   };

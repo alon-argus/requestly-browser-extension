@@ -79,6 +79,12 @@ RQ.USER = {
   UNAUTHORIZED: 'unauthorized-user'
 };
 
+RQ.FIREBASE_NODES = {
+  USERS: 'users',
+  PUBLIC: 'public',
+  SHARED_LISTS: 'sharedLists'
+};
+
 RQ.getFirebaseRef = function() {
   if (!RQ.firebaseRef) {
     RQ.firebaseRef = new Firebase('https://requestly.firebaseio.com');
