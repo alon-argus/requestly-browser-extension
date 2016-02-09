@@ -1,0 +1,19 @@
+{{> SharedRulesIndexToolbar}}
+
+<section class="rule-index">
+  <table class="table">
+    <thead>
+    <tr>
+      <th> <span class="rules-number badge">{{ rules.length }}</span> </th>
+      <th>Name & Description</th>
+      <th class="status-cell">Status</th>
+      <th>Created on</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each rules}}
+      {{> SharedRuleItemRow }}
+    {{/each}}
+    </tbody>
+  </table>
+</section>`

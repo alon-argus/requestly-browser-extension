@@ -1,0 +1,14 @@
+<tr class="rule-item-row {{toLowerCase ruleType}}" data-id="{{id}}">
+  <td class="rule-badge-cell">
+    <span class="rule-type badge">{{charAt ruleType 0}}</span>
+  </td>
+
+  <td class="rule-name-cell">
+    <a class="ruleName">{{ name }}</a>
+    <div class="ruleDescription">{{ description }}</div>
+  </td>
+
+  <td class="status-cell"> {{ status }} </td>
+
+  <td>{{formatDate creationDate}}</td>
+</tr>

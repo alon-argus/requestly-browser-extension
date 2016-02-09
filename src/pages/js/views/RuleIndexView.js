@@ -1,5 +1,7 @@
 var RuleIndexView = Backbone.View.extend({
 
+  Collection: RulesCollection,
+
   events: {
     'click .ruleName': 'showRuleEditor',
     'change .status-toggle': 'toggleStatus',
@@ -12,7 +14,7 @@ var RuleIndexView = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.rulesCollection = new RulesCollection();
+    this.rulesCollection = new this.Collection();
     this.susiModal = new SusiModal({ model: RQ.currentUser });
     this.shareRulesModal = new ShareRulesModal({});
 
@@ -59,7 +61,7 @@ var RuleIndexView = Backbone.View.extend({
 
     if (options && options.update) {
       // updateCollection will trigger 'loaded' event which will render the view
-      this.updateCollection();
+      this.updateCollection(options);
     } else {
       this.template = this.getTemplate();
 

@@ -43,6 +43,7 @@
         "src/pages/js/models/HeadersRuleModel.js",
 
         "src/pages/js/collections/RulesCollection.js",
+        "src/pages/js/collections/SharedRulesCollection.js",
 
         "src/pages/js/mixins/InputValidation.js",
 
@@ -58,6 +59,7 @@
         "src/pages/js/views/ReplaceRuleEditorView.js",
         "src/pages/js/views/HeadersEditorView.js",
         "src/pages/js/views/RuleIndexView.js",
+        "src/pages/js/views/SharedRulesIndexView.js",
         "src/pages/js/views/RuleCardsView.js",
 
         "src/pages/js/router.js",

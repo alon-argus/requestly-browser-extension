@@ -3,7 +3,8 @@ RQ.Router = Backbone.Router.extend({
     '': 'showRulesList',
     'selectRule': 'showRuleCardsView',
     'new/:type': 'showRuleCreator',
-    'edit/:id': 'showRuleEditor'
+    'edit/:id': 'showRuleEditor',
+    'sharedList/:id': 'showSharedRulesList'
   },
 
   ruleModelMap: {
@@ -23,6 +24,11 @@ RQ.Router = Backbone.Router.extend({
   showRulesList: function() {
     var ruleIndexView = new RuleIndexView();
     RQ.showView(ruleIndexView, { update: true });
+  },
+
+  showSharedRulesList: function(sharedListId) {
+    var sharedRulesIndexView = new SharedRulesIndexView();
+    RQ.showView(sharedRulesIndexView, { update: true, sharedListId: sharedListId });
   },
 
   showRuleCardsView: function() {

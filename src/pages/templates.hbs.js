@@ -67,6 +67,30 @@ Handlebars.registerPartial("SaveRuleCTA", Handlebars.template({"compiler":[6,">=
     return "<div class=\"buttons-container\">\n  <a class=\"btn save-rule\">Save</a>\n  <a href=\"#\" class=\"btn btn-link\">Cancel</a>\n</div>";
 },"useData":true}));
 
+Handlebars.registerPartial("SharedRuleItemRow", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var helper, alias1=helpers.helperMissing, alias2=this.escapeExpression, alias3="function";
+
+  return "<tr class=\"rule-item-row "
+    + alias2((helpers.toLowerCase || (depth0 && depth0.toLowerCase) || alias1).call(depth0,(depth0 != null ? depth0.ruleType : depth0),{"name":"toLowerCase","hash":{},"data":data}))
+    + "\" data-id=\""
+    + alias2(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias3 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\">\n  <td class=\"rule-badge-cell\">\n    <span class=\"rule-type badge\">"
+    + alias2((helpers.charAt || (depth0 && depth0.charAt) || alias1).call(depth0,(depth0 != null ? depth0.ruleType : depth0),0,{"name":"charAt","hash":{},"data":data}))
+    + "</span>\n  </td>\n\n  <td class=\"rule-name-cell\">\n    <a class=\"ruleName\">"
+    + alias2(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias1),(typeof helper === alias3 ? helper.call(depth0,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</a>\n    <div class=\"ruleDescription\">"
+    + alias2(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias1),(typeof helper === alias3 ? helper.call(depth0,{"name":"description","hash":{},"data":data}) : helper)))
+    + "</div>\n  </td>\n\n  <td class=\"status-cell\"> "
+    + alias2(((helper = (helper = helpers.status || (depth0 != null ? depth0.status : depth0)) != null ? helper : alias1),(typeof helper === alias3 ? helper.call(depth0,{"name":"status","hash":{},"data":data}) : helper)))
+    + " </td>\n\n  <td>"
+    + alias2((helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.creationDate : depth0),{"name":"formatDate","hash":{},"data":data}))
+    + "</td>\n</tr>";
+},"useData":true}));
+
+Handlebars.registerPartial("SharedRulesIndexToolbar", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<nav class=\"content-header rq-dimgrey\">\n  <span>Rules</span>\n  <div class=\"right right-corner-icongroup\">\n    <a class=\"btn-floating btn-small waves-effect waves-light blue import-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Upload Rules\">\n      <i class=\"fa fa-upload\"></i>\n    </a>\n  </div>\n</nav>\n";
+},"useData":true}));
+
 Handlebars.registerPartial("SourceField", Handlebars.template({"1":function(depth0,helpers,partials,data) {
     return "selected";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -277,6 +301,21 @@ this["RQ"]["Templates"]["ShareRulesModal"] = Handlebars.template({"1":function(d
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.sharedUrl : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\n\n    <div class=\"modal-footer\">\n      <div class=\"footer-note left\">\n        <h6 class=\"note\">Note: Anyone with this Url can view and import these rules.</h6>\n      </div>\n      <div class=\"cta-container right\">\n        <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" data-event=\"modal:closed\">Close</button>\n      </div>\n    </div>\n\n  </div> <!-- modal-content -->\n</div>\n";
 },"useData":true});
+
+this["RQ"]["Templates"]["SharedRulesIndex"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = this.invokePartial(partials.SharedRuleItemRow,depth0,{"name":"SharedRuleItemRow","data":data,"indent":"      ","helpers":helpers,"partials":partials})) != null ? stack1 : "");
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = this.invokePartial(partials.SharedRulesIndexToolbar,depth0,{"name":"SharedRulesIndexToolbar","data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
+    + "\n<section class=\"rule-index\">\n  <table class=\"table\">\n    <thead>\n    <tr>\n      <th> <span class=\"rules-number badge\">"
+    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.rules : depth0)) != null ? stack1.length : stack1), depth0))
+    + "</span> </th>\n      <th>Name & Description</th>\n      <th class=\"status-cell\">Status</th>\n      <th>Created on</th>\n    </tr>\n    </thead>\n    <tbody>\n"
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.rules : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "    </tbody>\n  </table>\n</section>`";
+},"usePartial":true,"useData":true});
 
 this["RQ"]["Templates"]["SusiModal"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<div class=\"modal-dialog\">\n\n  <!-- Modal content-->\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <h4><i class=\"fa fa-user\"></i>Register</h4>\n    </div>\n\n    <div class=\"modal-body\">\n      <p>Please login with Google to share your rules with other users.</p>\n    </div>\n\n    <div class=\"modal-footer text-right\">\n      <button type=\"button\" class=\"btn btn-link\" data-dismiss=\"modal\">Cancel</button>\n      <a class=\"btn-sm-full gplus-bg rectangle waves-effect waves-light auth-provider\" data-provider=\"google\">\n        <i class=\"fa fa-google-plus\"></i>\n        <span>Sign In</span>\n      </a>\n    </div>\n\n  </div> <!-- /modal-content -->\n</div>\n";

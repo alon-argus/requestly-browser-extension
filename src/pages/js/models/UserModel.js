@@ -50,10 +50,7 @@ var UserModel = BaseModel.extend({
   },
 
   createSharedList: function(shareId, rules) {
-    var fireBaseRef = RQ.getFirebaseRef(),
-      listRef = fireBaseRef.child(RQ.FIREBASE_NODES.PUBLIC)
-      .child(RQ.FIREBASE_NODES.SHARED_LISTS)
-      .child(shareId);
+    var listRef = this.getSharedListRef(shareId);
 
     // Set uid of owner in access node
     listRef.set({
@@ -63,7 +60,7 @@ var UserModel = BaseModel.extend({
       rules: rules
     });
 
-    return RQ.WEB_URL + '#share/' + shareId;
+    return RQ.WEB_URL + '#sharedList/' + shareId;
   },
 
   setSharedListName: function(shareId, listName) {
@@ -115,5 +112,14 @@ var UserModel = BaseModel.extend({
         .child('users')
         .child(this.getProfile().uid)
       : null;
+  },
+
+  getSharedListRef: function(sharedListId) {
+    var fireBaseRef = this.getFirebaseRef();
+
+    return fireBaseRef
+      .child(RQ.FIREBASE_NODES.PUBLIC)
+      .child(RQ.FIREBASE_NODES.SHARED_LISTS)
+      .child(sharedListId);
   }
 });
