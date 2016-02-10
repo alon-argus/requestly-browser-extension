@@ -449,6 +449,9 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
   line-height: 20px;
   padding-left: 5px; }
 
+.shared-rules-index .content-header {
+  background: crimson; }
+
 #modal-container .modal {
   margin-top: 100px; }
   #modal-container .modal .modal-header {

@@ -88,7 +88,7 @@ Handlebars.registerPartial("SharedRuleItemRow", Handlebars.template({"compiler":
 },"useData":true}));
 
 Handlebars.registerPartial("SharedRulesIndexToolbar", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<nav class=\"content-header rq-dimgrey\">\n  <span>Rules</span>\n  <div class=\"right right-corner-icongroup\">\n    <a class=\"btn-floating btn-small waves-effect waves-light blue import-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Upload Rules\">\n      <i class=\"fa fa-upload\"></i>\n    </a>\n  </div>\n</nav>\n";
+    return "<nav class=\"content-header\">\n  <span>Shared List</span>\n  <div class=\"right right-corner-icongroup\">\n    <button class=\"import-rules-button action-button btn btn-primary\">Import List</button>\n  </div>\n</nav>\n";
 },"useData":true}));
 
 Handlebars.registerPartial("SourceField", Handlebars.template({"1":function(depth0,helpers,partials,data) {
