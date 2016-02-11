@@ -8,8 +8,9 @@ var SharedRulesIndexView = RuleIndexView.extend({
     return RQ.Templates.SharedRulesIndex;
   },
 
-  initialize: function() {
+  initialize: function(options) {
     this.rulesCollection = new this.Collection();
+    this.options = options || {};
 
     this.listenTo(this.rulesCollection, 'loaded', this.render);
   },
@@ -20,9 +21,10 @@ var SharedRulesIndexView = RuleIndexView.extend({
 
   showRuleEditor: function(event) {
     var $ruleItemRow = $(event.target).parents('.rule-item-row'),
-      id = $ruleItemRow.data('id');
+      id = this.options.sharedListId,
+      index = $ruleItemRow.data('index');
 
-    RQ.router.navigate('/edit/' + id, { trigger: true });
+    RQ.router.navigate('/sharedList/' + id + '/' + index, { trigger: true });
   },
 
   importRules: function() {

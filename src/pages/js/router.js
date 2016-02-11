@@ -4,7 +4,8 @@ RQ.Router = Backbone.Router.extend({
     'selectRule': 'showRuleCardsView',
     'new/:type': 'showRuleCreator',
     'edit/:id': 'showRuleEditor',
-    'sharedList/:id': 'showSharedRulesList'
+    'sharedList/:id': 'showSharedRulesList',
+    'sharedList/:id/:ruleIndex': 'showSharedRuleEditor'
   },
 
   ruleModelMap: {
@@ -27,7 +28,7 @@ RQ.Router = Backbone.Router.extend({
   },
 
   showSharedRulesList: function(sharedListId) {
-    var sharedRulesIndexView = new SharedRulesIndexView();
+    var sharedRulesIndexView = new SharedRulesIndexView({ sharedListId: sharedListId });
     RQ.showView(sharedRulesIndexView, { update: true, sharedListId: sharedListId });
   },
 
@@ -50,11 +51,35 @@ RQ.Router = Backbone.Router.extend({
       var ruleModelJSON = modelJSON[ruleId],
         ruleTypeUpperCase = ruleModelJSON.ruleType.toUpperCase(),
         editorView = new that.ruleViewMap[ruleTypeUpperCase](),
-        model;
-
-      model = new that.ruleModelMap[ruleTypeUpperCase](ruleModelJSON);
+        model = new that.ruleModelMap[ruleTypeUpperCase](ruleModelJSON);
 
       RQ.showView(editorView, { model: model });
+    });
+  },
+
+  showSharedRuleEditor: function(sharedListId, ruleIndexInList) {
+    var sharedListRef = RQ.currentUser.getSharedListRef(sharedListId),
+      that = this;
+
+    sharedListRef.on('value', function (snapshot) {
+      var sharedListNode = snapshot.val(),
+        ruleModelJSON = sharedListNode.rules[ruleIndexInList],
+        ruleTypeUpperCase,
+        editorView,
+        model;
+
+      if (!ruleModelJSON || _.isEmpty(ruleModelJSON)) {
+        alert('Rule does not exist');
+        return;
+      }
+
+      ruleModelJSON['isViewMode'] = true;
+
+      ruleTypeUpperCase = ruleModelJSON.ruleType.toUpperCase();
+      editorView = new that.ruleViewMap[ruleTypeUpperCase]();
+      model = new that.ruleModelMap[ruleTypeUpperCase](ruleModelJSON);
+
+      RQ.showView(editorView, {model: model});
     });
   }
 });

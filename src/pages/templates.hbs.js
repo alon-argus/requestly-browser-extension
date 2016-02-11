@@ -22,7 +22,7 @@ Handlebars.registerPartial("PairsContainerHeading", Handlebars.template({"compil
 Handlebars.registerPartial("RuleEditorHeader", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var helper;
 
-  return "<nav class=\"content-header\">\n  <a href=\"#selectRule\" role=\"button\" class=\"back-button fa fa-chevron-left\" title=\"Go Back\"></a>\n  <span>"
+  return "<nav class=\"content-header\">\n  <span>"
     + this.escapeExpression(((helper = (helper = helpers.heading || (depth0 != null ? depth0.heading : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"heading","hash":{},"data":data}) : helper)))
     + "</span>\n</nav>";
 },"useData":true}));
@@ -63,8 +63,16 @@ Handlebars.registerPartial("RuleProperties", Handlebars.template({"compiler":[6,
     + "\">\n    <label class=\"active\">Rule Description (Optional)</label>\n  </div>\n</div>\n";
 },"usePartial":true,"useData":true}));
 
-Handlebars.registerPartial("SaveRuleCTA", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div class=\"buttons-container\">\n  <a class=\"btn save-rule\">Save</a>\n  <a href=\"#\" class=\"btn btn-link\">Cancel</a>\n</div>";
+Handlebars.registerPartial("SaveRuleCTA", Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    return "    <a class=\"btn btn-link\">Close</a>\n";
+},"3":function(depth0,helpers,partials,data) {
+    return "    <a class=\"btn save-rule\">Save</a>\n    <a href=\"#\" class=\"btn btn-link\">Cancel</a>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<div class=\"buttons-container\">\n"
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.isViewMode : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + "</div>";
 },"useData":true}));
 
 Handlebars.registerPartial("SharedRuleItemRow", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -72,8 +80,8 @@ Handlebars.registerPartial("SharedRuleItemRow", Handlebars.template({"compiler":
 
   return "<tr class=\"rule-item-row "
     + alias2((helpers.toLowerCase || (depth0 && depth0.toLowerCase) || alias1).call(depth0,(depth0 != null ? depth0.ruleType : depth0),{"name":"toLowerCase","hash":{},"data":data}))
-    + "\" data-id=\""
-    + alias2(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias1),(typeof helper === alias3 ? helper.call(depth0,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\" data-index=\""
+    + alias2(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias1),(typeof helper === alias3 ? helper.call(depth0,{"name":"index","hash":{},"data":data}) : helper)))
     + "\">\n  <td class=\"rule-badge-cell\">\n    <span class=\"rule-type badge\">"
     + alias2((helpers.charAt || (depth0 && depth0.charAt) || alias1).call(depth0,(depth0 != null ? depth0.ruleType : depth0),0,{"name":"charAt","hash":{},"data":data}))
     + "</span>\n  </td>\n\n  <td class=\"rule-name-cell\">\n    <a class=\"ruleName\">"
@@ -206,7 +214,7 @@ this["RQ"]["Templates"]["HeadersRuleTemplate"] = Handlebars.template({"1":functi
     var stack1;
 
   return ((stack1 = this.invokePartial(partials.RuleEditorHeader,depth0,{"name":"RuleEditorHeader","hash":{"heading":"Modify Headers in HTTP Request and Response"},"data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\n\n<section class=\"rule-body\">\n\n\n"
+    + "\n<section class=\"rule-body\">\n\n\n"
     + ((stack1 = this.invokePartial(partials.RuleProperties,depth0,{"name":"RuleProperties","data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
     + "\n"
     + ((stack1 = this.invokePartial(partials.PairsContainerHeading,depth0,{"name":"PairsContainerHeading","hash":{"heading":"Headers Modification Rules"},"data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
@@ -258,7 +266,7 @@ this["RQ"]["Templates"]["ReplaceRuleEditor"] = Handlebars.template({"1":function
     var stack1;
 
   return ((stack1 = this.invokePartial(partials.RuleEditorHeader,depth0,{"name":"RuleEditorHeader","hash":{"heading":"Replace Host or some part of URL"},"data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\n\n<section class=\"rule-body\">\n"
+    + "\n<section class=\"rule-body\">\n"
     + ((stack1 = this.invokePartial(partials.RuleProperties,depth0,{"name":"RuleProperties","data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
     + "\n  <div class=\"pairs-container\">\n"
     + ((stack1 = this.invokePartial(partials.PairsContainerHeading,depth0,{"name":"PairsContainerHeading","hash":{"heading":"Pairs"},"data":data,"indent":"    ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
