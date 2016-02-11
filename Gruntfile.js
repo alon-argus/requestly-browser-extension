@@ -74,6 +74,10 @@ module.exports = function (grunt) {
       styles: {
         files: ['**/*.scss'],
         tasks: ['sass']
+      },
+      test: {
+        files: ['**/*.spec.js'],
+        tasks: ['karma:unit']
       }
     }
   });

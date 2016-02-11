@@ -48,3 +48,19 @@ RQ.Utils.submitEvent = function(category, action, label) {
 
   eventObserverPlaceholder.appendChild($eventEl.get(0));
 };
+
+RQ.Utils.removeLastPart = function(str, separater) {
+  str = str || '';
+
+  // Return original string when separater is not present
+  if (str.indexOf(separater) === -1) {
+    return str;
+  }
+
+  str = str.split(separater);
+
+  // Remove last part
+  str.length--;
+
+  return str.join(separater);
+};

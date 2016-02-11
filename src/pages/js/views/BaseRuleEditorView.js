@@ -6,6 +6,7 @@ var BaseRuleEditorView = BaseView.extend({
     'keyup .rule-description': 'updateRuleDescription',
     'click .add-pair': 'addPair',
     'click .delete-pair': 'deletePair',
+    'click .close-editor': 'closeEditor',
     'click .save-rule': 'saveRule',
     'click .dropdown .dropdown-option': 'handleDropdownValueChanged'
   },
@@ -155,5 +156,18 @@ var BaseRuleEditorView = BaseView.extend({
         RQ.Utils.submitEvent('rule', eventAction, that.model.getRuleType().toLowerCase() + ' rule ' + eventAction);
       }
     });
+  },
+
+  closeEditor: function() {
+    // In case of shared Rule Delete last part from current route -> rule Index inside the sharedList
+    var route = this.isSharedRule()
+      ? RQ.Utils.removeLastPart(Backbone.history.fragment, '/')
+      : '';
+
+    RQ.router.navigate(route, { trigger: true });
+  },
+
+  isSharedRule: function() {
+    return this.model.get('isSharedRule');
   }
 });

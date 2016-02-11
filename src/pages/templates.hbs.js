@@ -64,7 +64,7 @@ Handlebars.registerPartial("RuleProperties", Handlebars.template({"compiler":[6,
 },"usePartial":true,"useData":true}));
 
 Handlebars.registerPartial("SaveRuleCTA", Handlebars.template({"1":function(depth0,helpers,partials,data) {
-    return "    <a class=\"btn btn-link\">Close</a>\n";
+    return "    <a class=\"btn btn-link close-editor\">Close</a>\n";
 },"3":function(depth0,helpers,partials,data) {
     return "    <a class=\"btn save-rule\">Save</a>\n    <a href=\"#\" class=\"btn btn-link\">Cancel</a>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {

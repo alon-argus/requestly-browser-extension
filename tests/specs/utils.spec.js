@@ -24,4 +24,11 @@ describe('Utility functions', function() {
     expect(RQ.Utils.isValidUrl('http.example.com')).toBe(false);
     expect(RQ.Utils.isValidUrl('javascript:alert("works")')).toBe(true);
   });
+
+  it('should remove last part', function() {
+    expect(RQ.Utils.removeLastPart('sharedList/1455023747986/19', '/')).toBe('sharedList/1455023747986');
+    expect(RQ.Utils.removeLastPart('a-b-c', '-')).toBe('a-b');
+    expect(RQ.Utils.removeLastPart('1-2-3', '|')).toBe('1-2-3');
+    expect(RQ.Utils.removeLastPart('abc', 'b')).toBe('a');
+  });
 });

@@ -74,6 +74,7 @@ RQ.Router = Backbone.Router.extend({
       }
 
       ruleModelJSON['isViewMode'] = true;
+      ruleModelJSON['isSharedRule'] = true;
 
       ruleTypeUpperCase = ruleModelJSON.ruleType.toUpperCase();
       editorView = new that.ruleViewMap[ruleTypeUpperCase]();
