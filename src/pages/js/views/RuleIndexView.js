@@ -28,7 +28,7 @@ var RuleIndexView = Backbone.View.extend({
     this.listenTo(this.rulesCollection, 'change', this.render);
     this.listenTo(this.rulesCollection, 'remove', this.render);
 
-    this.shareRulesModal.on('modal:closed', this.handleShareRulesModalClosed);
+    this.shareRulesModal.on('modal:closed', this.saveSharedListName);
   },
 
   initWidgets: function() {
@@ -230,13 +230,15 @@ var RuleIndexView = Backbone.View.extend({
       }
 
       sharedUrl = RQ.currentUser.createSharedList(shareId, selectedRules);
+      this.saveSharedListName({ shareId: shareId });
+
       this.shareRulesModal.show({
         model: { shareId: shareId, sharedUrl: sharedUrl }
       });
     }
   },
 
-  handleShareRulesModalClosed: function(shareData) {
+  saveSharedListName: function(shareData) {
     var sharedListName = shareData.listName || 'My Shared List',
       shareId = shareData.shareId;
 

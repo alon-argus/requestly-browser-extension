@@ -57,7 +57,8 @@ var UserModel = BaseModel.extend({
       access: {
         owner: this.getProfile().uid
       },
-      rules: rules
+      rules: rules,
+      isEnabled: true
     });
 
     return RQ.WEB_URL + '#sharedList/' + shareId;
