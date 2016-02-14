@@ -44,6 +44,8 @@ RQ.init = function() {
 
   this.addListenerForBackgroundMessages();
 
+  this.addVersionClass();
+
   Backbone.history.start();
 };
 
@@ -90,6 +92,13 @@ RQ.addListenerForAuthenticationChanged = function() {
       .removeClass(RQ.USER.UNAUTHORIZED)
       .addClass(isAuthorized ? RQ.USER.AUTHORIZED : RQ.USER.UNAUTHORIZED);
   });
+};
+
+RQ.addVersionClass = function() {
+  // We introduced Share Rules (Issue-93) in version 1
+  if (RQ.VERSION >= 1) {
+    $('body').addClass('shared-rules-enabled');
+  }
 };
 
 Backbone.View.prototype.close = function() {
