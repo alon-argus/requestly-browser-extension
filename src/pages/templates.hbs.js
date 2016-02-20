@@ -75,6 +75,26 @@ Handlebars.registerPartial("SaveRuleCTA", Handlebars.template({"1":function(dept
     + "</div>";
 },"useData":true}));
 
+Handlebars.registerPartial("SharedListIndexToolbar", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<nav class=\"content-header\">\n  <span>Shared List</span>\n</nav>\n";
+},"useData":true}));
+
+Handlebars.registerPartial("SharedListItemRow", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "<tr class=\"list-item-row\" data-index=\""
+    + alias3(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"index","hash":{},"data":data}) : helper)))
+    + "\">\n  <td class=\"list-name-cell\">"
+    + alias3(((helper = (helper = helpers.listName || (depth0 != null ? depth0.listName : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"listName","hash":{},"data":data}) : helper)))
+    + "</td>\n\n  <td class=\"url-cell\"><a href=\""
+    + alias3(((helper = (helper = helpers.sharedUrl || (depth0 != null ? depth0.sharedUrl : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"sharedUrl","hash":{},"data":data}) : helper)))
+    + "\" target=\"_blank\">"
+    + alias3(((helper = (helper = helpers.sharedUrl || (depth0 != null ? depth0.sharedUrl : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"sharedUrl","hash":{},"data":data}) : helper)))
+    + "</a>  </td>\n\n  <td>"
+    + alias3((helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.creationDate : depth0),{"name":"formatDate","hash":{},"data":data}))
+    + "</td>\n</tr>";
+},"useData":true}));
+
 Handlebars.registerPartial("SharedRuleItemRow", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2=this.escapeExpression, alias3="function";
 
@@ -92,11 +112,11 @@ Handlebars.registerPartial("SharedRuleItemRow", Handlebars.template({"compiler":
     + alias2(((helper = (helper = helpers.status || (depth0 != null ? depth0.status : depth0)) != null ? helper : alias1),(typeof helper === alias3 ? helper.call(depth0,{"name":"status","hash":{},"data":data}) : helper)))
     + " </td>\n\n  <td>"
     + alias2((helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.creationDate : depth0),{"name":"formatDate","hash":{},"data":data}))
-    + "</td>\n</tr>";
+    + "</td>\n</tr>\n";
 },"useData":true}));
 
 Handlebars.registerPartial("SharedRulesIndexToolbar", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<nav class=\"content-header\">\n  <span>Shared List</span>\n  <div class=\"right right-corner-icongroup\">\n    <button class=\"import-rules-button action-button btn btn-primary\">Import List</button>\n  </div>\n</nav>\n";
+    return "<nav class=\"content-header\">\n  <span>Shared Rules</span>\n  <div class=\"right right-corner-icongroup\">\n    <button class=\"import-rules-button action-button btn btn-primary\">Import List</button>\n  </div>\n</nav>\n";
 },"useData":true}));
 
 Handlebars.registerPartial("SourceField", Handlebars.template({"1":function(depth0,helpers,partials,data) {
@@ -138,7 +158,7 @@ Handlebars.registerPartial("Toolbar", Handlebars.template({"1":function(depth0,h
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
-  return "<nav class=\"content-header rq-dimgrey\">\n  <span>Rules</span>\n  <div class=\"right right-corner-icongroup\">\n\n    <a href=\"#selectRule\" class=\"btn-floating btn-small btn-success waves-effect waves-light select-rule-button action-button\">\n      <i class=\"fa fa-plus\"></i>\n    </a>\n\n"
+  return "<nav class=\"content-header\">\n  <span>Rules</span>\n  <div class=\"right right-corner-icongroup\">\n\n    <a href=\"#selectRule\" class=\"btn-floating btn-small btn-success waves-effect waves-light select-rule-button action-button\">\n      <i class=\"fa fa-plus\"></i>\n    </a>\n\n"
     + ((stack1 = (helpers.gt || (depth0 && depth0.gt) || helpers.helperMissing).call(depth0,((stack1 = (depth0 != null ? depth0.rules : depth0)) != null ? stack1.length : stack1),0,{"name":"gt","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "\n    <a class=\"btn-floating btn-small waves-effect waves-light blue import-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Upload Rules\">\n      <i class=\"fa fa-upload\"></i>\n    </a>\n\n    <a class=\"btn-floating btn-small waves-effect waves-light share-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Share\">\n      <i class=\"fa fa-share-alt\"></i>\n    </a>\n\n  </div>\n</nav>\n";
 },"useData":true}));
@@ -289,7 +309,7 @@ this["RQ"]["Templates"]["RuleIndex"] = Handlebars.template({"1":function(depth0,
     var stack1;
 
   return ((stack1 = this.invokePartial(partials.Toolbar,depth0,{"name":"Toolbar","data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\n<section class=\"rule-index\">\n  <table class=\"table\">\n    <thead>\n    <tr>\n      <th class=\"rule-selection-cell\">\n        <input type=\"checkbox\" class=\"filled-in select-all-rules-checkbox\" id=\"select-all-rules-checkbox\" title=\"Select All\"/>\n        <label for=\"select-all-rules-checkbox\"></label>\n      </th>\n      <th> <span class=\"rules-number badge\">"
+    + "\n<section>\n  <table class=\"table\">\n    <thead>\n    <tr>\n      <th class=\"rule-selection-cell\">\n        <input type=\"checkbox\" class=\"filled-in select-all-rules-checkbox\" id=\"select-all-rules-checkbox\" title=\"Select All\"/>\n        <label for=\"select-all-rules-checkbox\"></label>\n      </th>\n      <th> <span class=\"rules-number badge\">"
     + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.rules : depth0)) != null ? stack1.length : stack1), depth0))
     + "</span> </th>\n      <th>Name & Description</th>\n      <th class=\"status-cell\">Status</th>\n      <th>Created on</th>\n      <th></th>\n    </tr>\n    </thead>\n    <tbody>\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.rules : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
@@ -310,6 +330,19 @@ this["RQ"]["Templates"]["ShareRulesModal"] = Handlebars.template({"1":function(d
     + "    </div>\n\n    <div class=\"modal-footer\">\n      <div class=\"footer-note left\">\n        <h6 class=\"note\">Note: Anyone with this Url can view and import these rules.</h6>\n      </div>\n      <div class=\"cta-container right\">\n        <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\" data-event=\"modal:closed\">Close</button>\n      </div>\n    </div>\n\n  </div> <!-- modal-content -->\n</div>\n";
 },"useData":true});
 
+this["RQ"]["Templates"]["SharedListIndex"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = this.invokePartial(partials.SharedListItemRow,depth0,{"name":"SharedListItemRow","data":data,"indent":"      ","helpers":helpers,"partials":partials})) != null ? stack1 : "");
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = this.invokePartial(partials.SharedListIndexToolbar,depth0,{"name":"SharedListIndexToolbar","data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
+    + "\n<section class=\"list-index\">\n  <table class=\"table\">\n    <thead>\n    <tr>\n      <th>Name</th>\n      <th>Link</th>\n      <th>Created on</th>\n    </tr>\n    </thead>\n    <tbody>\n"
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.list : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "    </tbody>\n  </table>\n</section>`";
+},"usePartial":true,"useData":true});
+
 this["RQ"]["Templates"]["SharedRulesIndex"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var stack1;
 
@@ -325,6 +358,18 @@ this["RQ"]["Templates"]["SharedRulesIndex"] = Handlebars.template({"1":function(
     + "    </tbody>\n  </table>\n</section>`";
 },"usePartial":true,"useData":true});
 
-this["RQ"]["Templates"]["SusiModal"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<div class=\"modal-dialog\">\n\n  <!-- Modal content-->\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <h4><i class=\"fa fa-user\"></i>Register</h4>\n    </div>\n\n    <div class=\"modal-body\">\n      <p>Please login with Google to share your rules with other users.</p>\n    </div>\n\n    <div class=\"modal-footer text-right\">\n      <button type=\"button\" class=\"btn btn-link\" data-dismiss=\"modal\">Cancel</button>\n      <a class=\"btn-sm-full gplus-bg rectangle waves-effect waves-light auth-provider\" data-provider=\"google\">\n        <i class=\"fa fa-google-plus\"></i>\n        <span>Sign In</span>\n      </a>\n    </div>\n\n  </div> <!-- /modal-content -->\n</div>\n";
+this["RQ"]["Templates"]["SusiModal"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    var helper;
+
+  return "          "
+    + this.escapeExpression(((helper = (helper = helpers.content || (depth0 != null ? depth0.content : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"content","hash":{},"data":data}) : helper)))
+    + "\n";
+},"3":function(depth0,helpers,partials,data) {
+    return "          Please login with Google to share your rules with other users.\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<div class=\"modal-dialog\">\n\n  <!-- Modal content-->\n  <div class=\"modal-content\">\n    <div class=\"modal-header\">\n      <h4><i class=\"fa fa-user\"></i>Sign In</h4>\n    </div>\n\n    <div class=\"modal-body\">\n      <p>\n"
+    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.content : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.program(3, data, 0),"data":data})) != null ? stack1 : "")
+    + "      </p>\n    </div>\n\n    <div class=\"modal-footer text-right\">\n      <button type=\"button\" class=\"btn btn-link\" data-dismiss=\"modal\">Cancel</button>\n      <a class=\"btn-sm-full gplus-bg rectangle waves-effect waves-light auth-provider\" data-provider=\"google\">\n        <i class=\"fa fa-google-plus\"></i>\n        <span>Sign In</span>\n      </a>\n    </div>\n\n  </div> <!-- /modal-content -->\n</div>\n";
 },"useData":true});

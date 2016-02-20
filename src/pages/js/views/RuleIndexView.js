@@ -1,5 +1,7 @@
 var RuleIndexView = Backbone.View.extend({
 
+  className: 'rule-index',
+
   Collection: RulesCollection,
 
   events: {
@@ -15,7 +17,7 @@ var RuleIndexView = Backbone.View.extend({
 
   initialize: function() {
     this.rulesCollection = new this.Collection();
-    this.susiModal = new SusiModal({ model: RQ.currentUser });
+    this.susiModal = new SusiModal();
     this.shareRulesModal = new ShareRulesModal({});
 
     this.registerListeners();

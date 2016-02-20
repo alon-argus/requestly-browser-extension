@@ -29,6 +29,8 @@ var UserModel = BaseModel.extend({
       profile = this.getProfile(),
       provider;
 
+    console.log('Authentication Changed: ', authData);
+
     if (authData) {
       provider = authData.provider;
 
@@ -38,7 +40,7 @@ var UserModel = BaseModel.extend({
       profile.email = authData[provider].email;
       profile.profileImageURL = authData[provider].profileImageURL;
 
-      firebaseRef.child(RQ.FIREBASE_NODES.PUBLIC)
+      firebaseRef.child(RQ.FIREBASE_NODES.USERS)
         .child(authData.uid)
         .child('profile')
         .set(profile);
@@ -50,18 +52,19 @@ var UserModel = BaseModel.extend({
   },
 
   createSharedList: function(shareId, rules) {
-    var listRef = this.getSharedListRef(shareId);
+    var listRef = this.getPublicSharedListRef(shareId);
 
     // Set uid of owner in access node
     listRef.set({
       access: {
         owner: this.getProfile().uid
       },
+      shareId: shareId,
       rules: rules,
       isEnabled: true
     });
 
-    return RQ.WEB_URL + '#sharedList/' + shareId;
+    return RQ.getSharedURL(shareId);
   },
 
   setSharedListName: function(shareId, listName) {
@@ -70,7 +73,11 @@ var UserModel = BaseModel.extend({
     currentUserRef
       .child(RQ.FIREBASE_NODES.SHARED_LISTS)
       .child(shareId)
-      .set({ listName: listName });
+      .set({
+        listName: listName,
+        shareId: shareId,
+        creationDate: RQ.Utils.getCurrentTime()
+      });
   },
 
   authenticateUser: function(provider, errorCallback) {
@@ -115,12 +122,16 @@ var UserModel = BaseModel.extend({
       : null;
   },
 
-  getSharedListRef: function(sharedListId) {
+  getPublicSharedLists: function() {
     var fireBaseRef = this.getFirebaseRef();
 
     return fireBaseRef
       .child(RQ.FIREBASE_NODES.PUBLIC)
-      .child(RQ.FIREBASE_NODES.SHARED_LISTS)
-      .child(sharedListId);
+      .child(RQ.FIREBASE_NODES.SHARED_LISTS);
+  },
+
+  getPublicSharedListRef: function(sharedListId) {
+    var sharedListsRef = this.getPublicSharedLists();
+    return sharedListsRef.child(sharedListId);
   }
 });

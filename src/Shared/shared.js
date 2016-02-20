@@ -54,7 +54,8 @@ RQ.STORAGE_KEYS = {
 };
 
 RQ.MESSAGES = {
-  DELETE_RULE: 'Are you sure you want to delete the rule ?'
+  DELETE_RULE: 'Are you sure you want to delete the rule ?',
+  SIGN_IN_TO_VIEW_SHARED_LISTS: 'Please login with Google to view your Shared Lists.'
 };
 
 RQ.RESOURCES = {
@@ -96,3 +97,8 @@ RQ.getFirebaseRef = function() {
 RQ.htmlEncode = function(value){
   return $('<div/>').text(value).html();
 };
+
+RQ.getSharedURL = function(shareId) {
+  return RQ.WEB_URL + '#sharedList/' + shareId;
+};
+

@@ -4,6 +4,7 @@ RQ.Router = Backbone.Router.extend({
     'selectRule': 'showRuleCardsView',
     'new/:type': 'showRuleCreator',
     'edit/:id': 'showRuleEditor',
+    'sharedLists': 'showSharedLists',
     'sharedList/:id': 'showSharedRulesList',
     'sharedList/:id/:ruleIndex': 'showSharedRuleEditor'
   },
@@ -25,6 +26,19 @@ RQ.Router = Backbone.Router.extend({
   showRulesList: function() {
     var ruleIndexView = new RuleIndexView();
     RQ.showView(ruleIndexView, { update: true });
+  },
+
+  showSharedLists: function() {
+    var sharedListsIndexView = new SharedListIndexView(),
+      isUserLoggedIn = RQ.currentUser.getUserLoggedIn(),
+      susiModal;
+
+    if (!isUserLoggedIn) {
+      susiModal = new SusiModal({ model: RQ.currentUser });
+      susiModal.show({ model: { content: RQ.MESSAGES.SIGN_IN_TO_VIEW_SHARED_LISTS } });
+    } else {
+      RQ.showView(sharedListsIndexView, { update: true });
+    }
   },
 
   showSharedRulesList: function(sharedListId) {
@@ -58,7 +72,7 @@ RQ.Router = Backbone.Router.extend({
   },
 
   showSharedRuleEditor: function(sharedListId, ruleIndexInList) {
-    var sharedListRef = RQ.currentUser.getSharedListRef(sharedListId),
+    var sharedListRef = RQ.currentUser.getPublicSharedListRef(sharedListId),
       that = this;
 
     sharedListRef.on('value', function (snapshot) {

@@ -1,5 +1,13 @@
 @import 'variables';
 
+.rule-index,
+.shared-rules-index,
+.shared-list-index {
+  .content-header {
+    background: $index-toolbar-background-color;
+  }
+}
+
 .right-corner-icongroup {
   height: 40px;
   line-height: 40px;

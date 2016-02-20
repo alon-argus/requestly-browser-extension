@@ -3,7 +3,7 @@ var SharedRulesCollection = RulesCollection.extend({
 
   fetchRules: function(sharedListId) {
     var that = this,
-      sharedListRef = RQ.currentUser.getSharedListRef(sharedListId);
+      sharedListRef = RQ.currentUser.getPublicSharedListRef(sharedListId);
 
     sharedListRef.on('value', function(snapshot) {
       var sharedListNode = snapshot.val(),

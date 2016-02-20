@@ -24,6 +24,7 @@
 
         "src/Shared/shared.js",
         "src/Shared/utils.js",
+        "src/Shared/firebaseUtils.js",
 
         "src/pages/js/components/notification.js",
         "src/pages/js/components/FileHandler.js",
@@ -35,6 +36,7 @@
         "src/pages/templates.hbs.js",
 
         "src/pages/js/models/BaseModel.js",
+        "src/pages/js/models/SharedListModel.js",
         "src/pages/js/models/UserModel.js",
         "src/pages/js/models/BaseRuleModel.js",
         "src/pages/js/models/RedirectRuleModel.js",
@@ -44,6 +46,7 @@
 
         "src/pages/js/collections/RulesCollection.js",
         "src/pages/js/collections/SharedRulesCollection.js",
+        "src/pages/js/collections/SharedListCollection.js",
 
         "src/pages/js/mixins/InputValidation.js",
 
@@ -60,6 +63,7 @@
         "src/pages/js/views/HeadersEditorView.js",
         "src/pages/js/views/RuleIndexView.js",
         "src/pages/js/views/SharedRulesIndexView.js",
+        "src/pages/js/views/SharedListIndexView.js",
         "src/pages/js/views/RuleCardsView.js",
 
         "src/pages/js/router.js",

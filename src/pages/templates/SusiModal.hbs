@@ -3,11 +3,17 @@
   <!-- Modal content-->
   <div class="modal-content">
     <div class="modal-header">
-      <h4><i class="fa fa-user"></i>Register</h4>
+      <h4><i class="fa fa-user"></i>Sign In</h4>
     </div>
 
     <div class="modal-body">
-      <p>Please login with Google to share your rules with other users.</p>
+      <p>
+        {{#if content}}
+          {{content}}
+        {{else}}
+          Please login with Google to share your rules with other users.
+        {{/if}}
+      </p>
     </div>
 
     <div class="modal-footer text-right">

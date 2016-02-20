@@ -33,12 +33,15 @@ RQ.init = function() {
     $(this.currentModalView.el).modal('show');
   };
 
-  this.router = new RQ.Router();
-
   // There should be only one instance of User profile/settings
   this.currentUser = new UserModel();
   this.addListenerForAuthenticationChanged();
+
+  console.log('App - Checking User authentication');
+
   this.currentUser.checkUserAuthentication();
+
+  this.router = new RQ.Router();
 
   this.fetchSettings();
 

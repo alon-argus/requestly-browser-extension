@@ -15,7 +15,7 @@ var SusiModal = Modal.extend({
 
   authenticateUser: function(event) {
     var provider = event.currentTarget.getAttribute('data-provider');
-    this.model.authenticateUser(provider, this.handleLoginError);
+    RQ.currentUser.authenticateUser(provider, this.handleLoginError);
   },
 
   handleLoginError: function(error) {

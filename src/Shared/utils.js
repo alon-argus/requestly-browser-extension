@@ -23,18 +23,11 @@ RQ.Utils.isValidUrl = function(url) {
   return url.search(/^http:|https:|ftp:|javascript:/) === 0;
 };
 
-RQ.Utils.getName = function(authData) {
-  switch(authData.provider) {
-    case 'password':
-      return authData.password.email.replace(/@.*/, '');
-    case 'twitter':
-      return authData.twitter.displayName;
-    case 'facebook':
-      return authData.facebook.displayName;
-  }
+RQ.Utils.getId = function() {
+  return Date.now();
 };
 
-RQ.Utils.getId = function() {
+RQ.Utils.getCurrentTime = function() {
   return Date.now();
 };
 

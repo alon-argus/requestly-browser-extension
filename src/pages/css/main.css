@@ -320,6 +320,11 @@ input[type="text"].form-control {
 .unauthorized-user .login-button {
   display: inline-block; }
 
+.rule-index .content-header,
+.shared-rules-index .content-header,
+.shared-list-index .content-header {
+  background: #404040; }
+
 .right-corner-icongroup {
   height: 40px;
   line-height: 40px;
@@ -448,9 +453,6 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
   width: 25px;
   line-height: 20px;
   padding-left: 5px; }
-
-.shared-rules-index .content-header {
-  background: crimson; }
 
 #modal-container .modal {
   margin-top: 100px; }

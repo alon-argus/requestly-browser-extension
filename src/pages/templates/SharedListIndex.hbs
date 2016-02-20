@@ -1,0 +1,18 @@
+{{> SharedListIndexToolbar}}
+
+<section class="list-index">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Link</th>
+      <th>Created on</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each list}}
+      {{> SharedListItemRow }}
+    {{/each}}
+    </tbody>
+  </table>
+</section>`
