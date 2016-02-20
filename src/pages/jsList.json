@@ -1,0 +1,63 @@
+{
+  "libs": [
+    "src/libs/firebase.js",
+    "src/libs/jquery-1.9.1.js",
+    "src/libs/bootstrap.min.js",
+    "src/libs/mdb.js",
+
+    "src/libs/underscore-1.6.0.js",
+    "src/libs/backbone-1.1.2.js",
+    "src/libs/handlebars.runtime-v3.0.3.js",
+    "src/libs/bootstrap-toggle.min.js"
+  ],
+  "src": [
+    "src/background/storageService.js",
+
+    "src/Shared/shared.js",
+    "src/Shared/utils.js",
+    "src/Shared/firebaseUtils.js",
+
+    "src/pages/js/components/notification.js",
+    "src/pages/js/components/FileHandler.js",
+
+    "src/pages/js/app.js",
+
+    "src/pages/js/templateHelpers/handlebarHelpers.js",
+    "src/pages/js/templateHelpers/templateHelper.js",
+    "src/pages/templates.hbs.js",
+
+    "src/pages/js/models/BaseModel.js",
+    "src/pages/js/models/SharedListModel.js",
+    "src/pages/js/models/UserModel.js",
+    "src/pages/js/models/BaseRuleModel.js",
+    "src/pages/js/models/RedirectRuleModel.js",
+    "src/pages/js/models/CancelRuleModel.js",
+    "src/pages/js/models/ReplaceRuleModel.js",
+    "src/pages/js/models/HeadersRuleModel.js",
+
+    "src/pages/js/collections/RulesCollection.js",
+    "src/pages/js/collections/SharedRulesCollection.js",
+    "src/pages/js/collections/SharedListCollection.js",
+
+    "src/pages/js/mixins/InputValidation.js",
+
+    "src/pages/js/views/BaseView.js",
+
+    "src/pages/js/modals/Modal.js",
+    "src/pages/js/modals/SusiModal.js",
+    "src/pages/js/modals/ShareRulesModal.js",
+
+    "src/pages/js/views/BaseRuleEditorView.js",
+    "src/pages/js/views/RedirectRuleEditorView.js",
+    "src/pages/js/views/CancelRuleEditorView.js",
+    "src/pages/js/views/ReplaceRuleEditorView.js",
+    "src/pages/js/views/HeadersEditorView.js",
+    "src/pages/js/views/RuleIndexView.js",
+    "src/pages/js/views/SharedRulesIndexView.js",
+    "src/pages/js/views/SharedListIndexView.js",
+    "src/pages/js/views/RuleCardsView.js",
+
+    "src/pages/js/router.js",
+    "src/pages/js/init.js"
+  ]
+}
