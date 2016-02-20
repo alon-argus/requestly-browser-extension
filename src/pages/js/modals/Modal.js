@@ -1,15 +1,28 @@
+/**
+ * Usage: RQ.showModalView(modalView, {
+ *   model: {
+ *     heading: 'Confirm Delete',
+ *     content: 'Are you sure you want to delete the rule ?'
+ *     cancelButton: true,
+ *     primaryButton: {
+ *       text: 'Delete'
+ *     }
+ *  });
+ */
 var Modal = BaseView.extend({
-  id: 'rq-modal',
-
   className: 'modal fade',
 
   attributes: {
     role: 'dialog'
   },
 
+  getTemplate: function() {
+    return RQ.Templates.Modal;
+  },
+
   events: {
     'change input[data-key]': 'updateValueFromInput',
-    'click .cta-container .btn-primary': 'handlePrimaryButtonClicked'
+    'click .modal-footer .btn-primary': 'handlePrimaryButtonClicked'
   },
 
   handlePrimaryButtonClicked: function() { /* No Op */ },

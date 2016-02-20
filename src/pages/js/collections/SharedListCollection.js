@@ -8,8 +8,7 @@ var SharedListCollection = Backbone.Collection.extend({
    */
   fetchSharedLists: function() {
     var that = this,
-      currentUserNodeRef = RQ.currentUser.getCurrentUserNodeRef(),
-      currentUserSharedListsRef = currentUserNodeRef.child(RQ.FIREBASE_NODES.SHARED_LISTS);
+      currentUserSharedListsRef = RQ.currentUser.getUserSharedListsRef();
 
     currentUserSharedListsRef.once('value', function(snapshot) {
       var list = snapshot.val(),

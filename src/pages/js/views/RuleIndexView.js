@@ -223,6 +223,9 @@ var RuleIndexView = Backbone.View.extend({
       sharedUrl;
 
     authPromise.then(function(authData) {
+      var currentUserSharedListsRef,
+        userSharedListsDeferredObject;
+
       if (!authData) {
         that.showLoginModal();
       } else {
@@ -233,11 +236,28 @@ var RuleIndexView = Backbone.View.extend({
           return;
         }
 
-        sharedUrl = RQ.currentUser.createSharedList(shareId, selectedRules);
-        that.saveSharedListName({ shareId: shareId });
+        currentUserSharedListsRef = RQ.currentUser.getUserSharedListsRef();
+        userSharedListsDeferredObject = RQ.FirebaseUtils.getDeferredNodeValue(currentUserSharedListsRef, { 'once': true });
 
-        that.shareRulesModal.show({
-          model: { shareId: shareId, sharedUrl: sharedUrl }
+        userSharedListsDeferredObject.then(function(sharedLists) {
+          if (_.keys(sharedLists).length >= RQ.LIMITS.NUMBER_SHARED_LISTS) {
+            RQ.showModalView(new Modal(), {
+              model: {
+                heading: 'Limit Exceeded',
+                content: RQ.MESSAGES.SHARED_LISTS_LIMIT_REACHED,
+                cancelButton: true
+              }
+            });
+
+            return;
+          }
+
+          sharedUrl = RQ.currentUser.createSharedList(shareId, selectedRules);
+          that.saveSharedListName({ shareId: shareId });
+
+          that.shareRulesModal.show({
+            model: { shareId: shareId, sharedUrl: sharedUrl }
+          });
         });
       }
     }).catch(function(error) {

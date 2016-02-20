@@ -145,5 +145,10 @@ var UserModel = BaseModel.extend({
   getPublicSharedListRef: function(sharedListId) {
     var sharedListsRef = this.getPublicSharedLists();
     return sharedListsRef.child(sharedListId);
+  },
+
+  getUserSharedListsRef: function() {
+    var currentUserNodeRef = this.getCurrentUserNodeRef();
+    return currentUserNodeRef.child(RQ.FIREBASE_NODES.SHARED_LISTS);
   }
 });

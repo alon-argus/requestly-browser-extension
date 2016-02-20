@@ -1,0 +1,23 @@
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4>{{heading}}</h4>
+    </div>
+
+    <div class="modal-body">
+      <p>{{content}}</p>
+    </div>
+
+    <div class="modal-footer text-right">
+      {{#if cancelButton}}
+        <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+      {{/if}}
+      {{#if primaryButton}}
+        <button type="button" class="btn btn-link btn-primary">{{primaryButton.name}}</button>
+      {{/if}}
+    </div>
+
+  </div> <!-- /modal-content -->
+</div>
