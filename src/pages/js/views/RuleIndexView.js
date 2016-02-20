@@ -216,28 +216,33 @@ var RuleIndexView = Backbone.View.extend({
   },
 
   handleShareRulesButtonClicked: function() {
-    var isUserLoggedIn = RQ.currentUser.getUserLoggedIn(),
+    var that = this,
+      authPromise = RQ.currentUser.checkUserAuthentication(),
       selectedRules,
       shareId = RQ.Utils.getId(),
       sharedUrl;
 
-    if (!isUserLoggedIn) {
-      this.showLoginModal();
-    } else {
-      selectedRules = _.pluck(this.getSelectedRules(), 'attributes');
+    authPromise.then(function(authData) {
+      if (!authData) {
+        that.showLoginModal();
+      } else {
+        selectedRules = _.pluck(that.getSelectedRules(), 'attributes');
 
-      if (selectedRules.length === 0) {
-        alert('Please select one or more rules to share');
-        return;
+        if (selectedRules.length === 0) {
+          alert('Please select one or more rules to share');
+          return;
+        }
+
+        sharedUrl = RQ.currentUser.createSharedList(shareId, selectedRules);
+        that.saveSharedListName({ shareId: shareId });
+
+        that.shareRulesModal.show({
+          model: { shareId: shareId, sharedUrl: sharedUrl }
+        });
       }
-
-      sharedUrl = RQ.currentUser.createSharedList(shareId, selectedRules);
-      this.saveSharedListName({ shareId: shareId });
-
-      this.shareRulesModal.show({
-        model: { shareId: shareId, sharedUrl: sharedUrl }
-      });
-    }
+    }).catch(function(error) {
+      alert(RQ.MESSAGES.ERROR_AUTHENTICATION);
+    });
   },
 
   saveSharedListName: function(shareData) {

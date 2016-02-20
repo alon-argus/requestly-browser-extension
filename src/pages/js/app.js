@@ -37,10 +37,6 @@ RQ.init = function() {
   this.currentUser = new UserModel();
   this.addListenerForAuthenticationChanged();
 
-  console.log('App - Checking User authentication');
-
-  this.currentUser.checkUserAuthentication();
-
   this.router = new RQ.Router();
 
   this.fetchSettings();

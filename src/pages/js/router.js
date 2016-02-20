@@ -30,15 +30,20 @@ RQ.Router = Backbone.Router.extend({
 
   showSharedLists: function() {
     var sharedListsIndexView = new SharedListIndexView(),
-      isUserLoggedIn = RQ.currentUser.getUserLoggedIn(),
-      susiModal;
+      authPromise = RQ.currentUser.checkUserAuthentication();
 
-    if (!isUserLoggedIn) {
-      susiModal = new SusiModal({ model: RQ.currentUser });
-      susiModal.show({ model: { content: RQ.MESSAGES.SIGN_IN_TO_VIEW_SHARED_LISTS } });
-    } else {
-      RQ.showView(sharedListsIndexView, { update: true });
-    }
+    authPromise.then(function(authData) {
+      var susiModal;
+
+      if (!authData) {
+        susiModal = new SusiModal({ model: RQ.currentUser });
+        susiModal.show({ model: { content: RQ.MESSAGES.SIGN_IN_TO_VIEW_SHARED_LISTS } });
+      } else {
+        RQ.showView(sharedListsIndexView, { update: true });
+      }
+    }).catch(function(error) {
+      alert(RQ.MESSAGES.ERROR_AUTHENTICATION);
+    });
   },
 
   showSharedRulesList: function(sharedListId) {

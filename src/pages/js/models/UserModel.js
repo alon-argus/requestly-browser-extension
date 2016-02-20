@@ -20,8 +20,20 @@ var UserModel = BaseModel.extend({
   },
 
   checkUserAuthentication: function() {
-    var firebaseRef = this.getFirebaseRef();
-    firebaseRef.onAuth(this.handleUserAuthenticationChanged);
+    var firebaseRef = this.getFirebaseRef(),
+      that = this;
+
+    return new Promise(function(resolve, reject) {
+      var onAuthHandler = function(authData) {
+        that.handleUserAuthenticationChanged(authData);
+        resolve(authData);
+
+        // Detach onAuthHandler otherwise authentication is checked next time, same handler will attach again
+        firebaseRef.offAuth(onAuthHandler);
+      };
+
+      firebaseRef.onAuth(onAuthHandler);
+    });
   },
 
   handleUserAuthenticationChanged: function(authData) {
