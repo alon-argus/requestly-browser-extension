@@ -113,8 +113,7 @@ var RuleIndexView = Backbone.View.extend({
           message: ruleName + ' is now ' + ruleStatus
         });
 
-        // Commenting due to #95 Event passing strategy Improvement for analytics tracking
-        //RQ.Utils.submitEvent('rule', eventAction, ruleModel.getRuleType().toLowerCase() + ' rule ' + eventAction);
+        RQ.Utils.submitEvent('rule', eventAction, ruleModel.getRuleType().toLowerCase() + ' rule ' + eventAction);
       }
     });
     return false;
@@ -135,12 +134,11 @@ var RuleIndexView = Backbone.View.extend({
             message: ruleName + ' has been deleted successfully!!'
           });
 
-          // Commenting due to #95 Event passing strategy Improvement for analytics tracking
-          //RQ.Utils.submitEvent(
-          // 'rule',
-          // RQ.GA_EVENTS.ACTIONS.DELETED,
-          // ruleModel.getRuleType().toLowerCase() + ' rule ' + RQ.GA_EVENTS.ACTIONS.DELETED
-          // );
+          RQ.Utils.submitEvent(
+            'rule',
+            RQ.GA_EVENTS.ACTIONS.DELETED,
+            ruleModel.getRuleType().toLowerCase() + ' rule ' + RQ.GA_EVENTS.ACTIONS.DELETED)
+          ;
         }
       });
     }
@@ -189,8 +187,7 @@ var RuleIndexView = Backbone.View.extend({
     var rulesAttributes = _.pluck(rules, 'attributes');
     Backbone.trigger('file:save', JSON.stringify(rulesAttributes, null, 2), 'requestly_rules');
 
-    // Commenting due to #95 Event passing strategy Improvement for analytics tracking
-    //RQ.Utils.submitEvent('rules', RQ.GA_EVENTS.ACTIONS.EXPORTED, 'Rules ' + RQ.GA_EVENTS.ACTIONS.EXPORTED);
+    RQ.Utils.submitEvent('rules', RQ.GA_EVENTS.ACTIONS.EXPORTED, 'Rules ' + RQ.GA_EVENTS.ACTIONS.EXPORTED);
   },
 
   importRules: function() {
@@ -206,8 +203,7 @@ var RuleIndexView = Backbone.View.extend({
       });
 
       that.render();
-      // Commenting due to #95 Event passing strategy Improvement for analytics tracking
-      //RQ.Utils.submitEvent('rules', RQ.GA_EVENTS.ACTIONS.IMPORTED, 'Rules ' + RQ.GA_EVENTS.ACTIONS.IMPORTED);
+      RQ.Utils.submitEvent('rules', RQ.GA_EVENTS.ACTIONS.IMPORTED, 'Rules ' + RQ.GA_EVENTS.ACTIONS.IMPORTED);
     });
   },
 

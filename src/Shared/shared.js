@@ -70,6 +70,11 @@ RQ.RESOURCES = {
 };
 
 RQ.GA_EVENTS = {
+  CATEGORIES: {
+    RULES: 'rules',
+    USER: 'user',
+    SHARED_LIST: 'Shared List'
+  },
   ACTIONS: {
     MODIFIED: 'modified',
     CREATED: 'created',
