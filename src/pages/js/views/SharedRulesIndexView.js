@@ -35,7 +35,7 @@ var SharedRulesIndexView = RuleIndexView.extend({
       ruleModel.save();
     });
 
-    RQ.Utils.submitEvent('rules', RQ.GA_EVENTS.ACTIONS.IMPORTED, 'Shared Rules ' + RQ.GA_EVENTS.ACTIONS.IMPORTED);
+    RQ.Utils.submitEvent(RQ.GA_EVENTS.CATEGORIES.SHARED_LIST, RQ.GA_EVENTS.ACTIONS.IMPORTED, 'Shared List ' + RQ.GA_EVENTS.ACTIONS.IMPORTED);
     Backbone.trigger('notification', {
       className: 'rq-success',
       message: 'Rules imported successfully!!'

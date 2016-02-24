@@ -76,6 +76,8 @@ var UserModel = BaseModel.extend({
       isEnabled: true
     });
 
+    RQ.Utils.submitEvent(RQ.GA_EVENTS.CATEGORIES.SHARED_LIST, RQ.GA_EVENTS.ACTIONS.CREATED, 'Shared List created');
+
     return RQ.getSharedURL(shareId);
   },
 
@@ -94,6 +96,8 @@ var UserModel = BaseModel.extend({
 
   authenticateUser: function(provider, errorCallback) {
     var firebaseRef = this.getFirebaseRef();
+
+    RQ.Utils.submitEvent(RQ.GA_EVENTS.CATEGORIES.USER, RQ.GA_EVENTS.ACTIONS.AUTHENTICATED, 'User Authenticated');
 
     firebaseRef.authWithOAuthRedirect(provider, errorCallback, {
       scope: 'email'

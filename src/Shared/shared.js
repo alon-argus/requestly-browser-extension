@@ -73,7 +73,7 @@ RQ.GA_EVENTS = {
   CATEGORIES: {
     RULES: 'rules',
     USER: 'user',
-    SHARED_LIST: 'Shared List'
+    SHARED_LIST: 'shared list'
   },
   ACTIONS: {
     MODIFIED: 'modified',
@@ -82,7 +82,10 @@ RQ.GA_EVENTS = {
     ACTIVATED: 'activated',
     DEACTIVATED: 'deactivated',
     IMPORTED: 'imported',
-    EXPORTED: 'exported'
+    EXPORTED: 'exported',
+    LIMIT_REACHED: 'limit reached',
+    AUTHENTICATED: 'authenticated',
+    VIEWED: 'viewed'
   }
 };
 

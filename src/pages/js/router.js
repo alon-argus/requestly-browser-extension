@@ -49,6 +49,7 @@ RQ.Router = Backbone.Router.extend({
   showSharedRulesList: function(sharedListId) {
     var sharedRulesIndexView = new SharedRulesIndexView({ sharedListId: sharedListId });
     RQ.showView(sharedRulesIndexView, { update: true, sharedListId: sharedListId });
+    RQ.Utils.submitEvent(RQ.GA_EVENTS.CATEGORIES.SHARED_LIST, RQ.GA_EVENTS.ACTIONS.VIEWED, 'Shared List Viewed');
   },
 
   showRuleCardsView: function() {

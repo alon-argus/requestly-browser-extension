@@ -245,6 +245,12 @@ var RuleIndexView = Backbone.View.extend({
               }
             });
 
+            RQ.Utils.submitEvent(
+              RQ.GA_EVENTS.CATEGORIES.SHARED_LIST,
+              RQ.GA_EVENTS.ACTIONS.LIMIT_REACHED,
+              'Shared List limit reached'
+            );
+
             return;
           }
 

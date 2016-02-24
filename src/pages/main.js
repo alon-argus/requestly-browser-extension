@@ -196,7 +196,7 @@ RQ.GA_EVENTS = {
   CATEGORIES: {
     RULES: 'rules',
     USER: 'user',
-    SHARED_LIST: 'Shared List'
+    SHARED_LIST: 'shared list'
   },
   ACTIONS: {
     MODIFIED: 'modified',
@@ -205,7 +205,10 @@ RQ.GA_EVENTS = {
     ACTIVATED: 'activated',
     DEACTIVATED: 'deactivated',
     IMPORTED: 'imported',
-    EXPORTED: 'exported'
+    EXPORTED: 'exported',
+    LIMIT_REACHED: 'limit reached',
+    AUTHENTICATED: 'authenticated',
+    VIEWED: 'viewed'
   }
 };
 
@@ -1142,6 +1145,8 @@ var UserModel = BaseModel.extend({
       isEnabled: true
     });
 
+    RQ.Utils.submitEvent(RQ.GA_EVENTS.CATEGORIES.SHARED_LIST, RQ.GA_EVENTS.ACTIONS.CREATED, 'Shared List created');
+
     return RQ.getSharedURL(shareId);
   },
 
@@ -1160,6 +1165,8 @@ var UserModel = BaseModel.extend({
 
   authenticateUser: function(provider, errorCallback) {
     var firebaseRef = this.getFirebaseRef();
+
+    RQ.Utils.submitEvent(RQ.GA_EVENTS.CATEGORIES.USER, RQ.GA_EVENTS.ACTIONS.AUTHENTICATED, 'User Authenticated');
 
     firebaseRef.authWithOAuthRedirect(provider, errorCallback, {
       scope: 'email'
@@ -2312,6 +2319,12 @@ var RuleIndexView = Backbone.View.extend({
               }
             });
 
+            RQ.Utils.submitEvent(
+              RQ.GA_EVENTS.CATEGORIES.SHARED_LIST,
+              RQ.GA_EVENTS.ACTIONS.LIMIT_REACHED,
+              'Shared List limit reached'
+            );
+
             return;
           }
 
@@ -2373,7 +2386,7 @@ var SharedRulesIndexView = RuleIndexView.extend({
       ruleModel.save();
     });
 
-    RQ.Utils.submitEvent('rules', RQ.GA_EVENTS.ACTIONS.IMPORTED, 'Shared Rules ' + RQ.GA_EVENTS.ACTIONS.IMPORTED);
+    RQ.Utils.submitEvent(RQ.GA_EVENTS.CATEGORIES.SHARED_LIST, RQ.GA_EVENTS.ACTIONS.IMPORTED, 'Shared List ' + RQ.GA_EVENTS.ACTIONS.IMPORTED);
     Backbone.trigger('notification', {
       className: 'rq-success',
       message: 'Rules imported successfully!!'
@@ -2483,6 +2496,7 @@ RQ.Router = Backbone.Router.extend({
   showSharedRulesList: function(sharedListId) {
     var sharedRulesIndexView = new SharedRulesIndexView({ sharedListId: sharedListId });
     RQ.showView(sharedRulesIndexView, { update: true, sharedListId: sharedListId });
+    RQ.Utils.submitEvent(RQ.GA_EVENTS.CATEGORIES.SHARED_LIST, RQ.GA_EVENTS.ACTIONS.VIEWED, 'Shared List Viewed');
   },
 
   showRuleCardsView: function() {
