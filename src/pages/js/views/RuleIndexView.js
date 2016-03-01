@@ -81,18 +81,15 @@ var RuleIndexView = Backbone.View.extend({
     RQ.router.navigate('/edit/' + id, { trigger: true });
   },
 
-  reloadPage: function(wait) {
-    wait = wait || 0;
-
-    setTimeout(function() {
-      window.location.reload();
-    }, wait);
-  },
-
   toggleStatus: function(event) {
     var $ruleItemRow = $(event.currentTarget).parents('.rule-item-row'),
-      ruleModel = this.rulesCollection.get($ruleItemRow.data('id')),
-      ruleName = ruleModel.getName(),
+      ruleModel = this.rulesCollection.get($ruleItemRow.data('id'));
+
+    return this.toggleRuleStatus(ruleModel);
+  },
+
+  toggleRuleStatus: function(ruleModel) {
+    var ruleName = ruleModel.getName(),
       eventAction,
       ruleStatus;
 
@@ -121,9 +118,14 @@ var RuleIndexView = Backbone.View.extend({
 
   deleteRule: function(event) {
     var $ruleItemRow = $(event.target).parents('.rule-item-row'),
-      ruleModel = this.rulesCollection.get($ruleItemRow.data('id')),
-      ruleName = ruleModel.getName(),
-      that = this;
+      ruleModel = this.rulesCollection.get($ruleItemRow.data('id'));
+
+    return this.deleteRuleFromCollection(ruleModel);
+  },
+
+  deleteRuleFromCollection: function(ruleModel) {
+    var that = this,
+      ruleName = ruleModel.getName();
 
     if (window.confirm(RQ.MESSAGES.DELETE_RULE)) {
       that.rulesCollection.remove(ruleModel);

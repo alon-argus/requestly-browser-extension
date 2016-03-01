@@ -31,6 +31,14 @@ RQ.Utils.getCurrentTime = function() {
   return Date.now();
 };
 
+RQ.Utils.reloadPage = function(wait) {
+  wait = wait || 0;
+
+  setTimeout(function () {
+    window.location.reload();
+  }, wait);
+};
+
 RQ.Utils.submitEvent = function(category, action, label) {
   var eventObserverPlaceholder = document.getElementById('events-observer-placeholder'),
     $eventEl = $('<span></span>').attr({
@@ -39,7 +47,7 @@ RQ.Utils.submitEvent = function(category, action, label) {
       'data-label': label
     });
 
-  eventObserverPlaceholder.appendChild($eventEl.get(0));
+  eventObserverPlaceholder && eventObserverPlaceholder.appendChild($eventEl.get(0));
 };
 
 RQ.Utils.removeLastPart = function(str, separater) {

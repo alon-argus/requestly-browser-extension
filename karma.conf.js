@@ -3,36 +3,36 @@ module.exports = function(config) {
 
     basePath: './',
 
-    frameworks: ['jasmine'],
+    frameworks: [ 'jasmine' ],
 
     plugins : [
       'karma-jasmine',
       'karma-phantomjs-launcher',
+      'karma-handlebars-preprocessor'
     ],
 
     files: [
+      'tests/helpers/phantom-shim.js',
+
       /* Libraries and Helper files */
-      'src/libs/jquery-1.9.1.js',
-      'src/libs/underscore-1.6.0.js',
-      'src/libs/backbone-1.1.2.js',
-      'tests/helpers/utils.js',
+      "src/libs/firebase.js",
+      "src/libs/jquery-1.9.1.js",
+      "src/libs/bootstrap.min.js",
+
+      "src/libs/underscore-1.6.0.js",
+      "src/libs/backbone-1.1.2.js",
+      "src/libs/handlebars.runtime-v3.0.3.js",
+      "src/libs/bootstrap-toggle.min.js",
+
       'tests/helpers/chromeApiHelper.js',
+      'tests/helpers/utils.js',
+
+      'src/pages/main.js',
 
       /* Code files */
       'src/background/storageService.js',
-      'src/pages/js/app.js',
-      'src/Shared/utils.js',
-      'src/Shared/shared.js',
+      /*'src/Shared/shared.js',*/
       'src/background/background.js',
-      'src/pages/js/models/BaseModel.js',
-      'src/pages/js/models/BaseRuleModel.js',
-      'src/pages/js/models/RedirectRuleModel.js',
-      'src/pages/js/models/CancelRuleModel.js',
-      'src/pages/js/models/ReplaceRuleModel.js',
-      'src/pages/js/models/HeadersRuleModel.js',
-      'src/pages/js/mixins/InputValidation.js',
-      'src/pages/js/views/BaseView.js',
-      'src/pages/js/views/BaseRuleEditorView.js',
 
       /* Spec files */
       'tests/**/*.spec.js'
@@ -42,7 +42,7 @@ module.exports = function(config) {
 
     preprocessors: {},
 
-    reporters: ['progress'],
+    reporters: [ 'progress' ],
 
     port: 9876,
 
@@ -52,7 +52,7 @@ module.exports = function(config) {
 
     autoWatch: true,
 
-    browsers: ['PhantomJS'],
+    browsers: [ 'PhantomJS' ],
 
     singleRun: false
   });

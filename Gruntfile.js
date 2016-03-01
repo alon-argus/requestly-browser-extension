@@ -108,6 +108,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('templates', ['handlebars']);
   grunt.registerTask('build', ['handlebars', 'sass', 'concat', 'zipup']);
-  grunt.registerTask('test', ['karma:unit']);
+  grunt.registerTask('test', ['handlebars', 'concat', 'karma:unit']);
   grunt.registerTask('dev', ['watch']);
 };

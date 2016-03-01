@@ -13,7 +13,6 @@ describe('Base Rule Editor View', function() {
     baseRuleModel.setName('Test Rule');
     baseRuleModel.setRuleType('Redirect');
     expect(baseRuleEditorView.validateRule()).toBe(true);
-
     expect(baseRuleEditorView.alsoValidate()).toBe(true);
   });
 });

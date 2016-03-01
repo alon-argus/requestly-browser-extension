@@ -52,5 +52,4 @@
 
   Backbone.on('file:save', saveAsTextFile);
   Backbone.on('file:load', loadTextFile);
-
 }(jQuery));
