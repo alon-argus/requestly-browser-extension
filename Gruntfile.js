@@ -12,7 +12,7 @@ module.exports = function (grunt) {
     zipup: {
       package: {
         appName: 'Requestly',
-        version: '4.0.1',
+        version: '4.1.0',
         files: [
           {
             cwd: 'src',
@@ -107,7 +107,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('templates', ['handlebars']);
+  grunt.registerTask('libs', ['handlebars', 'concat']);
   grunt.registerTask('build', ['handlebars', 'sass', 'concat', 'zipup']);
-  grunt.registerTask('test', ['handlebars', 'concat', 'karma:unit']);
+  grunt.registerTask('test', ['karma:unit']);
   grunt.registerTask('dev', ['watch']);
 };
