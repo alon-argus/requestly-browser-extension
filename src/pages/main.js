@@ -1031,7 +1031,7 @@ this["RQ"]["Templates"]["SharedListIndex"] = Handlebars.template({"1":function(d
   return ((stack1 = this.invokePartial(partials.SharedListIndexToolbar,depth0,{"name":"SharedListIndexToolbar","data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
     + "\n<section class=\"list-index\">\n  <table class=\"table\">\n    <thead>\n    <tr>\n      <th>Name</th>\n      <th>Link</th>\n      <th>Created on</th>\n    </tr>\n    </thead>\n    <tbody>\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.list : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "    </tbody>\n  </table>\n</section>`";
+    + "    </tbody>\n  </table>\n</section>";
 },"usePartial":true,"useData":true});
 
 this["RQ"]["Templates"]["SharedRulesIndex"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
