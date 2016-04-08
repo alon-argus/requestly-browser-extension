@@ -160,7 +160,7 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
   font-size: 16px;
 }
 
-.rules-number {
+.rules-number.badge {
   background-color: #4285F4;
   border-radius: 0;
   height: 25px;

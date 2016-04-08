@@ -152,6 +152,7 @@ var BaseRuleEditorView = BaseView.extend({
         });
 
         RQ.Utils.submitEvent('rule', eventAction, that.model.getRuleType().toLowerCase() + ' rule ' + eventAction);
+        RQ.Utils.reloadPage(500);
       }
     });
   },
