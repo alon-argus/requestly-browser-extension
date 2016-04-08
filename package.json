@@ -1,6 +1,6 @@
 {
   "name": "requestly",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Chrome extension to modify HTTP requests and modify request and response headers",
   "main": "app.js",
   "scripts": {
