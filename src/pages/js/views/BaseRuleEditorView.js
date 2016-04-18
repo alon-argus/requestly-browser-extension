@@ -145,14 +145,12 @@ var BaseRuleEditorView = BaseView.extend({
 
     this.model.save({
       callback: function() {
-        RQ.router.navigate('', { trigger: true });
         Backbone.trigger('notification', {
           className: 'rq-success',
           message: ruleName + ' has been saved successfully!!'
         });
 
         RQ.Utils.submitEvent('rule', eventAction, that.model.getRuleType().toLowerCase() + ' rule ' + eventAction);
-        RQ.Utils.reloadPage(500);
       }
     });
   },
