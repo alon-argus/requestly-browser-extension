@@ -1,9 +1,18 @@
-/* (Use different panel colors as available http://bootswatch.com/cerulean/)
- * Color list for different types of rules
- * 1. Redirect Rule: #73a839
-*/
-body {
-  background: #ededeb; }
+.content {
+  /* Content Wrapper over content-header and content-body. Needs 100% so that content-body can apply overflow: auto */ }
+  .content > div {
+    height: 100%; }
+  .content .content-header {
+    padding: 10px;
+    color: white;
+    font-size: 14px;
+    height: 45px;
+    line-height: 25px; }
+  .content .rule-body {
+    padding: 16px; }
+  .content .content-body {
+    height: calc(100% - 45px);
+    overflow: auto; }
 
 a:hover {
   color: inherit;
@@ -12,25 +21,6 @@ a:hover {
 table {
   width: 100%; }
 
-@media only screen and (max-width: 1040px) {
-  .side-nav.fixed {
-    left: -105%; }
-
-  #page {
-    left: 0; }
-
-  #content {
-    width: 800px;
-    margin: auto; }
-
-  div.backdrop {
-    left: 0; }
-
-  div.backdrop-message {
-    margin-left: -350px; }
-
-  #footer {
-    margin: auto; } }
 .dropdown-menu {
   min-width: 100px;
   padding: 0; }
@@ -89,85 +79,6 @@ input[type="text"].form-control {
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; }
 
-.header {
-  background: #2F416E;
-  height: 35px;
-  line-height: 35px;
-  font-size: 14px;
-  text-align: center;
-  color: #eee; }
-
-.page {
-  position: fixed;
-  top: 0;
-  left: 240px;
-  right: 0;
-  bottom: 0; }
-
-.content {
-  width: 100%;
-  min-width: 800px;
-  height: calc(100% - 35px);
-  background: #fff;
-  overflow: auto; }
-
-.backdrop {
-  display: none;
-  opacity: 0.65;
-  top: 0;
-  left: 240px; }
-
-.backdrop-message {
-  display: none;
-  width: 50rem;
-  left: 50%;
-  position: absolute;
-  margin-left: -240px;
-  top: 40%;
-  z-index: 1050;
-  text-align: center;
-  color: white;
-  background-color: #222;
-  border-color: #333; }
-  .backdrop-message p {
-    font-size: 16px; }
-
-.footer {
-  width: 100%;
-  overflow: hidden;
-  text-align: center;
-  height: 35px;
-  line-height: 35px;
-  background: #3c3c3c;
-  color: #eee; }
-
-.footer .rq-blue {
-  margin: 0; }
-
-.footer-title {
-  margin-right: 5px;
-  padding: 5px 10px;
-  font-size: 14px; }
-
-.rq-banner {
-  padding: 0 50px 0 10px;
-  color: #fff;
-  font-weight: 700;
-  z-index: 10;
-  margin-left: 10px; }
-
-#forkme_banner {
-  background: url("/resources/images/blacktocat.png") #0090ff no-repeat 95% 50%;
-  border-radius: 2px;
-  padding: 0 50px 0 10px;
-  position: fixed;
-  right: 0; }
-
-#chromestore_banner {
-  background: url("/resources/images/chrome_icon.png") #53a93f no-repeat 95% 50%;
-  background-size: 30px;
-  padding: 10px 50px 10px 10px; }
-
 .left {
   float: left; }
 
@@ -222,21 +133,11 @@ input[type="text"].form-control {
 .rq-notice {
   background-color: #DF731F; }
 
-.content-header {
-  padding: 10px;
-  color: white;
-  font-size: 14px;
-  height: 45px;
-  line-height: 25px; }
-
 .rq-green {
   background: #5B9027; }
 
 .rq-dimgrey {
   background: dimgrey; }
-
-.content .rule-body {
-  padding: 16px; }
 
 .margin-r-0-5 {
   margin-right: 0.5rem; }
@@ -276,38 +177,6 @@ input[type="text"].form-control {
 .headers .status-cell .toggle-on.btn,
 .status-toggle.headers + .toggle-group .toggle-on.btn {
   background-color: #dd9d12; }
-
-/* Left Navigation Bar */
-.side-nav a.product-name {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  height: 45px;
-  background: dimgrey;
-  text-align: center;
-  padding-left: 0px;
-  font-size: 15px;
-  font-weight: bold;
-  color: #fff;
-  line-height: 25px;
-  cursor: default; }
-.side-nav .avatar-wrapper {
-  padding: 40px;
-  background: #ccc;
-  cursor: default; }
-.side-nav a.product-moto {
-  position: absolute;
-  top: 235px;
-  z-index: 2;
-  color: #333;
-  text-shadow: 0 0 2px #fff; }
-.side-nav li {
-  border-top: 1px solid #eee; }
-.side-nav a {
-  height: 34px;
-  line-height: 34px;
-  color: #555555; }
-.side-nav i {
-  margin-right: 10px; }
 
 /* Authentication based logic for showing profile pic icon */
 .authorized-user .avatar {

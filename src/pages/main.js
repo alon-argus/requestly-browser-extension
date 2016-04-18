@@ -845,7 +845,7 @@ this["RQ"]["Templates"]["CancelRuleEditor"] = Handlebars.template({"1":function(
     var stack1;
 
   return ((stack1 = this.invokePartial(partials.RuleEditorHeader,depth0,{"name":"RuleEditorHeader","hash":{"heading":"Block/Cancel Network Requests"},"data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\n<section class=\"rule-body\">\n"
+    + "\n<section class=\"rule-body content-body\">\n"
     + ((stack1 = this.invokePartial(partials.RuleProperties,depth0,{"name":"RuleProperties","data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
     + "\n"
     + ((stack1 = this.invokePartial(partials.PairsContainerHeading,depth0,{"name":"PairsContainerHeading","hash":{"heading":"Enter Keywords or Urls or Domains to be blocked"},"data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
@@ -904,7 +904,7 @@ this["RQ"]["Templates"]["HeadersRuleTemplate"] = Handlebars.template({"1":functi
     var stack1;
 
   return ((stack1 = this.invokePartial(partials.RuleEditorHeader,depth0,{"name":"RuleEditorHeader","hash":{"heading":"Modify Headers in HTTP Request and Response"},"data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\n<section class=\"rule-body\">\n\n\n"
+    + "\n<section class=\"rule-body content-body\">\n\n\n"
     + ((stack1 = this.invokePartial(partials.RuleProperties,depth0,{"name":"RuleProperties","data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
     + "\n"
     + ((stack1 = this.invokePartial(partials.PairsContainerHeading,depth0,{"name":"PairsContainerHeading","hash":{"heading":"Headers Modification Rules"},"data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
@@ -952,7 +952,7 @@ this["RQ"]["Templates"]["RedirectRuleEditor"] = Handlebars.template({"1":functio
     var stack1;
 
   return ((stack1 = this.invokePartial(partials.RuleEditorHeader,depth0,{"name":"RuleEditorHeader","hash":{"heading":"Redirect Request Rule"},"data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\n<section class=\"rule-body\">\n"
+    + "\n<section class=\"rule-body content-body\">\n"
     + ((stack1 = this.invokePartial(partials.RuleProperties,depth0,{"name":"RuleProperties","data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
     + "\n"
     + ((stack1 = this.invokePartial(partials.PairsContainerHeading,depth0,{"name":"PairsContainerHeading","hash":{"heading":"Source Destination Pairs"},"data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
@@ -977,7 +977,7 @@ this["RQ"]["Templates"]["ReplaceRuleEditor"] = Handlebars.template({"1":function
     var stack1;
 
   return ((stack1 = this.invokePartial(partials.RuleEditorHeader,depth0,{"name":"RuleEditorHeader","hash":{"heading":"Replace Host or some part of URL"},"data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\n<section class=\"rule-body\">\n"
+    + "\n<section class=\"rule-body content-body\">\n"
     + ((stack1 = this.invokePartial(partials.RuleProperties,depth0,{"name":"RuleProperties","data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
     + "\n  <div class=\"pairs-container\">\n"
     + ((stack1 = this.invokePartial(partials.PairsContainerHeading,depth0,{"name":"PairsContainerHeading","hash":{"heading":"Pairs"},"data":data,"indent":"    ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
@@ -989,7 +989,7 @@ this["RQ"]["Templates"]["ReplaceRuleEditor"] = Handlebars.template({"1":function
 },"usePartial":true,"useData":true});
 
 this["RQ"]["Templates"]["RuleCardsView"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<nav class=\"content-header rq-dimgrey\">\n  <a href=\"#\" role=\"button\" class=\"back-button fa fa-chevron-left\" title=\"Go Back\"></a>\n  <span>Select Rule</span>\n</nav>\n\n<section class=\"rule-body\">\n  <div class=\"row\">\n    <div class=\"col-md-6 card-redirect-rule rule-card\" data-target=\"#new/Redirect\">\n      <div class=\"testimonial-card z-depth-1\">\n        <div class=\"card-up\">\n        </div>\n        <div class=\"avatar\">\n          <span class=\"img-circle img-responsive card-avatar-content\">R</span>\n        </div>\n        <div class=\"card-content\">\n          <h5>Redirect Request</h5>\n          <p><i class=\"fa fa-quote-left\"></i>Redirect a request URL</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col-md-6 card-cancel-rule rule-card\" data-target=\"#new/Cancel\">\n      <div class=\"testimonial-card z-depth-1\">\n        <div class=\"card-up\">\n        </div>\n        <div class=\"avatar\">\n          <span class=\"img-circle img-responsive card-avatar-content\">C</span>\n        </div>\n        <div class=\"card-content\">\n          <h5>Cancel Request</h5>\n          <p><i class=\"fa fa-quote-left\"></i>Block Urls by specifying keywords or entire Urls</p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-md-6 card-replace-rule rule-card\" data-target=\"#new/Replace\">\n      <div class=\"testimonial-card z-depth-1\">\n        <div class=\"card-up\">\n        </div>\n        <div class=\"avatar\">\n          <span class=\"img-circle img-responsive card-avatar-content\">R</span>\n        </div>\n        <div class=\"card-content\">\n          <h5>Replace Host</h5>\n          <p><i class=\"fa fa-quote-left\"></i>Replace parts of URL like hostname, query value</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col-md-6 card-headers-rule rule-card\" data-target=\"#new/headers\">\n      <div class=\"testimonial-card z-depth-1\">\n        <div class=\"card-up\">\n        </div>\n        <div class=\"avatar\">\n          <span class=\"img-circle img-responsive card-avatar-content\">H</span>\n        </div>\n        <div class=\"card-content\">\n          <h5>Modify Headers</h5>\n          <p><i class=\"fa fa-quote-left\"></i>Modify HTTP headers in request and response</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n";
+    return "<nav class=\"content-header rq-dimgrey\">\n  <a href=\"#\" role=\"button\" class=\"back-button fa fa-chevron-left\" title=\"Go Back\"></a>\n  <span>Select Rule</span>\n</nav>\n\n<section class=\"rule-body content-body\">\n  <div class=\"row\">\n    <div class=\"col-md-6 card-redirect-rule rule-card\" data-target=\"#new/Redirect\">\n      <div class=\"testimonial-card z-depth-1\">\n        <div class=\"card-up\">\n        </div>\n        <div class=\"avatar\">\n          <span class=\"img-circle img-responsive card-avatar-content\">R</span>\n        </div>\n        <div class=\"card-content\">\n          <h5>Redirect Request</h5>\n          <p><i class=\"fa fa-quote-left\"></i>Redirect a request URL</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col-md-6 card-cancel-rule rule-card\" data-target=\"#new/Cancel\">\n      <div class=\"testimonial-card z-depth-1\">\n        <div class=\"card-up\">\n        </div>\n        <div class=\"avatar\">\n          <span class=\"img-circle img-responsive card-avatar-content\">C</span>\n        </div>\n        <div class=\"card-content\">\n          <h5>Cancel Request</h5>\n          <p><i class=\"fa fa-quote-left\"></i>Block Urls by specifying keywords or entire Urls</p>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-md-6 card-replace-rule rule-card\" data-target=\"#new/Replace\">\n      <div class=\"testimonial-card z-depth-1\">\n        <div class=\"card-up\">\n        </div>\n        <div class=\"avatar\">\n          <span class=\"img-circle img-responsive card-avatar-content\">R</span>\n        </div>\n        <div class=\"card-content\">\n          <h5>Replace Host</h5>\n          <p><i class=\"fa fa-quote-left\"></i>Replace parts of URL like hostname, query value</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col-md-6 card-headers-rule rule-card\" data-target=\"#new/headers\">\n      <div class=\"testimonial-card z-depth-1\">\n        <div class=\"card-up\">\n        </div>\n        <div class=\"avatar\">\n          <span class=\"img-circle img-responsive card-avatar-content\">H</span>\n        </div>\n        <div class=\"card-content\">\n          <h5>Modify Headers</h5>\n          <p><i class=\"fa fa-quote-left\"></i>Modify HTTP headers in request and response</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n";
 },"useData":true});
 
 this["RQ"]["Templates"]["RuleIndex"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
@@ -1000,7 +1000,7 @@ this["RQ"]["Templates"]["RuleIndex"] = Handlebars.template({"1":function(depth0,
     var stack1;
 
   return ((stack1 = this.invokePartial(partials.Toolbar,depth0,{"name":"Toolbar","data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\n<section>\n  <table class=\"table\">\n    <thead>\n    <tr>\n      <th class=\"rule-selection-cell\">\n        <input type=\"checkbox\" class=\"filled-in select-all-rules-checkbox\" id=\"select-all-rules-checkbox\" title=\"Select All\"/>\n        <label for=\"select-all-rules-checkbox\"></label>\n      </th>\n      <th> <span class=\"rules-number badge\">"
+    + "\n<section class=\"content-body\">\n  <table class=\"table\">\n    <thead>\n    <tr>\n      <th class=\"rule-selection-cell\">\n        <input type=\"checkbox\" class=\"filled-in select-all-rules-checkbox\" id=\"select-all-rules-checkbox\" title=\"Select All\"/>\n        <label for=\"select-all-rules-checkbox\"></label>\n      </th>\n      <th> <span class=\"rules-number badge\">"
     + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.rules : depth0)) != null ? stack1.length : stack1), depth0))
     + "</span> </th>\n      <th>Name & Description</th>\n      <th class=\"status-cell\">Status</th>\n      <th>Created on</th>\n      <th></th>\n    </tr>\n    </thead>\n    <tbody>\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.rules : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
@@ -1029,9 +1029,9 @@ this["RQ"]["Templates"]["SharedListIndex"] = Handlebars.template({"1":function(d
     var stack1;
 
   return ((stack1 = this.invokePartial(partials.SharedListIndexToolbar,depth0,{"name":"SharedListIndexToolbar","data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\n<section class=\"list-index\">\n  <table class=\"table\">\n    <thead>\n    <tr>\n      <th>Name</th>\n      <th>Link</th>\n      <th>Created on</th>\n    </tr>\n    </thead>\n    <tbody>\n"
+    + "\n<section class=\"list-index content-body\">\n  <table class=\"table\">\n    <thead>\n    <tr>\n      <th>Name</th>\n      <th>Link</th>\n      <th>Created on</th>\n    </tr>\n    </thead>\n    <tbody>\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.list : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "    </tbody>\n  </table>\n</section>";
+    + "    </tbody>\n  </table>\n</section>\n";
 },"usePartial":true,"useData":true});
 
 this["RQ"]["Templates"]["SharedRulesIndex"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
@@ -1042,7 +1042,7 @@ this["RQ"]["Templates"]["SharedRulesIndex"] = Handlebars.template({"1":function(
     var stack1;
 
   return ((stack1 = this.invokePartial(partials.SharedRulesIndexToolbar,depth0,{"name":"SharedRulesIndexToolbar","data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\n<section class=\"rule-index\">\n  <table class=\"table\">\n    <thead>\n    <tr>\n      <th> <span class=\"rules-number badge\">"
+    + "\n<section class=\"rule-index content-body\">\n  <table class=\"table\">\n    <thead>\n    <tr>\n      <th> <span class=\"rules-number badge\">"
     + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.rules : depth0)) != null ? stack1.length : stack1), depth0))
     + "</span> </th>\n      <th>Name & Description</th>\n      <th class=\"status-cell\">Status</th>\n      <th>Created on</th>\n    </tr>\n    </thead>\n    <tbody>\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.rules : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
