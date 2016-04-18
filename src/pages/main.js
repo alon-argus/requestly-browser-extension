@@ -736,13 +736,13 @@ Handlebars.registerPartial("RuleProperties", Handlebars.template({"compiler":[6,
 Handlebars.registerPartial("SaveRuleCTA", Handlebars.template({"1":function(depth0,helpers,partials,data) {
     return "    <a class=\"btn btn-link close-editor\">Close</a>\n";
 },"3":function(depth0,helpers,partials,data) {
-    return "    <a class=\"btn save-rule\">Save</a>\n    <a href=\"#\" class=\"btn btn-link\">Cancel</a>\n";
+    return "    <a href=\"#\" class=\"btn btn-link\">Close</a>\n    <a class=\"btn save-rule\">Save</a>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
   return "<div class=\"buttons-container\">\n"
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.isViewMode : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.program(3, data, 0),"data":data})) != null ? stack1 : "")
-    + "</div>";
+    + "</div>\n";
 },"useData":true}));
 
 Handlebars.registerPartial("SharedListIndexToolbar", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -1950,14 +1950,12 @@ var BaseRuleEditorView = BaseView.extend({
 
     this.model.save({
       callback: function() {
-        RQ.router.navigate('', { trigger: true });
         Backbone.trigger('notification', {
           className: 'rq-success',
           message: ruleName + ' has been saved successfully!!'
         });
 
         RQ.Utils.submitEvent('rule', eventAction, that.model.getRuleType().toLowerCase() + ' rule ' + eventAction);
-        RQ.Utils.reloadPage(500);
       }
     });
   },
