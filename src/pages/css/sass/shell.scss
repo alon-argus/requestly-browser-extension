@@ -1,0 +1,26 @@
+@import 'variables';
+
+.content {
+
+  /* Content Wrapper over content-header and content-body. Needs 100% so that content-body can apply overflow: auto */
+  > div {
+    height: 100%;
+  }
+
+  .content-header {
+    padding: 10px;
+    color: white;
+    font-size: 14px;
+    height: $content-header-height;
+    line-height: 25px;
+  }
+
+  .rule-body {
+    padding: 16px;
+  }
+
+  .content-body {
+    height: calc(100% - 45px);
+    overflow: auto;
+  }
+}
