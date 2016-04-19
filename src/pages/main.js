@@ -694,7 +694,7 @@ Handlebars.registerPartial("RuleEditorHeader", Handlebars.template({"compiler":[
 
   return "<nav class=\"content-header\">\n  <span>"
     + this.escapeExpression(((helper = (helper = helpers.heading || (depth0 != null ? depth0.heading : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"heading","hash":{},"data":data}) : helper)))
-    + "</span>\n</nav>";
+    + "</span>\n  <div class=\"right-corner-icongroup\">\n    <a class=\"fa fa-times close-editor\"></a>\n  </div>\n</nav>\n";
 },"useData":true}));
 
 Handlebars.registerPartial("RuleItemRow", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
