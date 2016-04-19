@@ -114,11 +114,7 @@ var BaseRuleEditorView = BaseView.extend({
 
   validateRule: function() {
     if (!this.model.isValid()) {
-      Backbone.trigger('notification', {
-        className: 'rq-error',
-        message: 'Error: Rule Name can not be empty'
-      });
-
+      Notification.show('error', 'Error: Rule Name can not be empty');
       return false;
     }
 
@@ -145,11 +141,7 @@ var BaseRuleEditorView = BaseView.extend({
 
     this.model.save({
       callback: function() {
-        Backbone.trigger('notification', {
-          className: 'rq-success',
-          message: ruleName + ' has been saved successfully!!'
-        });
-
+        Notification.show('success', ruleName + ' has been saved successfully!');
         RQ.Utils.submitEvent('rule', eventAction, that.model.getRuleType().toLowerCase() + ' rule ' + eventAction);
       }
     });

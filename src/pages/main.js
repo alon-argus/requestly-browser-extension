@@ -336,43 +336,43 @@ RQ.FirebaseUtils.getDeferredNodeValue = function(nodeRef, options) {
   });
 };
 
-/**
- * Usage: Backbone.trigger('notification', { className: 'rq-success', message: 'Some message' });
- */
-(function($) {
-  var $notificationDiv = $('<div></div>').attr({id: 'rq-notifier'})
-    .prependTo('body')
-    .click(function() { $(this).hide(); });
+var Notification = {
+  Types: {
+    SUCCESS: 'success',
+    ERROR: 'error',
+    WARNING: 'warning',
+    INFO: 'info'
+  },
 
-  var timeoutId = null;
+  NotificationTypeHandler: {
+    success: toastr.success,
+    error: toastr.error,
+    info: toastr.info,
+    warning: toastr.warning
+  },
 
-  function showNotification(options) {
-    options = options || {};
+  defaultOptions: {
+    closeButton: true,
+    debug: false,
+    positionClass: 'toast-top-right',
+    onclick: null,
+    showDuration: '2000',
+    hideDuration: '1000',
+    timeOut: '3000',
+    extendedTimeOut: '1000',
+    showEasing: 'swing',
+    hideEasing: 'linear',
+    showMethod: 'fadeIn',
+    hideMethod: 'fadeOut'
+  },
 
-    var message = options.message || '',
-      className = options.className || '',
-      timeout = options.timeout || 3000;
+  show: function(type, message, heading, opts) {
+    var options = _.extend({}, this.defaultOptions, opts);
 
-    if (!message) return;
-
-    $notificationDiv.text(message)
-      .removeClass('rq-info rq-notice rq-error rq-success')
-      .addClass(className)
-      .fadeIn(1000);
-
-    if (timeoutId !== null) {
-      clearTimeout(timeoutId);
-    }
-
-    setTimeout(hideNotification, timeout);
+    this.NotificationTypeHandler[type].call(null, message, heading, options);
   }
+};
 
-  function hideNotification() {
-    $notificationDiv.fadeOut(1000);
-  }
-
-  Backbone.on('notification', showNotification);
-}(jQuery));
 (function($) {
   function getOrCreateDownloadLink() {
     var $link = $('#downloadLink');
@@ -1635,7 +1635,7 @@ RQ.Mixins.InputValidation = {
     }
 
     if (errorMessage != null) {
-      Backbone.trigger('notification', { className: 'rq-error', message: errorMessage });
+      Notification.show('error', errorMessage);
       return false;
     }
 
@@ -1655,7 +1655,7 @@ RQ.Mixins.InputValidation = {
     }
 
     if (errorMessage != null) {
-      Backbone.trigger('notification', { className: 'rq-error', message: errorMessage });
+      Notification.show('error', errorMessage);
       return false;
     }
 
@@ -1919,11 +1919,7 @@ var BaseRuleEditorView = BaseView.extend({
 
   validateRule: function() {
     if (!this.model.isValid()) {
-      Backbone.trigger('notification', {
-        className: 'rq-error',
-        message: 'Error: Rule Name can not be empty'
-      });
-
+      Notification.show('error', 'Error: Rule Name can not be empty');
       return false;
     }
 
@@ -1950,11 +1946,7 @@ var BaseRuleEditorView = BaseView.extend({
 
     this.model.save({
       callback: function() {
-        Backbone.trigger('notification', {
-          className: 'rq-success',
-          message: ruleName + ' has been saved successfully!!'
-        });
-
+        Notification.show('success', ruleName + ' has been saved successfully!');
         RQ.Utils.submitEvent('rule', eventAction, that.model.getRuleType().toLowerCase() + ' rule ' + eventAction);
       }
     });
@@ -2202,11 +2194,7 @@ var RuleIndexView = Backbone.View.extend({
 
     ruleModel.save({
       callback: function() {
-        Backbone.trigger('notification', {
-          className: 'rq-info',
-          message: ruleName + ' is now ' + ruleStatus
-        });
-
+        Notification.show('info', ruleName + ' is now ' + ruleStatus);
         RQ.Utils.submitEvent('rule', eventAction, ruleModel.getRuleType().toLowerCase() + ' rule ' + eventAction);
       }
     });
@@ -2228,16 +2216,13 @@ var RuleIndexView = Backbone.View.extend({
       that.rulesCollection.remove(ruleModel);
       ruleModel.remove({
         callback: function() {
-          Backbone.trigger('notification', {
-            className: 'rq-success',
-            message: ruleName + ' has been deleted successfully!!'
-          });
+          Notification.show('success', ruleName + ' has been deleted successfully!');
 
           RQ.Utils.submitEvent(
             'rule',
             RQ.GA_EVENTS.ACTIONS.DELETED,
-            ruleModel.getRuleType().toLowerCase() + ' rule ' + RQ.GA_EVENTS.ACTIONS.DELETED)
-          ;
+            ruleModel.getRuleType().toLowerCase() + ' rule ' + RQ.GA_EVENTS.ACTIONS.DELETED
+          );
         }
       });
     }
@@ -2304,22 +2289,13 @@ var RuleIndexView = Backbone.View.extend({
         }
       });
 
-      //trigger notification : depends on the number of rules imported
+      // Show notification : depends on the number of rules imported
       if (rules.length == validRulesCount){
-        Backbone.trigger('notification', {
-          className: 'rq-success',
-          message: 'Success: All Rules Imported Successfully'
-        });
-      } else if(validRulesCount == 0){
-        Backbone.trigger('notification', {
-          className: 'rq-error',
-          message: 'Error: All Imported Rules are invalid'
-        });
+        Notification.show('success', 'All Rules Imported Successfully');
+      } else if (validRulesCount == 0) {
+        Notification.show('error', 'Imported Rules are invalid');
       } else {
-        Backbone.trigger('notification', {
-          className: 'rq-success',
-          message: 'Success: ' + validRulesCount + ' out of ' + rules.length + ' rules imported successfully'
-        });
+        Notification.show('success', validRulesCount + ' out of ' + rules.length + ' rules imported successfully');
       }
 
       that.render();
@@ -2433,10 +2409,7 @@ var SharedRulesIndexView = RuleIndexView.extend({
     });
 
     RQ.Utils.submitEvent(RQ.GA_EVENTS.CATEGORIES.SHARED_LIST, RQ.GA_EVENTS.ACTIONS.IMPORTED, 'Shared List ' + RQ.GA_EVENTS.ACTIONS.IMPORTED);
-    Backbone.trigger('notification', {
-      className: 'rq-success',
-      message: 'Rules imported successfully!!'
-    });
+    Notification.show('success', 'Rules Imported Successfully');
   }
 });
 

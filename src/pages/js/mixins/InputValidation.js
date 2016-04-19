@@ -15,7 +15,7 @@ RQ.Mixins.InputValidation = {
     }
 
     if (errorMessage != null) {
-      Backbone.trigger('notification', { className: 'rq-error', message: errorMessage });
+      Notification.show('error', errorMessage);
       return false;
     }
 
@@ -35,7 +35,7 @@ RQ.Mixins.InputValidation = {
     }
 
     if (errorMessage != null) {
-      Backbone.trigger('notification', { className: 'rq-error', message: errorMessage });
+      Notification.show('error', errorMessage);
       return false;
     }
 

@@ -1,37 +1,36 @@
-/**
- * Usage: Backbone.trigger('notification', { className: 'rq-success', message: 'Some message' });
- */
-(function($) {
-  var $notificationDiv = $('<div></div>').attr({id: 'rq-notifier'})
-    .prependTo('body')
-    .click(function() { $(this).hide(); });
+var Notification = {
+  Types: {
+    SUCCESS: 'success',
+    ERROR: 'error',
+    WARNING: 'warning',
+    INFO: 'info'
+  },
 
-  var timeoutId = null;
+  NotificationTypeHandler: {
+    success: toastr.success,
+    error: toastr.error,
+    info: toastr.info,
+    warning: toastr.warning
+  },
 
-  function showNotification(options) {
-    options = options || {};
+  defaultOptions: {
+    closeButton: true,
+    debug: false,
+    positionClass: 'toast-top-right',
+    onclick: null,
+    showDuration: '2000',
+    hideDuration: '1000',
+    timeOut: '3000',
+    extendedTimeOut: '1000',
+    showEasing: 'swing',
+    hideEasing: 'linear',
+    showMethod: 'fadeIn',
+    hideMethod: 'fadeOut'
+  },
 
-    var message = options.message || '',
-      className = options.className || '',
-      timeout = options.timeout || 3000;
+  show: function(type, message, heading, opts) {
+    var options = _.extend({}, this.defaultOptions, opts);
 
-    if (!message) return;
-
-    $notificationDiv.text(message)
-      .removeClass('rq-info rq-notice rq-error rq-success')
-      .addClass(className)
-      .fadeIn(1000);
-
-    if (timeoutId !== null) {
-      clearTimeout(timeoutId);
-    }
-
-    setTimeout(hideNotification, timeout);
+    this.NotificationTypeHandler[type].call(null, message, heading, options);
   }
-
-  function hideNotification() {
-    $notificationDiv.fadeOut(1000);
-  }
-
-  Backbone.on('notification', showNotification);
-}(jQuery));
+};
