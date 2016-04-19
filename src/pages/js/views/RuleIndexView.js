@@ -105,11 +105,7 @@ var RuleIndexView = Backbone.View.extend({
 
     ruleModel.save({
       callback: function() {
-        Backbone.trigger('notification', {
-          className: 'rq-info',
-          message: ruleName + ' is now ' + ruleStatus
-        });
-
+        Notification.show('info', ruleName + ' is now ' + ruleStatus);
         RQ.Utils.submitEvent('rule', eventAction, ruleModel.getRuleType().toLowerCase() + ' rule ' + eventAction);
       }
     });
@@ -131,16 +127,13 @@ var RuleIndexView = Backbone.View.extend({
       that.rulesCollection.remove(ruleModel);
       ruleModel.remove({
         callback: function() {
-          Backbone.trigger('notification', {
-            className: 'rq-success',
-            message: ruleName + ' has been deleted successfully!!'
-          });
+          Notification.show('success', ruleName + ' has been deleted successfully!');
 
           RQ.Utils.submitEvent(
             'rule',
             RQ.GA_EVENTS.ACTIONS.DELETED,
-            ruleModel.getRuleType().toLowerCase() + ' rule ' + RQ.GA_EVENTS.ACTIONS.DELETED)
-          ;
+            ruleModel.getRuleType().toLowerCase() + ' rule ' + RQ.GA_EVENTS.ACTIONS.DELETED
+          );
         }
       });
     }
@@ -207,22 +200,13 @@ var RuleIndexView = Backbone.View.extend({
         }
       });
 
-      //trigger notification : depends on the number of rules imported
+      // Show notification : depends on the number of rules imported
       if (rules.length == validRulesCount){
-        Backbone.trigger('notification', {
-          className: 'rq-success',
-          message: 'Success: All Rules Imported Successfully'
-        });
-      } else if(validRulesCount == 0){
-        Backbone.trigger('notification', {
-          className: 'rq-error',
-          message: 'Error: All Imported Rules are invalid'
-        });
+        Notification.show('success', 'All Rules Imported Successfully');
+      } else if (validRulesCount == 0) {
+        Notification.show('error', 'Imported Rules are invalid');
       } else {
-        Backbone.trigger('notification', {
-          className: 'rq-success',
-          message: 'Success: ' + validRulesCount + ' out of ' + rules.length + ' rules imported successfully'
-        });
+        Notification.show('success', validRulesCount + ' out of ' + rules.length + ' rules imported successfully');
       }
 
       that.render();

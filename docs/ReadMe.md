@@ -15,3 +15,7 @@
 
 6. Switching User Agent chrome extension 
   > https://chrome.google.com/webstore/detail/user-agent-switcher/lkmofgnohbedopheiphabfhfjgkhfcgf
+  
+7. Toast Generator
+  > http://codeseven.github.io/toastr/demo.html
+
