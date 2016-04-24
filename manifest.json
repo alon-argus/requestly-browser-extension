@@ -1,7 +1,7 @@
 {
   "name": "Requestly",
 
-  "version": "4.1.1",
+  "version": "4.1.2",
   "manifest_version": 2,
   "description": "Chrome Extension to modify HTTP requests (Redirect | Cancel | Replace | Modify Headers)",
 
