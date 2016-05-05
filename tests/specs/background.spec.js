@@ -1,7 +1,6 @@
 describe('Requestly Background Service', function() {
   var redirectRule,
     cancelRule,
-    replaceRule,
     headersRule;
 
   var URL_SOURCES = {
@@ -11,18 +10,21 @@ describe('Requestly Background Service', function() {
     FACEBOOK: 'http://www.facebook.com',
     GOOGLE_SEARCH_QUERY: 'https://www.google.co.in/search?q=',
     REQUESTLY: 'http://www.requestly.in',
-    DROPBOX: 'http://www.dropbox.com'
+    DROPBOX: 'http://www.dropbox.com',
+    EXAMPLE: 'http://www.example.com'
   };
 
   var KEYWORDS = {
     GOOGLE: 'google',
-    FACEBOOK: 'facebook'
+    FACEBOOK: 'facebook',
+    DROPBOX: 'dropbox',
+    EXAMPLE: 'example',
+    REQUESTLY: 'requestly'
   };
 
   afterEach(function() {
     redirectRule = null;
     cancelRule = null;
-    replaceRule = null;
   });
 
   describe('Match Request Url method', function() {
@@ -177,24 +179,61 @@ describe('Requestly Background Service', function() {
   });
 
   describe('#BG.Methods.matchUrlWithReplaceRulePairs', function() {
+    var replaceRule;
+
     beforeEach(function() {
-      replaceRule = new ReplaceRuleModel({
-        name: 'Replace Test Rule',
+      replaceRule = {
+        name: 'Replace Rule',
         pairs: [
-          { from: '?dl=0', to: '?dl=1' },
-          { from: '/dropbox/ig', to: 'facebook'}
+          {
+            from: '/google/ig',
+            to: 'facebook'
+          },
+          {
+            from: '?dl=0',
+            to: '?dl=1',
+            source: {
+              key: RQ.RULE_KEYS.URL,
+              operator: RQ.RULE_OPERATORS.CONTAINS,
+              value: KEYWORDS.DROPBOX
+            }
+          },
+          {
+            from: '/\\?.+/ig', /* TODO: Figure out why double escaping is needed here but not in rule */
+            to: '',
+            source: {
+              key: RQ.RULE_KEYS.URL,
+              operator: RQ.RULE_OPERATORS.CONTAINS,
+              value: KEYWORDS.EXAMPLE
+            }
+          }
         ]
-      }).toJSON();
+      };
     });
 
-    it('should replace query paramters with ? in beginning (Issue-86)', function() {
+    afterEach(function() {
+      replaceRule = null;
+    });
+
+    it('should replace query parameters with ? in beginning (Issue: #86)', function() {
       expect(BG.Methods.matchUrlWithReplaceRulePairs(replaceRule, URL_SOURCES.DROPBOX + '?dl=0'))
         .toBe(URL_SOURCES.DROPBOX + '?dl=1');
+
+      expect(BG.Methods.matchUrlWithReplaceRulePairs(replaceRule, URL_SOURCES.REQUESTLY + '?dl=0')).toBeNull();
+    });
+
+    it('should match Url source before replacing matched string in Url', function() {
+      // Case When source does not match with Url
+      expect(BG.Methods.matchUrlWithReplaceRulePairs(replaceRule, URL_SOURCES.YAHOO + '?q=1')).toBeNull();
+
+      // Source matches with Url
+      expect(BG.Methods.matchUrlWithReplaceRulePairs(replaceRule, URL_SOURCES.EXAMPLE + '?q=1'))
+        .toBe(URL_SOURCES.EXAMPLE);
+
     });
 
     it('should replace when "pair.from" is valid regex', function() {
-      expect(BG.Methods.matchUrlWithReplaceRulePairs(replaceRule, URL_SOURCES.DROPBOX))
-        .toBe(URL_SOURCES.FACEBOOK);
+      expect(BG.Methods.matchUrlWithReplaceRulePairs(replaceRule, URL_SOURCES.GOOGLE)).toBe(URL_SOURCES.FACEBOOK);
     });
 
     afterEach(function() {
