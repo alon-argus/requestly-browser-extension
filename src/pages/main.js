@@ -125,6 +125,10 @@ var RQ = RQ || {};
 
 RQ.VERSION = 1;
 
+RQ.VERSIONS = {
+  REPLACE_RULE: 2
+};
+
 // Url which gets opened when User clicks on browserAction (requestly icon) in toolbar
 RQ.WEB_URL = 'http://web.requestly.in';
 
@@ -1248,6 +1252,14 @@ var BaseRuleModel = BaseModel.extend({
     }
   },
 
+  getDefaultSource: function() {
+    return {
+      key: RQ.RULE_KEYS.URL,
+      operator: RQ.RULE_OPERATORS.CONTAINS,
+      value: ''
+    };
+  },
+
   initialize: function() {
     this.transformAttributes();
   },
@@ -1257,12 +1269,38 @@ var BaseRuleModel = BaseModel.extend({
    */
   transformAttributes: function() { /* No Op */},
 
+  /**
+   * Adds default Source to rule pairs whenever not present
+   * @returns {boolean} true if Source is added to any of the pairs
+   */
+  insertDefaultSourceInPairs: function() {
+    var pairs = this.getPairs(),
+      isSourceAdded = false;
+
+    _.each(pairs, function(pair) {
+      if (typeof pair.source === 'undefined') {
+        pair.source = this.getDefaultSource();
+        isSourceAdded = true;
+      }
+    }, this);
+
+    return isSourceAdded;
+  },
+
   setId: function(id) {
     this.set('id', id, { silent: true });
   },
 
   getId: function() {
     return this.get('id');
+  },
+
+  getVersion: function() {
+    return this.get('version');
+  },
+
+  setVersion: function(v) {
+    return this.set('version', v, { silent: true });
   },
 
   generateId: function() {
@@ -1392,11 +1430,7 @@ var RedirectRuleModel = BaseRuleModel.extend({
 
   getDefaultPair: function() {
     return {
-      source: {
-        key: RQ.RULE_KEYS.URL,
-        operator: RQ.RULE_OPERATORS.CONTAINS,
-        value: ''
-      },
+      source: this.getDefaultSource(),
       destination: ''
     }
   },
@@ -1460,9 +1494,27 @@ var ReplaceRuleModel = BaseRuleModel.extend({
   },
 
   getDefaultPair: function() {
-    return { from: '', to: '', status: RQ.RULE_STATUS.INACTIVE };
+    return {
+      from: '',
+      to: '',
+      status: RQ.RULE_STATUS.INACTIVE,
+      source: this.getDefaultSource()
+    };
+  },
+
+  upgradeToV2: function() {
+    this.insertDefaultSourceInPairs();
+    this.setVersion(2);
+  },
+
+  transformAttributes: function() {
+    // There was no "version" field before v2
+    if (!this.getVersion()) {
+      this.upgradeToV2();
+    }
   }
 });
+
 var HeadersRuleModel = BaseRuleModel.extend({
   defaults: function() {
     return _.extend(BaseRuleModel.prototype.defaults(), {
@@ -1481,32 +1533,6 @@ var HeadersRuleModel = BaseRuleModel.extend({
       value: '',
       source: this.getDefaultSource()
     };
-  },
-
-  getDefaultSource: function() {
-    return {
-      key: RQ.RULE_KEYS.URL,
-      operator: RQ.RULE_OPERATORS.EQUALS,
-      value: ''
-    };
-  },
-
-  /**
-   * Adds default Source to rule pairs whenever not present
-   * @returns {boolean} true if Source is added to any of the pairs
-   */
-  insertDefaultSourceInPairs: function() {
-    var pairs = this.getPairs(),
-      isSourceAdded = false;
-
-    _.each(pairs, function(pair) {
-      if (typeof pair.source === 'undefined') {
-        pair.source = this.getDefaultSource();
-        isSourceAdded = true;
-      }
-    }, this);
-
-    return isSourceAdded;
   },
 
   transformAttributes: function() {

@@ -2,6 +2,10 @@ var RQ = RQ || {};
 
 RQ.VERSION = 1;
 
+RQ.VERSIONS = {
+  REPLACE_RULE: 2
+};
+
 // Url which gets opened when User clicks on browserAction (requestly icon) in toolbar
 RQ.WEB_URL = 'http://web.requestly.in';
 

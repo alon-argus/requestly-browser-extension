@@ -9,6 +9,14 @@ var BaseRuleModel = BaseModel.extend({
     }
   },
 
+  getDefaultSource: function() {
+    return {
+      key: RQ.RULE_KEYS.URL,
+      operator: RQ.RULE_OPERATORS.CONTAINS,
+      value: ''
+    };
+  },
+
   initialize: function() {
     this.transformAttributes();
   },
@@ -18,12 +26,38 @@ var BaseRuleModel = BaseModel.extend({
    */
   transformAttributes: function() { /* No Op */},
 
+  /**
+   * Adds default Source to rule pairs whenever not present
+   * @returns {boolean} true if Source is added to any of the pairs
+   */
+  insertDefaultSourceInPairs: function() {
+    var pairs = this.getPairs(),
+      isSourceAdded = false;
+
+    _.each(pairs, function(pair) {
+      if (typeof pair.source === 'undefined') {
+        pair.source = this.getDefaultSource();
+        isSourceAdded = true;
+      }
+    }, this);
+
+    return isSourceAdded;
+  },
+
   setId: function(id) {
     this.set('id', id, { silent: true });
   },
 
   getId: function() {
     return this.get('id');
+  },
+
+  getVersion: function() {
+    return this.get('version');
+  },
+
+  setVersion: function(v) {
+    return this.set('version', v, { silent: true });
   },
 
   generateId: function() {
