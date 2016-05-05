@@ -21,16 +21,16 @@
 
   .source-container {
     padding: 5px 0 10px 0;
+
+    .source-value-input {
+      display: inline-block;
+      width: 72%;
+      margin-bottom: 0;
+    }
   }
 
   label.active {
     margin-right: 5px;
-  }
-
-  .source-value-input {
-    display: inline-block;
-    width: 72%;
-    margin-bottom: 0;
   }
 
   .source-operator-select {
@@ -125,16 +125,16 @@
       font-size: 20px;
     }
   }
+
+  @include source-field();
 }
 
 #redirect-rule-editor {
   @include rule-editor-properties($redirect-rule-color);
-  @include source-field();
 }
 
 #cancel-rule-editor {
   @include rule-editor-properties($cancel-rule-color);
-  @include source-field();
 }
 
 #replace-rule-editor {
@@ -143,5 +143,4 @@
 
 #headers-rule-editor {
   @include rule-editor-properties($headers-rule-color);
-  @include source-field();
 }

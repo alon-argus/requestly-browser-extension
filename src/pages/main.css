@@ -387,6 +387,18 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
   .rule-editor .right-corner-icongroup .close-editor {
     color: #eee;
     font-size: 20px; }
+.rule-editor .pair-container:first-child:last-child .source-value-input {
+  width: 75%; }
+.rule-editor .source-container {
+  padding: 5px 0 10px 0; }
+  .rule-editor .source-container .source-value-input {
+    display: inline-block;
+    width: 72%;
+    margin-bottom: 0; }
+.rule-editor label.active {
+  margin-right: 5px; }
+.rule-editor .source-operator-select {
+  width: 100px; }
 
 #redirect-rule-editor .save-rule {
   background-color: #5b9027;
@@ -394,18 +406,6 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
   color: #fff; }
 #redirect-rule-editor .content-header {
   background: #5b9027; }
-#redirect-rule-editor .pair-container:first-child:last-child .source-value-input {
-  width: 75%; }
-#redirect-rule-editor .source-container {
-  padding: 5px 0 10px 0; }
-#redirect-rule-editor label.active {
-  margin-right: 5px; }
-#redirect-rule-editor .source-value-input {
-  display: inline-block;
-  width: 72%;
-  margin-bottom: 0; }
-#redirect-rule-editor .source-operator-select {
-  width: 100px; }
 
 #cancel-rule-editor .save-rule {
   background-color: #d32a0e;
@@ -413,18 +413,6 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
   color: #fff; }
 #cancel-rule-editor .content-header {
   background: #d32a0e; }
-#cancel-rule-editor .pair-container:first-child:last-child .source-value-input {
-  width: 75%; }
-#cancel-rule-editor .source-container {
-  padding: 5px 0 10px 0; }
-#cancel-rule-editor label.active {
-  margin-right: 5px; }
-#cancel-rule-editor .source-value-input {
-  display: inline-block;
-  width: 72%;
-  margin-bottom: 0; }
-#cancel-rule-editor .source-operator-select {
-  width: 100px; }
 
 #replace-rule-editor .save-rule {
   background-color: #2aa5E7;
@@ -439,18 +427,6 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
   color: #fff; }
 #headers-rule-editor .content-header {
   background: #dd9d12; }
-#headers-rule-editor .pair-container:first-child:last-child .source-value-input {
-  width: 75%; }
-#headers-rule-editor .source-container {
-  padding: 5px 0 10px 0; }
-#headers-rule-editor label.active {
-  margin-right: 5px; }
-#headers-rule-editor .source-value-input {
-  display: inline-block;
-  width: 72%;
-  margin-bottom: 0; }
-#headers-rule-editor .source-operator-select {
-  width: 100px; }
 
 #redirect-rule-editor {
   /* Handle width of single pair as in case of more than 1 pairs, scroll becomes visible so width should be less then */ }
@@ -465,21 +441,15 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
 #cancel-rule-editor .well-sm {
   margin-bottom: 10px; }
 
-#replace-rule-editor .pair-container:first-child:last-child > div {
+#replace-rule-editor .from-to-container > div {
   width: 49%; }
-#replace-rule-editor .pair-container > div {
-  width: 48%; }
 #replace-rule-editor label.active {
   margin-right: 5px; }
 #replace-rule-editor .from-input-group {
   margin-right: 5px; }
 #replace-rule-editor .from-input,
 #replace-rule-editor .to-input {
-  padding: 0;
-  padding-left: 5px; }
-#replace-rule-editor .delete-pair {
-  position: relative;
-  top: -12px; }
+  padding: 0 0 0 5px; }
 
 #headers-rule-editor .pair-container .input-group {
   width: 35%;

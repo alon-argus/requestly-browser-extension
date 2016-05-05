@@ -3,13 +3,12 @@
 <section class="rule-body content-body">
   {{> RuleProperties}}
 
+  {{> PairsContainerHeading heading="Pairs" }}
+
   <div class="pairs-container">
-    {{> PairsContainerHeading heading="Pairs" }}
-
-    <div class="well well-sm">
-      {{#each pairs}}
-        <div class="pair-container" data-index="{{@index}}">
-
+    {{#each pairs}}
+      <div class="well well-sm pair-container" data-index="{{@index}}">
+        <div class="from-to-container">
           <div class="input-group from-input-group">
             <span class="input-group-addon">Replace</span>
             <input type="text" class="form-control from-input" data-key="from" placeholder="This part in URL" value="{{from}}">
@@ -19,11 +18,10 @@
             <span class="input-group-addon">With</span>
             <input type="text" class="form-control to-input" data-key="to" placeholder="Will be replaced by this string" value="{{to}}">
           </div>
-
-          <span class="fa fa-trash-o delete-pair action-icon"></span>
         </div>
-      {{/each}}
-    </div>
+        {{> SourceField sourcePlaceholder="Leave this field Empty to apply above modification to all urls" }}
+      </div>
+    {{/each}}
   </div>
 
   {{> SaveRuleCTA }}

@@ -1,10 +1,6 @@
 #replace-rule-editor {
-  .pair-container:first-child:last-child > div {
+  .from-to-container > div {
     width: 49%;
-  }
-
-  .pair-container > div {
-    width: 48%;
   }
 
   label.active {
@@ -17,12 +13,6 @@
 
   .from-input,
   .to-input {
-    padding: 0;
-    padding-left: 5px;
-  }
-
-  .delete-pair {
-    position: relative;
-    top: -12px;
+    padding: 0 0 0 5px;
   }
 }
