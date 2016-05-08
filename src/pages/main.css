@@ -136,7 +136,7 @@ input[type="text"].form-control {
 
 .replace .status-cell .toggle-on.btn,
 .status-toggle.replace + .toggle-group .toggle-on.btn {
-  background-color: #2A95E7; }
+  background-color: #215eac; }
 
 .headers .status-cell .toggle-on.btn,
 .status-toggle.headers + .toggle-group .toggle-on.btn {
@@ -268,7 +268,7 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
   background-color: #d32a0e; }
 
 .replace.rule-item-row .rule-type {
-  background-color: #2aa5E7; }
+  background-color: #215eac; }
 
 .headers.rule-item-row .rule-type {
   background-color: #dd9d12; }
@@ -415,11 +415,11 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
   background: #d32a0e; }
 
 #replace-rule-editor .save-rule {
-  background-color: #2aa5E7;
-  border-color: #2aa5E7;
+  background-color: #215eac;
+  border-color: #215eac;
   color: #fff; }
 #replace-rule-editor .content-header {
-  background: #2aa5E7; }
+  background: #215eac; }
 
 #headers-rule-editor .save-rule {
   background-color: #dd9d12;
@@ -494,9 +494,9 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
   background: #d32a0e; }
 
 .card-replace-rule .card-up {
-  background-color: #2aa5E7; }
+  background-color: #215eac; }
 .card-replace-rule .card-avatar-content {
-  background: #2aa5E7; }
+  background: #215eac; }
 
 .card-headers-rule .card-up {
   background-color: #dd9d12; }
