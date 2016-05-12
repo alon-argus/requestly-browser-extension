@@ -10,11 +10,7 @@ var RedirectRuleModel = BaseRuleModel.extend({
 
   getDefaultPair: function() {
     return {
-      source: {
-        key: RQ.RULE_KEYS.URL,
-        operator: RQ.RULE_OPERATORS.CONTAINS,
-        value: ''
-      },
+      source: this.getDefaultSource(),
       destination: ''
     }
   },

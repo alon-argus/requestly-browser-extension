@@ -125,6 +125,10 @@ var RQ = RQ || {};
 
 RQ.VERSION = 1;
 
+RQ.VERSIONS = {
+  REPLACE_RULE: 2
+};
+
 // Url which gets opened when User clicks on browserAction (requestly icon) in toolbar
 RQ.WEB_URL = 'http://web.requestly.in';
 
@@ -964,26 +968,28 @@ this["RQ"]["Templates"]["RedirectRuleEditor"] = Handlebars.template({"1":functio
 },"usePartial":true,"useData":true});
 
 this["RQ"]["Templates"]["ReplaceRuleEditor"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-    var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+    var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
-  return "        <div class=\"pair-container\" data-index=\""
+  return "      <div class=\"well well-sm pair-container\" data-index=\""
     + alias3(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"index","hash":{},"data":data}) : helper)))
-    + "\">\n\n          <div class=\"input-group from-input-group\">\n            <span class=\"input-group-addon\">Replace</span>\n            <input type=\"text\" class=\"form-control from-input\" data-key=\"from\" placeholder=\"This part in URL\" value=\""
+    + "\">\n        <div class=\"from-to-container\">\n          <div class=\"input-group from-input-group\">\n            <span class=\"input-group-addon\">Replace</span>\n            <input type=\"text\" class=\"form-control from-input\" data-key=\"from\" placeholder=\"This part in URL\" value=\""
     + alias3(((helper = (helper = helpers.from || (depth0 != null ? depth0.from : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"from","hash":{},"data":data}) : helper)))
     + "\">\n          </div>\n\n          <div class=\"input-group to-input-group\">\n            <span class=\"input-group-addon\">With</span>\n            <input type=\"text\" class=\"form-control to-input\" data-key=\"to\" placeholder=\"Will be replaced by this string\" value=\""
     + alias3(((helper = (helper = helpers.to || (depth0 != null ? depth0.to : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"to","hash":{},"data":data}) : helper)))
-    + "\">\n          </div>\n\n          <span class=\"fa fa-trash-o delete-pair action-icon\"></span>\n        </div>\n";
+    + "\">\n          </div>\n        </div>\n"
+    + ((stack1 = this.invokePartial(partials.SourceField,depth0,{"name":"SourceField","hash":{"sourcePlaceholder":"Leave this field Empty to apply above modification to all urls"},"data":data,"indent":"        ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
+    + "      </div>\n";
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1;
 
   return ((stack1 = this.invokePartial(partials.RuleEditorHeader,depth0,{"name":"RuleEditorHeader","hash":{"heading":"Replace Host or some part of URL"},"data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
     + "\n<section class=\"rule-body content-body\">\n"
     + ((stack1 = this.invokePartial(partials.RuleProperties,depth0,{"name":"RuleProperties","data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
+    + "\n"
+    + ((stack1 = this.invokePartial(partials.PairsContainerHeading,depth0,{"name":"PairsContainerHeading","hash":{"heading":"Pairs"},"data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
     + "\n  <div class=\"pairs-container\">\n"
-    + ((stack1 = this.invokePartial(partials.PairsContainerHeading,depth0,{"name":"PairsContainerHeading","hash":{"heading":"Pairs"},"data":data,"indent":"    ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\n    <div class=\"well well-sm\">\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.pairs : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "    </div>\n  </div>\n\n"
+    + "  </div>\n\n"
     + ((stack1 = this.invokePartial(partials.SaveRuleCTA,depth0,{"name":"SaveRuleCTA","data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
     + "</section>";
 },"usePartial":true,"useData":true});
@@ -1248,6 +1254,14 @@ var BaseRuleModel = BaseModel.extend({
     }
   },
 
+  getDefaultSource: function() {
+    return {
+      key: RQ.RULE_KEYS.URL,
+      operator: RQ.RULE_OPERATORS.CONTAINS,
+      value: ''
+    };
+  },
+
   initialize: function() {
     this.transformAttributes();
   },
@@ -1257,12 +1271,38 @@ var BaseRuleModel = BaseModel.extend({
    */
   transformAttributes: function() { /* No Op */},
 
+  /**
+   * Adds default Source to rule pairs whenever not present
+   * @returns {boolean} true if Source is added to any of the pairs
+   */
+  insertDefaultSourceInPairs: function() {
+    var pairs = this.getPairs(),
+      isSourceAdded = false;
+
+    _.each(pairs, function(pair) {
+      if (typeof pair.source === 'undefined') {
+        pair.source = this.getDefaultSource();
+        isSourceAdded = true;
+      }
+    }, this);
+
+    return isSourceAdded;
+  },
+
   setId: function(id) {
     this.set('id', id, { silent: true });
   },
 
   getId: function() {
     return this.get('id');
+  },
+
+  getVersion: function() {
+    return this.get('version');
+  },
+
+  setVersion: function(v) {
+    return this.set('version', v, { silent: true });
   },
 
   generateId: function() {
@@ -1392,11 +1432,7 @@ var RedirectRuleModel = BaseRuleModel.extend({
 
   getDefaultPair: function() {
     return {
-      source: {
-        key: RQ.RULE_KEYS.URL,
-        operator: RQ.RULE_OPERATORS.CONTAINS,
-        value: ''
-      },
+      source: this.getDefaultSource(),
       destination: ''
     }
   },
@@ -1460,9 +1496,27 @@ var ReplaceRuleModel = BaseRuleModel.extend({
   },
 
   getDefaultPair: function() {
-    return { from: '', to: '', status: RQ.RULE_STATUS.INACTIVE };
+    return {
+      from: '',
+      to: '',
+      status: RQ.RULE_STATUS.INACTIVE,
+      source: this.getDefaultSource()
+    };
+  },
+
+  upgradeToV2: function() {
+    this.insertDefaultSourceInPairs();
+    this.setVersion(2);
+  },
+
+  transformAttributes: function() {
+    // There was no "version" field before v2
+    if (!this.getVersion()) {
+      this.upgradeToV2();
+    }
   }
 });
+
 var HeadersRuleModel = BaseRuleModel.extend({
   defaults: function() {
     return _.extend(BaseRuleModel.prototype.defaults(), {
@@ -1481,32 +1535,6 @@ var HeadersRuleModel = BaseRuleModel.extend({
       value: '',
       source: this.getDefaultSource()
     };
-  },
-
-  getDefaultSource: function() {
-    return {
-      key: RQ.RULE_KEYS.URL,
-      operator: RQ.RULE_OPERATORS.EQUALS,
-      value: ''
-    };
-  },
-
-  /**
-   * Adds default Source to rule pairs whenever not present
-   * @returns {boolean} true if Source is added to any of the pairs
-   */
-  insertDefaultSourceInPairs: function() {
-    var pairs = this.getPairs(),
-      isSourceAdded = false;
-
-    _.each(pairs, function(pair) {
-      if (typeof pair.source === 'undefined') {
-        pair.source = this.getDefaultSource();
-        isSourceAdded = true;
-      }
-    }, this);
-
-    return isSourceAdded;
   },
 
   transformAttributes: function() {

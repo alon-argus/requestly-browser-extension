@@ -152,7 +152,7 @@ input[type="text"] {
 
 .replace .status-cell .toggle-on.btn,
 .status-toggle.replace + .toggle-group .toggle-on.btn {
-  background-color: #2A95E7;
+  background-color: $replace-rule-color;
 }
 
 .headers .status-cell .toggle-on.btn,

@@ -19,6 +19,11 @@ BG.Methods.matchUrlWithReplaceRulePairs = function(rule, url) {
     pair = pairs[i];
     pair.from = pair.from || '';
 
+    // If Source Value exists and does not match, proceed with next pair
+    if (pair.source && pair.source.value && BG.Methods.matchUrlWithRuleSource(pair.source, null, url) === null) {
+      continue;
+    }
+
     // When string pair.from looks like a RegExp, create a RegExp object from it
     from = RQ.Utils.toRegex(pair.from);
     isFromPartRegex = (from !== null);
