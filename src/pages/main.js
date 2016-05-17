@@ -189,7 +189,7 @@ RQ.STORAGE_KEYS = {
 };
 
 RQ.MESSAGES = {
-  DELETE_RULE: 'Are you sure you want to delete the rule ?',
+  DELETE_RULES: 'Are you sure you want to delete the selected rules ?',
   SIGN_IN_TO_VIEW_SHARED_LISTS: 'Please login with Google to view your Shared Lists.',
   ERROR_AUTHENTICATION: 'Received some error in authentication. Please try again later!!',
   SHARED_LISTS_LIMIT_REACHED: 'You can not create more than ' + RQ.LIMITS.NUMBER_SHARED_LISTS + ' shared lists'
@@ -2238,14 +2238,18 @@ var RuleIndexView = Backbone.View.extend({
     return this.deleteRuleFromCollection(ruleModel);
   },
 
-  deleteRules: function(event) {
-    var selectedRules = this.getSelectedRules();
-    var numRules = selectedRules.length;
+  deleteRules: function() {
+    var selectedRules = this.getSelectedRules(),
+      numSelectedRules = selectedRules.length;
 
-    // If we have one or more rules selected, remove them
-    if (numRules) {
+    if (!numSelectedRules) {
+      alert('Please select one or more rules to delete');
+      return;
+    }
+
+    if (window.confirm(RQ.MESSAGES.DELETE_RULES)) {
       // Trigger the model remove routine for each selected rule
-      selectedRules.forEach(function(rule, ii) {
+      selectedRules.forEach(function(rule) {
         rule.remove();
       });
 
@@ -2253,12 +2257,12 @@ var RuleIndexView = Backbone.View.extend({
       this.rulesCollection.remove(selectedRules);
 
       // Show notification
-      Notification.show('success', numRules + ' rules have been removed!');
+      Notification.show('success', numSelectedRules + ' rules have been deleted!');
 
       RQ.Utils.submitEvent(
         'rules',
         RQ.GA_EVENTS.ACTIONS.DELETED,
-        [numRules, 'rules',  RQ.GA_EVENTS.ACTIONS.DELETED].join(' ')
+        ['Multiple', 'rules', RQ.GA_EVENTS.ACTIONS.DELETED].join(' ')
       );
     }
   },
@@ -2267,7 +2271,7 @@ var RuleIndexView = Backbone.View.extend({
     var that = this,
       ruleName = ruleModel.getName();
 
-    if (window.confirm(RQ.MESSAGES.DELETE_RULE)) {
+    if (window.confirm(RQ.MESSAGES.DELETE_RULES)) {
       that.rulesCollection.remove(ruleModel);
       ruleModel.remove({
         callback: function() {

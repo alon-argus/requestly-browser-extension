@@ -66,7 +66,7 @@ RQ.STORAGE_KEYS = {
 };
 
 RQ.MESSAGES = {
-  DELETE_RULE: 'Are you sure you want to delete the rule ?',
+  DELETE_RULES: 'Are you sure you want to delete the selected rules ?',
   SIGN_IN_TO_VIEW_SHARED_LISTS: 'Please login with Google to view your Shared Lists.',
   ERROR_AUTHENTICATION: 'Received some error in authentication. Please try again later!!',
   SHARED_LISTS_LIMIT_REACHED: 'You can not create more than ' + RQ.LIMITS.NUMBER_SHARED_LISTS + ' shared lists'
