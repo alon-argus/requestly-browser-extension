@@ -722,7 +722,7 @@ Handlebars.registerPartial("RuleItemRow", Handlebars.template({"compiler":[6,">=
     + ((stack1 = this.invokePartial(partials.StatusToggle,depth0,{"name":"StatusToggle","data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
     + " </td>\n\n  <td>"
     + alias2((helpers.formatDate || (depth0 && depth0.formatDate) || alias1).call(depth0,(depth0 != null ? depth0.creationDate : depth0),{"name":"formatDate","hash":{},"data":data}))
-    + "</td>\n\n  <td>\n    <span class=\"fa fa-trash delete-rule-icon action-icon\" title=\"Delete Rule\"></span>\n  </td>\n\n</tr>";
+    + "</td>\n</tr>";
 },"usePartial":true,"useData":true}));
 
 Handlebars.registerPartial("RuleProperties", Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
@@ -834,7 +834,7 @@ Handlebars.registerPartial("Toolbar", Handlebars.template({"1":function(depth0,h
 
   return "<nav class=\"content-header\">\n  <span>Rules</span>\n  <div class=\"right right-corner-icongroup\">\n\n    <a href=\"#selectRule\" class=\"btn-floating btn-small btn-success waves-effect waves-light select-rule-button action-button\">\n      <i class=\"fa fa-plus\"></i>\n    </a>\n\n"
     + ((stack1 = (helpers.gt || (depth0 && depth0.gt) || helpers.helperMissing).call(depth0,((stack1 = (depth0 != null ? depth0.rules : depth0)) != null ? stack1.length : stack1),0,{"name":"gt","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "\n    <a class=\"btn-floating btn-small waves-effect waves-light blue import-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Upload Rules\">\n      <i class=\"fa fa-upload\"></i>\n    </a>\n\n    <a class=\"btn-floating btn-small waves-effect waves-light blue remove-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Remove Selected Rules\">\n      <i class=\"fa fa-trash\"></i>\n    </a>\n\n    <a class=\"btn-floating btn-small waves-effect waves-light share-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Share\">\n      <i class=\"fa fa-share-alt\"></i>\n    </a>\n\n  </div>\n</nav>\n";
+    + "\n    <a class=\"btn-floating btn-small waves-effect waves-light blue import-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Upload Rules\">\n      <i class=\"fa fa-upload\"></i>\n    </a>\n\n    <a class=\"btn-floating btn-small waves-effect waves-light share-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Share\">\n      <i class=\"fa fa-share-alt\"></i>\n    </a>\n\n    <a class=\"btn-floating btn-small waves-effect waves-light delete-rules-button action-button\"\n       data-toggle=\"tooltip\" data-placement=\"bottom\" data-original-title=\"Delete\">\n      <i class=\"fa fa-trash\"></i>\n    </a>\n\n  </div>\n</nav>\n";
 },"useData":true}));
 
 this["RQ"]["Templates"]["CancelRuleEditor"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
@@ -1008,7 +1008,7 @@ this["RQ"]["Templates"]["RuleIndex"] = Handlebars.template({"1":function(depth0,
   return ((stack1 = this.invokePartial(partials.Toolbar,depth0,{"name":"Toolbar","data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
     + "\n<section class=\"content-body\">\n  <table class=\"table\">\n    <thead>\n    <tr>\n      <th class=\"rule-selection-cell\">\n        <input type=\"checkbox\" class=\"filled-in select-all-rules-checkbox\" id=\"select-all-rules-checkbox\" title=\"Select All\"/>\n        <label for=\"select-all-rules-checkbox\"></label>\n      </th>\n      <th> <span class=\"rules-number badge\">"
     + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.rules : depth0)) != null ? stack1.length : stack1), depth0))
-    + "</span> </th>\n      <th>Name & Description</th>\n      <th class=\"status-cell\">Status</th>\n      <th>Created on</th>\n      <th></th>\n    </tr>\n    </thead>\n    <tbody>\n"
+    + "</span> </th>\n      <th>Name & Description</th>\n      <th class=\"status-cell\">Status</th>\n      <th>Created on</th>\n    </tr>\n    </thead>\n    <tbody>\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.rules : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
     + "    </tbody>\n  </table>\n</section>\n";
 },"usePartial":true,"useData":true});
@@ -2124,8 +2124,7 @@ var RuleIndexView = Backbone.View.extend({
   events: {
     'click .ruleName': 'showRuleEditor',
     'change .status-toggle': 'toggleStatus',
-    'click .delete-rule-icon': 'deleteRule',
-    'click .remove-rules-button': 'deleteRules',
+    'click .delete-rules-button': 'deleteRules',
     'click .select-all-rules-checkbox': 'selectAllRules',
     'click .select-rule-checkbox': 'selectRule',
     'click .export-rules-button': 'exportRules',
@@ -2231,13 +2230,6 @@ var RuleIndexView = Backbone.View.extend({
     return false;
   },
 
-  deleteRule: function(event) {
-    var $ruleItemRow = $(event.target).parents('.rule-item-row'),
-      ruleModel = this.rulesCollection.get($ruleItemRow.data('id'));
-
-    return this.deleteRuleFromCollection(ruleModel);
-  },
-
   deleteRules: function() {
     var selectedRules = this.getSelectedRules(),
       numSelectedRules = selectedRules.length;
@@ -2265,28 +2257,6 @@ var RuleIndexView = Backbone.View.extend({
         ['Multiple', 'rules', RQ.GA_EVENTS.ACTIONS.DELETED].join(' ')
       );
     }
-  },
-
-  deleteRuleFromCollection: function(ruleModel) {
-    var that = this,
-      ruleName = ruleModel.getName();
-
-    if (window.confirm(RQ.MESSAGES.DELETE_RULES)) {
-      that.rulesCollection.remove(ruleModel);
-      ruleModel.remove({
-        callback: function() {
-          Notification.show('success', ruleName + ' has been deleted successfully!');
-
-          RQ.Utils.submitEvent(
-            'rule',
-            RQ.GA_EVENTS.ACTIONS.DELETED,
-            ruleModel.getRuleType().toLowerCase() + ' rule ' + RQ.GA_EVENTS.ACTIONS.DELETED
-          );
-        }
-      });
-    }
-
-    return false;
   },
 
   selectAllRules: function(event) {

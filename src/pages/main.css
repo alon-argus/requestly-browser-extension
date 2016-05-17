@@ -217,7 +217,7 @@ input[type="text"].form-control {
   word-wrap: break-word; }
 
 .status-cell {
-  width: 110px;
+  width: 200px;
   text-align: center; }
 
 .table tr:hover td,
