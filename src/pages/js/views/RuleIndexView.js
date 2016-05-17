@@ -7,8 +7,7 @@ var RuleIndexView = Backbone.View.extend({
   events: {
     'click .ruleName': 'showRuleEditor',
     'change .status-toggle': 'toggleStatus',
-    'click .delete-rule-icon': 'deleteRule',
-    'click .remove-rules-button': 'deleteRules',
+    'click .delete-rules-button': 'deleteRules',
     'click .select-all-rules-checkbox': 'selectAllRules',
     'click .select-rule-checkbox': 'selectRule',
     'click .export-rules-button': 'exportRules',
@@ -114,13 +113,6 @@ var RuleIndexView = Backbone.View.extend({
     return false;
   },
 
-  deleteRule: function(event) {
-    var $ruleItemRow = $(event.target).parents('.rule-item-row'),
-      ruleModel = this.rulesCollection.get($ruleItemRow.data('id'));
-
-    return this.deleteRuleFromCollection(ruleModel);
-  },
-
   deleteRules: function() {
     var selectedRules = this.getSelectedRules(),
       numSelectedRules = selectedRules.length;
@@ -148,28 +140,6 @@ var RuleIndexView = Backbone.View.extend({
         ['Multiple', 'rules', RQ.GA_EVENTS.ACTIONS.DELETED].join(' ')
       );
     }
-  },
-
-  deleteRuleFromCollection: function(ruleModel) {
-    var that = this,
-      ruleName = ruleModel.getName();
-
-    if (window.confirm(RQ.MESSAGES.DELETE_RULES)) {
-      that.rulesCollection.remove(ruleModel);
-      ruleModel.remove({
-        callback: function() {
-          Notification.show('success', ruleName + ' has been deleted successfully!');
-
-          RQ.Utils.submitEvent(
-            'rule',
-            RQ.GA_EVENTS.ACTIONS.DELETED,
-            ruleModel.getRuleType().toLowerCase() + ' rule ' + RQ.GA_EVENTS.ACTIONS.DELETED
-          );
-        }
-      });
-    }
-
-    return false;
   },
 
   selectAllRules: function(event) {

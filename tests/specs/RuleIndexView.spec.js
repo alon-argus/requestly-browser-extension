@@ -45,7 +45,7 @@ describe('Rule Index View', function() {
     });
   });
 
-  describe('#deleteRuleFromCollection', function() {
+  describe('#deleteRules', function() {
     beforeEach(function() {
       ruleIndexView = new RuleIndexView();
       ruleIndexView.rulesCollection.add(getTestRule());
@@ -53,19 +53,18 @@ describe('Rule Index View', function() {
 
       spyOn(window, 'confirm').andCallFake(function() {
         return true;
-      })
+      });
+
+      spyOn(ruleIndexView, 'getSelectedRules').andCallFake(function() {
+        return [ ruleIndexView.rulesCollection.get('Redirect_1450903275627') ];
+      });
     });
 
-    it('should delete the rule', function() {
+    it('should deletes the rule', function() {
       var spyOnCollectionRemove = spyOn(ruleIndexView.rulesCollection, 'remove');
-      ruleIndexView.deleteRuleFromCollection(ruleIndexView.rulesCollection.get('Redirect_1450903275627'));
-      expect(spyOnCollectionRemove).toHaveBeenCalled();
-    });
 
-    it('should not reload page', function() {
-      var spyOnWindowReload = spyOn(window.location, 'reload');
-      ruleIndexView.deleteRuleFromCollection(ruleIndexView.rulesCollection.get('Redirect_1450903275627'));
-      expect(spyOnWindowReload).not.toHaveBeenCalled();
+      ruleIndexView.deleteRules();
+      expect(spyOnCollectionRemove).toHaveBeenCalled();
     });
   });
 
