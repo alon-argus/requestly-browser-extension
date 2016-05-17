@@ -8,6 +8,7 @@ var RuleIndexView = Backbone.View.extend({
     'click .ruleName': 'showRuleEditor',
     'change .status-toggle': 'toggleStatus',
     'click .delete-rule-icon': 'deleteRule',
+    'click .remove-rules-button': 'deleteRules',
     'click .select-all-rules-checkbox': 'selectAllRules',
     'click .select-rule-checkbox': 'selectRule',
     'click .export-rules-button': 'exportRules',
@@ -29,6 +30,7 @@ var RuleIndexView = Backbone.View.extend({
     this.listenTo(this.rulesCollection, 'loaded', this.render);
     this.listenTo(this.rulesCollection, 'change', this.render);
     this.listenTo(this.rulesCollection, 'remove', this.render);
+    this.listenTo(this.rulesCollection, 'reset', this.render);
 
     this.shareRulesModal.on('modal:closed', this.saveSharedListName);
   },
@@ -117,6 +119,31 @@ var RuleIndexView = Backbone.View.extend({
       ruleModel = this.rulesCollection.get($ruleItemRow.data('id'));
 
     return this.deleteRuleFromCollection(ruleModel);
+  },
+
+  deleteRules: function(event) {
+    var selectedRules = this.getSelectedRules();
+    var numRules = selectedRules.length;
+
+    // If we have one or more rules selected, remove them
+    if (numRules) {
+      // Trigger the model remove routine for each selected rule
+      selectedRules.forEach(function(rule, ii) {
+        rule.remove();
+      });
+
+      // Remove the selected rules from the collection
+      this.rulesCollection.remove(selectedRules);
+
+      // Show notification
+      Notification.show('success', numRules + ' rules have been removed!');
+
+      RQ.Utils.submitEvent(
+        'rules',
+        RQ.GA_EVENTS.ACTIONS.DELETED,
+        [numRules, 'rules',  RQ.GA_EVENTS.ACTIONS.DELETED].join(' ')
+      );
+    }
   },
 
   deleteRuleFromCollection: function(ruleModel) {
