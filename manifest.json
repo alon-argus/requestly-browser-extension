@@ -15,6 +15,7 @@
 
   "background": {
     "scripts": [
+      "node_modules/tab-service/src/js/TabService.js",
       "src/background/storageService.js",
       "src/Shared/shared.js",
       "src/Shared/utils.js",

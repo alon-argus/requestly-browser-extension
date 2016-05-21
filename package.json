@@ -43,5 +43,8 @@
     "karma-jasmine": "^0.1.5",
     "karma-junit-reporter": "^0.2.2",
     "karma-phantomjs-launcher": "^0.2.0"
+  },
+  "dependencies": {
+    "tab-service": "git+https://github.com/requestly/tab-service.git"
   }
 }
