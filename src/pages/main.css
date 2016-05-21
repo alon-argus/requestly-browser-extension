@@ -503,6 +503,11 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
 .card-headers-rule .card-avatar-content {
   background: #dd9d12; }
 
+.card-device-rule .card-up {
+  background-color: #35ddca; }
+.card-device-rule .card-avatar-content {
+  background: #35ddca; }
+
 .back-button {
   padding: 0 0.5rem;
   color: white;

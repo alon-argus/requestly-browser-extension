@@ -43,6 +43,10 @@
   @include rule-card-details($headers-rule-color);
 }
 
+.card-device-rule {
+  @include rule-card-details($device-rule-color);
+}
+
 .back-button {
   padding: 0 0.5rem;
   color: white;
