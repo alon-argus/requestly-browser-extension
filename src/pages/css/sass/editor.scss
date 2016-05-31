@@ -33,8 +33,23 @@
     margin-right: 5px;
   }
 
-  .source-operator-select {
-    width: 100px;
+  .source-key-container {
+    display: inline-block;
+
+    .dropdown-toggle {
+      width: 75px;
+    }
+    .dropdown-menu {
+      min-width: 75px;
+    }
+  }
+
+  .source-operator-container {
+    display: inline-block;
+
+    .dropdown-toggle {
+      width: 100px;
+    }
   }
 }
 

@@ -160,6 +160,8 @@ RQ.RULE_STATUS = {
 
 RQ.RULE_KEYS = {
   URL: 'Url',
+  HOST: 'host',
+  PATH: 'path',
   HEADER: 'Header'
 };
 
@@ -798,24 +800,38 @@ Handlebars.registerPartial("SourceField", Handlebars.template({"1":function(dept
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var stack1, helper, alias1=helpers.helperMissing, alias2=this.escapeExpression;
 
-  return "<div class=\"source-container\">\n  <label class=\"active\">Source Url</label>\n\n  <div class=\"dropdown-container\">\n    <div class=\"dropdown\" data-key=\"source.operator\">\n\n      <button class=\"btn dropdown-toggle source-operator-select\" type=\"button\" data-toggle=\"dropdown\">\n        <span class=\"dropdown-value\" data-value=\"\">Select</span>\n        <span class=\"caret\"></span>\n      </button>\n\n      <ul class=\"dropdown-menu\">\n        <li>\n          <a class=\"dropdown-option\"\n               data-value=\""
+  return "<div class=\"source-container\">\n  <label class=\"active\">Source</label>\n\n  <!-- Write the dropdown here -->\n  <div class=\"source-key-container\">\n    <div class=\"dropdown-container\">\n      <div class=\"dropdown\" data-key=\"source.key\">\n\n"
+    + ((stack1 = this.invokePartial(partials.DropdownButton,depth0,{"name":"DropdownButton","data":data,"indent":"        ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
+    + "\n        <ul class=\"dropdown-menu\">\n          <li>\n            <a class=\"dropdown-option\"\n               data-value=\""
+    + alias2((helpers.readGlobalVar || (depth0 && depth0.readGlobalVar) || alias1).call(depth0,"RQ.RULE_KEYS.URL",{"name":"readGlobalVar","hash":{},"data":data}))
+    + "\"\n               "
+    + ((stack1 = (helpers.equalsGlobalVar || (depth0 && depth0.equalsGlobalVar) || alias1).call(depth0,"RQ.RULE_KEYS.URL",((stack1 = (depth0 != null ? depth0.source : depth0)) != null ? stack1.key : stack1),{"name":"equalsGlobalVar","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ">Url</a>\n          </li>\n          <li>\n            <a class=\"dropdown-option\"\n               data-value=\""
+    + alias2((helpers.readGlobalVar || (depth0 && depth0.readGlobalVar) || alias1).call(depth0,"RQ.RULE_KEYS.HOST",{"name":"readGlobalVar","hash":{},"data":data}))
+    + "\"\n               "
+    + ((stack1 = (helpers.equalsGlobalVar || (depth0 && depth0.equalsGlobalVar) || alias1).call(depth0,"RQ.RULE_KEYS.HOST",((stack1 = (depth0 != null ? depth0.source : depth0)) != null ? stack1.key : stack1),{"name":"equalsGlobalVar","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ">Host</a>\n          </li>\n          <li>\n            <a class=\"dropdown-option\"\n               data-value=\""
+    + alias2((helpers.readGlobalVar || (depth0 && depth0.readGlobalVar) || alias1).call(depth0,"RQ.RULE_KEYS.PATH",{"name":"readGlobalVar","hash":{},"data":data}))
+    + "\"\n               "
+    + ((stack1 = (helpers.equalsGlobalVar || (depth0 && depth0.equalsGlobalVar) || alias1).call(depth0,"RQ.RULE_KEYS.PATH",((stack1 = (depth0 != null ? depth0.source : depth0)) != null ? stack1.key : stack1),{"name":"equalsGlobalVar","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + ">Path</a>\n          </li>\n        </ul>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"source-operator-container\">\n    <div class=\"dropdown-container\">\n      <div class=\"dropdown\" data-key=\"source.operator\">\n\n        <button class=\"btn dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">\n          <span class=\"dropdown-value\" data-value=\"\">Select</span>\n          <span class=\"caret\"></span>\n        </button>\n\n        <ul class=\"dropdown-menu\">\n          <li>\n            <a class=\"dropdown-option\"\n               data-value=\""
     + alias2((helpers.readGlobalVar || (depth0 && depth0.readGlobalVar) || alias1).call(depth0,"RQ.RULE_OPERATORS.EQUALS",{"name":"readGlobalVar","hash":{},"data":data}))
     + "\"\n               "
     + ((stack1 = (helpers.equalsGlobalVar || (depth0 && depth0.equalsGlobalVar) || alias1).call(depth0,"RQ.RULE_OPERATORS.EQUALS",((stack1 = (depth0 != null ? depth0.source : depth0)) != null ? stack1.operator : stack1),{"name":"equalsGlobalVar","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + ">Equals</a>\n        </li>\n        <li>\n          <a class=\"dropdown-option\"\n               data-value=\""
+    + ">Equals</a>\n          </li>\n          <li>\n            <a class=\"dropdown-option\"\n               data-value=\""
     + alias2((helpers.readGlobalVar || (depth0 && depth0.readGlobalVar) || alias1).call(depth0,"RQ.RULE_OPERATORS.CONTAINS",{"name":"readGlobalVar","hash":{},"data":data}))
     + "\"\n               "
     + ((stack1 = (helpers.equalsGlobalVar || (depth0 && depth0.equalsGlobalVar) || alias1).call(depth0,"RQ.RULE_OPERATORS.CONTAINS",((stack1 = (depth0 != null ? depth0.source : depth0)) != null ? stack1.operator : stack1),{"name":"equalsGlobalVar","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + ">Contains</a>\n        </li>\n        <li>\n          <a class=\"dropdown-option\"\n               data-value=\""
+    + ">Contains</a>\n          </li>\n          <li>\n            <a class=\"dropdown-option\"\n               data-value=\""
     + alias2((helpers.readGlobalVar || (depth0 && depth0.readGlobalVar) || alias1).call(depth0,"RQ.RULE_OPERATORS.MATCHES",{"name":"readGlobalVar","hash":{},"data":data}))
     + "\"\n               "
     + ((stack1 = (helpers.equalsGlobalVar || (depth0 && depth0.equalsGlobalVar) || alias1).call(depth0,"RQ.RULE_OPERATORS.MATCHES",((stack1 = (depth0 != null ? depth0.source : depth0)) != null ? stack1.operator : stack1),{"name":"equalsGlobalVar","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + ">Matches</a>\n        </li>\n      </ul>\n    </div>\n  </div>\n\n  <input type=\"text\" class=\"form-control source-value-input\" data-key=\"source.value\" value=\""
+    + ">Matches</a>\n          </li>\n        </ul>\n      </div>\n    </div>\n  </div>\n\n  <input type=\"text\" class=\"form-control source-value-input\" data-key=\"source.value\" value=\""
     + alias2(this.lambda(((stack1 = (depth0 != null ? depth0.source : depth0)) != null ? stack1.value : stack1), depth0))
     + "\" placeholder=\""
     + alias2(((helper = (helper = helpers.sourcePlaceholder || (depth0 != null ? depth0.sourcePlaceholder : depth0)) != null ? helper : alias1),(typeof helper === "function" ? helper.call(depth0,{"name":"sourcePlaceholder","hash":{},"data":data}) : helper)))
     + "\" />\n\n  <span class=\"fa fa-trash-o delete-pair action-icon\"></span>\n</div>";
-},"useData":true}));
+},"usePartial":true,"useData":true}));
 
 Handlebars.registerPartial("StatusToggle", Handlebars.template({"1":function(depth0,helpers,partials,data) {
     return "checked";
