@@ -1,31 +1,61 @@
 <div class="source-container">
-  <label class="active">Source Url</label>
+  <label class="active">Source</label>
 
-  <div class="dropdown-container">
-    <div class="dropdown" data-key="source.operator">
+  <!-- Write the dropdown here -->
+  <div class="source-key-container">
+    <div class="dropdown-container">
+      <div class="dropdown" data-key="source.key">
 
-      <button class="btn dropdown-toggle source-operator-select" type="button" data-toggle="dropdown">
-        <span class="dropdown-value" data-value="">Select</span>
-        <span class="caret"></span>
-      </button>
+        {{> DropdownButton }}
 
-      <ul class="dropdown-menu">
-        <li>
-          <a class="dropdown-option"
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-option"
+               data-value="{{readGlobalVar "RQ.RULE_KEYS.URL"}}"
+               {{#equalsGlobalVar "RQ.RULE_KEYS.URL" source.key }}selected{{/equalsGlobalVar}}>Url</a>
+          </li>
+          <li>
+            <a class="dropdown-option"
+               data-value="{{readGlobalVar "RQ.RULE_KEYS.HOST"}}"
+               {{#equalsGlobalVar "RQ.RULE_KEYS.HOST" source.key }}selected{{/equalsGlobalVar}}>Host</a>
+          </li>
+          <li>
+            <a class="dropdown-option"
+               data-value="{{readGlobalVar "RQ.RULE_KEYS.PATH"}}"
+               {{#equalsGlobalVar "RQ.RULE_KEYS.PATH" source.key }}selected{{/equalsGlobalVar}}>Path</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="source-operator-container">
+    <div class="dropdown-container">
+      <div class="dropdown" data-key="source.operator">
+
+        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+          <span class="dropdown-value" data-value="">Select</span>
+          <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-option"
                data-value="{{readGlobalVar "RQ.RULE_OPERATORS.EQUALS"}}"
                {{#equalsGlobalVar "RQ.RULE_OPERATORS.EQUALS" source.operator}}selected{{/equalsGlobalVar}}>Equals</a>
-        </li>
-        <li>
-          <a class="dropdown-option"
+          </li>
+          <li>
+            <a class="dropdown-option"
                data-value="{{readGlobalVar "RQ.RULE_OPERATORS.CONTAINS"}}"
                {{#equalsGlobalVar "RQ.RULE_OPERATORS.CONTAINS" source.operator}}selected{{/equalsGlobalVar}}>Contains</a>
-        </li>
-        <li>
-          <a class="dropdown-option"
+          </li>
+          <li>
+            <a class="dropdown-option"
                data-value="{{readGlobalVar "RQ.RULE_OPERATORS.MATCHES"}}"
                {{#equalsGlobalVar "RQ.RULE_OPERATORS.MATCHES" source.operator}}selected{{/equalsGlobalVar}}>Matches</a>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 

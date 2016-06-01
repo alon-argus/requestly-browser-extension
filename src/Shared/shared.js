@@ -37,6 +37,8 @@ RQ.RULE_STATUS = {
 
 RQ.RULE_KEYS = {
   URL: 'Url',
+  HOST: 'host',
+  PATH: 'path',
   HEADER: 'Header'
 };
 

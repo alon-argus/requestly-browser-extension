@@ -5,7 +5,25 @@ var BG = {
     avoidCache: true,
     isExtensionEnabled: true
   },
-  extensionStatusContextMenuId: -1
+  extensionStatusContextMenuId: -1,
+  dummyAnchor: document.createElement('a')
+};
+
+/**
+ *
+ * @param url Url from which component has to be extracted
+ * @param name Url component name - host, path, url, query, fragment etc.
+ */
+BG.Methods.extractUrlComponent = function(url, name) {
+  BG.dummyAnchor.href = url;
+
+  switch(name) {
+    case RQ.RULE_KEYS.URL: return url;
+    case RQ.RULE_KEYS.HOST: return BG.dummyAnchor.host;
+    case RQ.RULE_KEYS.PATH: return BG.dummyAnchor.pathname;
+  }
+
+  console.error('Invalid source key', url, name);
 };
 
 BG.Methods.matchUrlWithReplaceRulePairs = function(rule, url) {
@@ -122,7 +140,7 @@ BG.Methods.modifyHeaders = function(originalHeaders, headersTarget, details) {
 /**
  * Checks if intercepted HTTP Request Url matches with any Rule
  *
- * @param sourceObject Object e.g. { key: 'Url', operator: 'Contains', value: 'google' }
+ * @param sourceObject Object e.g. { key: 'Url/host/path', operator: 'Contains/Matches/Equals', value: 'google' }
  * @param destination String e.g. 'http://www.google.com'
  * @param url Url for which HTTP Request is intercepted.
  *
@@ -130,8 +148,7 @@ BG.Methods.modifyHeaders = function(originalHeaders, headersTarget, details) {
  */
 BG.Methods.matchUrlWithRuleSource = function(sourceObject, destination, url) {
   var operator = sourceObject.operator,
-    urlWithSlash,
-    urlWithoutSlash,
+    urlComponent = this.extractUrlComponent(url, sourceObject.key),
     destinationUrl = destination || '', // Destination Url is not present in all rule types (Cancel)
     value = sourceObject.value,
     blackListedDomains = RQ.BLACK_LIST_DOMAINS || [];
@@ -142,20 +159,12 @@ BG.Methods.matchUrlWithRuleSource = function(sourceObject, destination, url) {
     }
   }
 
-  if (url.charAt(url.length - 1) === RQ.STRING_CONSTANTS.SLASH) {
-    urlWithSlash = url;
-    urlWithoutSlash = url.substring(0, url.length - 1);
-  } else {
-    urlWithoutSlash = url;
-    urlWithSlash = url + RQ.STRING_CONSTANTS.SLASH;
-  }
-
   switch (operator) {
     case RQ.RULE_OPERATORS.EQUALS:
-      if (value === urlWithSlash || value === urlWithoutSlash) { return destinationUrl; }
+      if (value === urlComponent) { return destinationUrl; }
       break;
 
-    case RQ.RULE_OPERATORS.CONTAINS: if (url.indexOf(value) !== -1) { return destinationUrl; }
+    case RQ.RULE_OPERATORS.CONTAINS: if (urlComponent.indexOf(value) !== -1) { return destinationUrl; }
       break;
 
     case RQ.RULE_OPERATORS.MATCHES: {
@@ -163,11 +172,11 @@ BG.Methods.matchUrlWithRuleSource = function(sourceObject, destination, url) {
         matches;
 
       // Do not match when regex is invalid or regex does not match with Url
-      if (!regex || url.search(regex) === -1) {
+      if (!regex || urlComponent.search(regex) === -1) {
         return null;
       }
 
-      matches = regex.exec(url) || [];
+      matches = regex.exec(urlComponent) || [];
 
       matches.forEach(function (matchValue, index) {
         // First match is the full string followed by parentheses/group values

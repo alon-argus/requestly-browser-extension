@@ -1,4 +1,4 @@
-describe('Requestly Background Service', function() {
+describe('Requestly Background Service - ', function() {
   var redirectRule,
     cancelRule,
     headersRule;
@@ -27,6 +27,22 @@ describe('Requestly Background Service', function() {
     cancelRule = null;
   });
 
+  describe('Extract Url components', function() {
+    var url = 'http://localhost:7000/web/index.html?a=1';
+
+    it('should return unchanged url when asked for Url', function() {
+      expect(BG.Methods.extractUrlComponent(url, RQ.RULE_KEYS.URL)).toBe(url);
+    });
+
+    it('should extract host from url', function() {
+      expect(BG.Methods.extractUrlComponent(url, RQ.RULE_KEYS.HOST)).toBe('localhost:7000');
+    });
+
+    it('should extract path from url', function() {
+      expect(BG.Methods.extractUrlComponent(url, RQ.RULE_KEYS.PATH)).toBe('/web/index.html');
+    });
+  });
+
   describe('Match Request Url method', function() {
     beforeEach(function() {
       redirectRule = new RedirectRuleModel({
@@ -39,6 +55,14 @@ describe('Requestly Background Service', function() {
               value: URL_SOURCES.GOOGLE
             },
             destination: URL_SOURCES.YAHOO
+          },
+          {
+            source: {
+              key: RQ.RULE_KEYS.HOST,
+              operator: RQ.RULE_OPERATORS.CONTAINS,
+              value: KEYWORDS.DROPBOX
+            },
+            destination: URL_SOURCES.YAHOO // Host contains dropbox -> yahoo
           }
         ]
       });
@@ -97,10 +121,22 @@ describe('Requestly Background Service', function() {
         URL_SOURCES.GOOGLE_SEARCH_QUERY + 'TGT-10419')).toBe(URL_SOURCES.REQUESTLY + '?query=TGT-10419');
     });
 
-    it('should match Urls ending with slash for equals operator', function() {
-      var pair = redirectRule.getPairs()[0];
+    it('should match different Url components', function() {
+      var pair = redirectRule.getPairs()[1];
 
-      expect(BG.Methods.matchUrlWithRuleSource(pair.source, pair.destination, URL_SOURCES.GOOGLE_WITH_SLASH))
+      // Host Matching
+      expect(BG.Methods.matchUrlWithRuleSource(pair.source, pair.destination, URL_SOURCES.DROPBOX))
+        .toBe(URL_SOURCES.YAHOO);
+
+      expect(BG.Methods.matchUrlWithRuleSource(pair.source, pair.destination, URL_SOURCES.EXAMPLE + '?ref=dropbox'))
+        .toBe(null);
+
+      // Path Matching
+      pair.source.key = RQ.RULE_KEYS.PATH;
+      expect(BG.Methods.matchUrlWithRuleSource(pair.source, pair.destination, URL_SOURCES.DROPBOX))
+        .toBe(null);
+
+      expect(BG.Methods.matchUrlWithRuleSource(pair.source, pair.destination, URL_SOURCES.EXAMPLE + '/dropbox/home.html'))
         .toBe(URL_SOURCES.YAHOO);
     });
 

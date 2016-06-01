@@ -397,8 +397,16 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
     margin-bottom: 0; }
 .rule-editor label.active {
   margin-right: 5px; }
-.rule-editor .source-operator-select {
-  width: 100px; }
+.rule-editor .source-key-container {
+  display: inline-block; }
+  .rule-editor .source-key-container .dropdown-toggle {
+    width: 75px; }
+  .rule-editor .source-key-container .dropdown-menu {
+    min-width: 75px; }
+.rule-editor .source-operator-container {
+  display: inline-block; }
+  .rule-editor .source-operator-container .dropdown-toggle {
+    width: 100px; }
 
 #redirect-rule-editor .save-rule {
   background-color: #5b9027;
