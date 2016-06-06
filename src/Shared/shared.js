@@ -27,7 +27,8 @@ RQ.RULE_TYPES = {
   REDIRECT: 'Redirect',
   CANCEL: 'Cancel',
   REPLACE: 'Replace',
-  HEADERS: 'Headers'
+  HEADERS: 'Headers',
+  DEVICE: 'Device'
 };
 
 RQ.RULE_STATUS = {
@@ -57,6 +58,10 @@ RQ.MODIFICATION_TYPES = {
 RQ.HEADERS_TARGET = {
   REQUEST: 'Request',
   RESPONSE: 'Response'
+};
+
+RQ.HEADER_NAMES = {
+  USER_AGENT: 'User-Agent'
 };
 
 RQ.RESPONSE_CODES = {
@@ -124,5 +129,27 @@ RQ.htmlEncode = function(value){
 
 RQ.getSharedURL = function(shareId) {
   return RQ.WEB_URL + '#sharedList/' + shareId;
+};
+
+RQ.USER_AGENT = {
+  android: {
+    phone: 'Mozilla/5.0 (Android; Mobile; rv:26.0) Gecko/26.0 Firefox/26.0',
+    tablet: 'Mozilla/5.0 (Android; Tablet; rv:26.0) Gecko/26.0 Firefox/26.0'
+  },
+  ios: {
+    phone: 'Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53',
+    tablet: 'Mozilla/5.0 (iPad; CPU OS 7_0 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53'
+  },
+  windows: {
+    phone: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; NOKIA; Lumia 920)',
+    tablet: 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0; Touch; NOKIA; Lumia 920)'
+  },
+  blackberry: {
+    phone: 'Mozilla/5.0 (BlackBerry; U; BlackBerry 9900; en-US) AppleWebKit/534.11+ (KHTML, like Gecko) Version/7.0.0.187 Mobile Safari/534.11+',
+    tablet: 'Mozilla/5.0 (PlayBook; U; RIM Tablet OS 2.0.0; en-US) AppleWebKit/535.8+ (KHTML, like Gecko) Version/7.2.0.0 Safari/535.8+'
+  },
+  symbian: {
+    phone: 'Mozilla/5.0 (SymbianOS) AppleWebKit/533.4 (KHTML, like Gecko) NokiaBrowser/7.3.1.33 Mobile Safari/533.4 3gpp-gba'
+  }
 };
 

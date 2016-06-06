@@ -436,6 +436,13 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
 #headers-rule-editor .content-header {
   background: #dd9d12; }
 
+#device-rule-editor .save-rule {
+  background-color: #35ddca;
+  border-color: #35ddca;
+  color: #fff; }
+#device-rule-editor .content-header {
+  background: #35ddca; }
+
 #redirect-rule-editor {
   /* Handle width of single pair as in case of more than 1 pairs, scroll becomes visible so width should be less then */ }
   #redirect-rule-editor .pair-container:only-child .destination-url-input {

@@ -40,5 +40,13 @@ RQ.Mixins.InputValidation = {
     }
 
     return true;
+  },
+
+  validateFieldNonEmpty: function(name, value) {
+    if (_.isEmpty(value)) {
+      Notification.show('error', 'Error: ' + name + ' Field can not be empty');
+      return false;
+    }
+    return true;
   }
 };

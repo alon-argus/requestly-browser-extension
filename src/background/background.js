@@ -59,6 +59,16 @@ BG.Methods.matchUrlWithReplaceRulePairs = function(rule, url) {
   return resultingUrl;
 };
 
+BG.Methods.addHeader = function(headers, newHeader) {
+  for (var i = headers.length - 1; i >= 0; i--) {
+    if (headers[i].name.toLowerCase() === newHeader.name.toLowerCase()) {
+      headers[i].value = newHeader.value;
+      return;
+    }
+  }
+  headers.push({ name: newHeader.header, value: newHeader.value });
+};
+
 BG.Methods.removeHeader = function(headers, name) {
   for (var i = headers.length - 1; i >= 0; i--) {
     if (headers[i].name.toLowerCase() === name.toLowerCase()) {
@@ -86,23 +96,26 @@ BG.Methods.modifyHeaderIfExists = function(headers, newHeader) {
  */
 BG.Methods.modifyHeaders = function(originalHeaders, headersTarget, details) {
   var rule,
-    headerPairs,
+    ruleType,
+    rulePairs,
+    rulePair,
     isRuleApplied = false,
     modification,
     url = details.url;
 
   for (var i = 0; i < StorageService.records.length; i++) {
     rule = StorageService.records[i];
+    ruleType = rule.ruleType;
 
-    if (rule.status !== RQ.RULE_STATUS.ACTIVE || rule.ruleType !== RQ.RULE_TYPES.HEADERS) {
+    if (rule.status !== RQ.RULE_STATUS.ACTIVE || [RQ.RULE_TYPES.HEADERS, RQ.RULE_TYPES.DEVICE].indexOf(ruleType) === -1) {
       continue;
     }
 
-    headerPairs = rule.pairs || [];
+    rulePairs = rule.pairs || [];
 
-    for (var index = 0; index < headerPairs.length; index++) {
-      modification = headerPairs[index];
-      modification.source = modification.source || {};
+    for (var index = 0; index < rulePairs.length; index++) {
+      rulePair = rulePairs[index];
+      modification = BG.Methods.getHeaderModification(ruleType, rulePair);
 
       if (modification.target !== headersTarget || !modification.header) {
         continue;
@@ -117,7 +130,10 @@ BG.Methods.modifyHeaders = function(originalHeaders, headersTarget, details) {
 
       switch (modification.type) {
         case RQ.MODIFICATION_TYPES.ADD:
-          originalHeaders.push({ name: modification.header, value: modification.value });
+          BG.Methods.addHeader(originalHeaders, {
+            name: modification.header,
+            value: modification.value
+          });
           break;
 
         case RQ.MODIFICATION_TYPES.REMOVE:
@@ -135,6 +151,23 @@ BG.Methods.modifyHeaders = function(originalHeaders, headersTarget, details) {
   }
 
   return isRuleApplied ? originalHeaders : null;
+};
+
+BG.Methods.getHeaderModification = function(ruleType, rulePair) {
+  var modification;
+
+  if (ruleType === RQ.RULE_TYPES.DEVICE) {
+    return {
+      source: rulePair.source,
+      target: RQ.HEADERS_TARGET.REQUEST,
+      type: RQ.MODIFICATION_TYPES.ADD,
+      header: RQ.HEADER_NAMES.USER_AGENT,
+      value: rulePair.userAgent
+    };
+  }
+
+  modification = rulePair;
+  modification.source = modification.source || {};
 };
 
 /**
