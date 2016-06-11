@@ -129,11 +129,19 @@ input[type="text"] {
 .toggle-group label {
   padding-top: 1px;
   padding-bottom: 0;
+  margin-right: 0;
 }
 
 .toggle-group .toggle-off.btn {
   padding-left: 20px;
   border: none;
+}
+
+/* override button style of mdb.css */
+.toggle-group .btn-default {
+  &:hover, &:focus {
+    background-color: #d4d4d4 !important;
+  }
 }
 
 .toggle-group .toggle-on.btn {
@@ -158,6 +166,11 @@ input[type="text"] {
 .headers .status-cell .toggle-on.btn,
 .status-toggle.headers + .toggle-group .toggle-on.btn {
   background-color: #dd9d12;
+}
+
+#useragent-rule-editor .toggle-on.btn,
+.useragent .status-cell .toggle-on.btn {
+  background-color: $useragent-rule-color;
 }
 
 /* Authentication based logic for showing profile pic icon */

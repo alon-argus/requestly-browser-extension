@@ -14,7 +14,7 @@ RQ.Router = Backbone.Router.extend({
     CANCEL: CancelRuleModel,
     REPLACE: ReplaceRuleModel,
     HEADERS: HeadersRuleModel,
-    DEVICE: DeviceRuleModel
+    USERAGENT: UserAgentRuleModel
   },
 
   ruleViewMap: {
@@ -22,7 +22,7 @@ RQ.Router = Backbone.Router.extend({
     CANCEL: CancelRuleEditorView,
     REPLACE: ReplaceRuleEditorView,
     HEADERS: HeadersEditorView,
-    DEVICE: DeviceRuleEditorView
+    USERAGENT: UserAgentRuleEditorView
   },
 
   showRulesList: function() {

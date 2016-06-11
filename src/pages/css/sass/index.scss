@@ -152,6 +152,10 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
   background-color: $headers-rule-color;
 }
 
+.useragent.rule-item-row .rule-type {
+  background-color: $useragent-rule-color;
+}
+
 .content-header > span {
   font-weight: bold;
 }

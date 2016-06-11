@@ -1,22 +1,22 @@
-{{> RuleEditorHeader heading="Emulate Device Rule" }}
+{{> RuleEditorHeader heading="Override User-Agent in HTTP Request"}}
 
 <section class="rule-body content-body">
   {{> RuleProperties}}
 
-  {{> PairsContainerHeading heading="Source Device Pairs" }}
+  {{> PairsContainerHeading heading="Source User-Agent Pairs" }}
 
   <div class="pairs-container">
     {{#each pairs}}
       <div class="well well-sm pair-container" data-index="{{@index}}">
-        {{> SourceField }}
-
         <div class="row">
           <div class="destination-container">
             <label class="active">{{readGlobalVar "RQ.HEADER_NAMES.USER_AGENT"}}</label>
-            <input type="text" class="user-agent-input form-control" data-key="userAgent" value="{{userAgent}}"
+            <input type="text" class="useragent-input form-control" data-key="userAgent" value="{{userAgent}}"
                    placeholder="Enter user agent string">
           </div>
         </div>
+
+        {{> SourceField sourcePlaceholder="Leave this field Empty to apply above modification to all urls" }}
       </div>
     {{/each}}
   </div>

@@ -1,14 +1,14 @@
-var DeviceRuleEditorView = BaseRuleEditorView.extend({
-  Model: DeviceRuleModel,
+var UserAgentRuleEditorView = BaseRuleEditorView.extend({
+  Model: UserAgentRuleModel,
 
   Mixins: [ RQ.Mixins.InputValidation ],
 
-  id: 'device-rule-editor',
+  id: 'useragent-rule-editor',
 
   className: 'rule-editor',
 
   getTemplate: function() {
-    return RQ.Templates.DeviceRuleEditor;
+    return RQ.Templates.UserAgentRuleEditor;
   },
 
   events: _.extend(BaseRuleEditorView.prototype.events, {
@@ -20,7 +20,7 @@ var DeviceRuleEditorView = BaseRuleEditorView.extend({
     var source = pair['source'],
       userAgent = pair['userAgent'];
 
-    return this.validateSourceField(source.operator, source.value)
+    return (!source.value || this.validateSourceField(source.operator, source.value))
       && this.validateFieldNonEmpty(RQ.HEADER_NAMES.USER_AGENT, userAgent);
   },
 

@@ -61,8 +61,9 @@ BG.Methods.matchUrlWithReplaceRulePairs = function(rule, url) {
 
 BG.Methods.addHeader = function(headers, newHeader) {
   for (var i = headers.length - 1; i >= 0; i--) {
-    if (headers[i].name.toLowerCase() === newHeader.name.toLowerCase()) {
-      headers[i].value = newHeader.value;
+    var header = headers[i];
+    if (header.name && header.name.toLowerCase() === newHeader.name.toLowerCase()) {
+      header.value = newHeader.value;
       return;
     }
   }
@@ -71,7 +72,8 @@ BG.Methods.addHeader = function(headers, newHeader) {
 
 BG.Methods.removeHeader = function(headers, name) {
   for (var i = headers.length - 1; i >= 0; i--) {
-    if (headers[i].name.toLowerCase() === name.toLowerCase()) {
+    var header = headers[i];
+    if (header.name && header.name.toLowerCase() === name.toLowerCase()) {
       headers.splice(i, 1);
       break;
     }
@@ -80,8 +82,9 @@ BG.Methods.removeHeader = function(headers, name) {
 
 BG.Methods.modifyHeaderIfExists = function(headers, newHeader) {
   for (var i = headers.length - 1; i >= 0; i--) {
-    if (headers[i].name.toLowerCase() === newHeader.name.toLowerCase()) {
-      headers[i].value = newHeader.value;
+    var header = headers[i];
+    if (header.name && header.name.toLowerCase() === newHeader.name.toLowerCase()) {
+      header.value = newHeader.value;
       break;
     }
   }
@@ -107,7 +110,7 @@ BG.Methods.modifyHeaders = function(originalHeaders, headersTarget, details) {
     rule = StorageService.records[i];
     ruleType = rule.ruleType;
 
-    if (rule.status !== RQ.RULE_STATUS.ACTIVE || [RQ.RULE_TYPES.HEADERS, RQ.RULE_TYPES.DEVICE].indexOf(ruleType) === -1) {
+    if (rule.status !== RQ.RULE_STATUS.ACTIVE || [RQ.RULE_TYPES.HEADERS, RQ.RULE_TYPES.USERAGENT].indexOf(ruleType) === -1) {
       continue;
     }
 
@@ -156,7 +159,7 @@ BG.Methods.modifyHeaders = function(originalHeaders, headersTarget, details) {
 BG.Methods.getHeaderModification = function(ruleType, rulePair) {
   var modification;
 
-  if (ruleType === RQ.RULE_TYPES.DEVICE) {
+  if (ruleType === RQ.RULE_TYPES.USERAGENT) {
     return {
       source: rulePair.source,
       target: RQ.HEADERS_TARGET.REQUEST,
@@ -168,6 +171,7 @@ BG.Methods.getHeaderModification = function(ruleType, rulePair) {
 
   modification = rulePair;
   modification.source = modification.source || {};
+  return modification;
 };
 
 /**

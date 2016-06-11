@@ -117,11 +117,16 @@ input[type="text"].form-control {
 
 .toggle-group label {
   padding-top: 1px;
-  padding-bottom: 0; }
+  padding-bottom: 0;
+  margin-right: 0; }
 
 .toggle-group .toggle-off.btn {
   padding-left: 20px;
   border: none; }
+
+/* override button style of mdb.css */
+.toggle-group .btn-default:hover, .toggle-group .btn-default:focus {
+  background-color: #d4d4d4 !important; }
 
 .toggle-group .toggle-on.btn {
   padding-right: 20px; }
@@ -141,6 +146,10 @@ input[type="text"].form-control {
 .headers .status-cell .toggle-on.btn,
 .status-toggle.headers + .toggle-group .toggle-on.btn {
   background-color: #dd9d12; }
+
+#useragent-rule-editor .toggle-on.btn,
+.useragent .status-cell .toggle-on.btn {
+  background-color: #2bbbad; }
 
 /* Authentication based logic for showing profile pic icon */
 .authorized-user .avatar {
@@ -272,6 +281,9 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
 
 .headers.rule-item-row .rule-type {
   background-color: #dd9d12; }
+
+.useragent.rule-item-row .rule-type {
+  background-color: #2bbbad; }
 
 .content-header > span {
   font-weight: bold; }
@@ -436,12 +448,12 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
 #headers-rule-editor .content-header {
   background: #dd9d12; }
 
-#device-rule-editor .save-rule {
-  background-color: #35ddca;
-  border-color: #35ddca;
+#useragent-rule-editor .save-rule {
+  background-color: #2bbbad;
+  border-color: #2bbbad;
   color: #fff; }
-#device-rule-editor .content-header {
-  background: #35ddca; }
+#useragent-rule-editor .content-header {
+  background: #2bbbad; }
 
 #redirect-rule-editor {
   /* Handle width of single pair as in case of more than 1 pairs, scroll becomes visible so width should be less then */ }
@@ -518,10 +530,10 @@ input[type="checkbox"].filled-in:not(:checked) + label:after {
 .card-headers-rule .card-avatar-content {
   background: #dd9d12; }
 
-.card-device-rule .card-up {
-  background-color: #35ddca; }
-.card-device-rule .card-avatar-content {
-  background: #35ddca; }
+.card-useragent-rule .card-up {
+  background-color: #2bbbad; }
+.card-useragent-rule .card-avatar-content {
+  background: #2bbbad; }
 
 .back-button {
   padding: 0 0.5rem;

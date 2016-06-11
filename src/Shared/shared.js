@@ -28,7 +28,7 @@ RQ.RULE_TYPES = {
   CANCEL: 'Cancel',
   REPLACE: 'Replace',
   HEADERS: 'Headers',
-  DEVICE: 'Device'
+  USERAGENT: 'UserAgent'
 };
 
 RQ.RULE_STATUS = {

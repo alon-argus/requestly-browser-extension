@@ -43,8 +43,8 @@
   @include rule-card-details($headers-rule-color);
 }
 
-.card-device-rule {
-  @include rule-card-details($device-rule-color);
+.card-useragent-rule {
+  @include rule-card-details($useragent-rule-color);
 }
 
 .back-button {

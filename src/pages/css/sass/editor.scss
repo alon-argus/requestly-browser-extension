@@ -160,6 +160,6 @@
   @include rule-editor-properties($headers-rule-color);
 }
 
-#device-rule-editor {
-  @include rule-editor-properties($device-rule-color)
+#useragent-rule-editor {
+  @include rule-editor-properties($useragent-rule-color)
 }

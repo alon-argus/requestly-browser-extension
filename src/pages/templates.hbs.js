@@ -200,33 +200,6 @@ this["RQ"]["Templates"]["CancelRuleEditor"] = Handlebars.template({"1":function(
     + "</section>";
 },"usePartial":true,"useData":true});
 
-this["RQ"]["Templates"]["DeviceRuleEditor"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
-    var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
-
-  return "      <div class=\"well well-sm pair-container\" data-index=\""
-    + alias3(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"index","hash":{},"data":data}) : helper)))
-    + "\">\r\n"
-    + ((stack1 = this.invokePartial(partials.SourceField,depth0,{"name":"SourceField","data":data,"indent":"        ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\r\n        <div class=\"row\">\r\n          <div class=\"destination-container\">\r\n            <label class=\"active\">"
-    + alias3((helpers.readGlobalVar || (depth0 && depth0.readGlobalVar) || alias1).call(depth0,"RQ.HEADER_NAMES.USER_AGENT",{"name":"readGlobalVar","hash":{},"data":data}))
-    + "</label>\r\n            <input type=\"text\" class=\"user-agent-input form-control\" data-key=\"userAgent\" value=\""
-    + alias3(((helper = (helper = helpers.userAgent || (depth0 != null ? depth0.userAgent : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"userAgent","hash":{},"data":data}) : helper)))
-    + "\"\r\n                   placeholder=\"Enter user agent string\">\r\n          </div>\r\n        </div>\r\n      </div>\r\n";
-},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = this.invokePartial(partials.RuleEditorHeader,depth0,{"name":"RuleEditorHeader","hash":{"heading":"Emulate Device Rule"},"data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\r\n<section class=\"rule-body content-body\">\r\n"
-    + ((stack1 = this.invokePartial(partials.RuleProperties,depth0,{"name":"RuleProperties","data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\r\n"
-    + ((stack1 = this.invokePartial(partials.PairsContainerHeading,depth0,{"name":"PairsContainerHeading","hash":{"heading":"Source Device Pairs"},"data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "\r\n  <div class=\"pairs-container\">\r\n"
-    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.pairs : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "  </div>\r\n\r\n"
-    + ((stack1 = this.invokePartial(partials.SaveRuleCTA,depth0,{"name":"SaveRuleCTA","data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
-    + "</section>";
-},"usePartial":true,"useData":true});
-
 this["RQ"]["Templates"]["HeadersRuleTemplate"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
@@ -362,7 +335,7 @@ this["RQ"]["Templates"]["ReplaceRuleEditor"] = Handlebars.template({"1":function
 },"usePartial":true,"useData":true});
 
 this["RQ"]["Templates"]["RuleCardsView"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<nav class=\"content-header rq-dimgrey\">\r\n  <a href=\"#\" role=\"button\" class=\"back-button fa fa-chevron-left\" title=\"Go Back\"></a>\r\n  <span>Select Rule</span>\r\n</nav>\r\n\r\n<section class=\"rule-body content-body\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-4 card-redirect-rule rule-card\" data-target=\"#new/Redirect\">\r\n      <div class=\"testimonial-card z-depth-1\">\r\n        <div class=\"card-up\">\r\n        </div>\r\n        <div class=\"avatar\">\r\n          <span class=\"img-circle img-responsive card-avatar-content\">R</span>\r\n        </div>\r\n        <div class=\"card-content\">\r\n          <h5>Redirect Request</h5>\r\n          <p><i class=\"fa fa-quote-left\"></i>Redirect a request URL</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4 card-cancel-rule rule-card\" data-target=\"#new/Cancel\">\r\n      <div class=\"testimonial-card z-depth-1\">\r\n        <div class=\"card-up\">\r\n        </div>\r\n        <div class=\"avatar\">\r\n          <span class=\"img-circle img-responsive card-avatar-content\">C</span>\r\n        </div>\r\n        <div class=\"card-content\">\r\n          <h5>Cancel Request</h5>\r\n          <p><i class=\"fa fa-quote-left\"></i>Block Urls by specifying keywords or entire Urls</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4 card-replace-rule rule-card\" data-target=\"#new/Replace\">\r\n      <div class=\"testimonial-card z-depth-1\">\r\n        <div class=\"card-up\">\r\n        </div>\r\n        <div class=\"avatar\">\r\n          <span class=\"img-circle img-responsive card-avatar-content\">R</span>\r\n        </div>\r\n        <div class=\"card-content\">\r\n          <h5>Replace Host</h5>\r\n          <p><i class=\"fa fa-quote-left\"></i>Replace parts of URL like hostname, query value</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col-md-4 card-headers-rule rule-card\" data-target=\"#new/headers\">\r\n      <div class=\"testimonial-card z-depth-1\">\r\n        <div class=\"card-up\">\r\n        </div>\r\n        <div class=\"avatar\">\r\n          <span class=\"img-circle img-responsive card-avatar-content\">H</span>\r\n        </div>\r\n        <div class=\"card-content\">\r\n          <h5>Modify Headers</h5>\r\n          <p><i class=\"fa fa-quote-left\"></i>Modify HTTP headers in request and response</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4 card-device-rule rule-card\" data-target=\"#new/Device\">\r\n      <div class=\"testimonial-card z-depth-1\">\r\n        <div class=\"card-up\">\r\n        </div>\r\n        <div class=\"avatar\">\r\n          <span class=\"img-circle img-responsive card-avatar-content\">D</span>\r\n        </div>\r\n        <div class=\"card-content\">\r\n          <h5>Emulate Device</h5>\r\n          <p><i class=\"fa fa-quote-left\"></i>Emulate on different devices by varying user-agent</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>\r\n";
+    return "<nav class=\"content-header rq-dimgrey\">\r\n  <a href=\"#\" role=\"button\" class=\"back-button fa fa-chevron-left\" title=\"Go Back\"></a>\r\n  <span>Select Rule</span>\r\n</nav>\r\n\r\n<section class=\"rule-body content-body\">\r\n  <div class=\"row\">\r\n    <div class=\"col-md-4 card-redirect-rule rule-card\" data-target=\"#new/Redirect\">\r\n      <div class=\"testimonial-card z-depth-1\">\r\n        <div class=\"card-up\">\r\n        </div>\r\n        <div class=\"avatar\">\r\n          <span class=\"img-circle img-responsive card-avatar-content\">R</span>\r\n        </div>\r\n        <div class=\"card-content\">\r\n          <h5>Redirect Request</h5>\r\n          <p><i class=\"fa fa-quote-left\"></i>Redirect a request URL</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4 card-cancel-rule rule-card\" data-target=\"#new/Cancel\">\r\n      <div class=\"testimonial-card z-depth-1\">\r\n        <div class=\"card-up\">\r\n        </div>\r\n        <div class=\"avatar\">\r\n          <span class=\"img-circle img-responsive card-avatar-content\">C</span>\r\n        </div>\r\n        <div class=\"card-content\">\r\n          <h5>Cancel Request</h5>\r\n          <p><i class=\"fa fa-quote-left\"></i>Block Urls by specifying keywords or entire Urls</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4 card-replace-rule rule-card\" data-target=\"#new/Replace\">\r\n      <div class=\"testimonial-card z-depth-1\">\r\n        <div class=\"card-up\">\r\n        </div>\r\n        <div class=\"avatar\">\r\n          <span class=\"img-circle img-responsive card-avatar-content\">R</span>\r\n        </div>\r\n        <div class=\"card-content\">\r\n          <h5>Replace Host</h5>\r\n          <p><i class=\"fa fa-quote-left\"></i>Replace parts of URL like hostname, query value</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"row\">\r\n    <div class=\"col-md-4 card-headers-rule rule-card\" data-target=\"#new/headers\">\r\n      <div class=\"testimonial-card z-depth-1\">\r\n        <div class=\"card-up\">\r\n        </div>\r\n        <div class=\"avatar\">\r\n          <span class=\"img-circle img-responsive card-avatar-content\">H</span>\r\n        </div>\r\n        <div class=\"card-content\">\r\n          <h5>Modify Headers</h5>\r\n          <p><i class=\"fa fa-quote-left\"></i>Modify HTTP headers in request and response</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"col-md-4 card-useragent-rule rule-card\" data-target=\"#new/UserAgent\">\r\n      <div class=\"testimonial-card z-depth-1\">\r\n        <div class=\"card-up\">\r\n        </div>\r\n        <div class=\"avatar\">\r\n          <span class=\"img-circle img-responsive card-avatar-content\">U</span>\r\n        </div>\r\n        <div class=\"card-content\">\r\n          <h5>Override User-Agent</h5>\r\n          <p><i class=\"fa fa-quote-left\"></i>Emulate for different devices by varying user-agent header</p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</section>\r\n";
 },"useData":true});
 
 this["RQ"]["Templates"]["RuleIndex"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
@@ -437,3 +410,30 @@ this["RQ"]["Templates"]["SusiModal"] = Handlebars.template({"1":function(depth0,
     + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.content : depth0),{"name":"if","hash":{},"fn":this.program(1, data, 0),"inverse":this.program(3, data, 0),"data":data})) != null ? stack1 : "")
     + "      </p>\r\n    </div>\r\n\r\n    <div class=\"modal-footer text-right\">\r\n      <button type=\"button\" class=\"btn btn-link\" data-dismiss=\"modal\">Cancel</button>\r\n      <a class=\"btn-sm-full gplus-bg rectangle waves-effect waves-light auth-provider\" data-provider=\"google\">\r\n        <i class=\"fa fa-google-plus\"></i>\r\n        <span>Sign In</span>\r\n      </a>\r\n    </div>\r\n\r\n  </div> <!-- /modal-content -->\r\n</div>\r\n";
 },"useData":true});
+
+this["RQ"]["Templates"]["UserAgentRuleEditor"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    var stack1, helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
+
+  return "      <div class=\"well well-sm pair-container\" data-index=\""
+    + alias3(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"index","hash":{},"data":data}) : helper)))
+    + "\">\r\n        <div class=\"row\">\r\n          <div class=\"destination-container\">\r\n            <label class=\"active\">"
+    + alias3((helpers.readGlobalVar || (depth0 && depth0.readGlobalVar) || alias1).call(depth0,"RQ.HEADER_NAMES.USER_AGENT",{"name":"readGlobalVar","hash":{},"data":data}))
+    + "</label>\r\n            <input type=\"text\" class=\"useragent-input form-control\" data-key=\"userAgent\" value=\""
+    + alias3(((helper = (helper = helpers.userAgent || (depth0 != null ? depth0.userAgent : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"userAgent","hash":{},"data":data}) : helper)))
+    + "\"\r\n                   placeholder=\"Enter user agent string\">\r\n          </div>\r\n        </div>\r\n\r\n"
+    + ((stack1 = this.invokePartial(partials.SourceField,depth0,{"name":"SourceField","hash":{"sourcePlaceholder":"Leave this field Empty to apply above modification to all urls"},"data":data,"indent":"        ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
+    + "      </div>\r\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = this.invokePartial(partials.RuleEditorHeader,depth0,{"name":"RuleEditorHeader","hash":{"heading":"Override User-Agent in HTTP Request"},"data":data,"helpers":helpers,"partials":partials})) != null ? stack1 : "")
+    + "\r\n<section class=\"rule-body content-body\">\r\n"
+    + ((stack1 = this.invokePartial(partials.RuleProperties,depth0,{"name":"RuleProperties","data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
+    + "\r\n"
+    + ((stack1 = this.invokePartial(partials.PairsContainerHeading,depth0,{"name":"PairsContainerHeading","hash":{"heading":"Source User-Agent Pairs"},"data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
+    + "\r\n  <div class=\"pairs-container\">\r\n"
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.pairs : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "  </div>\r\n\r\n"
+    + ((stack1 = this.invokePartial(partials.SaveRuleCTA,depth0,{"name":"SaveRuleCTA","data":data,"indent":"  ","helpers":helpers,"partials":partials})) != null ? stack1 : "")
+    + "</section>";
+},"usePartial":true,"useData":true});

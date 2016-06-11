@@ -34,7 +34,7 @@
     "src/pages/js/models/CancelRuleModel.js",
     "src/pages/js/models/ReplaceRuleModel.js",
     "src/pages/js/models/HeadersRuleModel.js",
-    "src/pages/js/models/DeviceRuleModel.js",
+    "src/pages/js/models/UserAgentRuleModel.js",
 
     "src/pages/js/collections/RulesCollection.js",
     "src/pages/js/collections/SharedRulesCollection.js",
@@ -53,7 +53,7 @@
     "src/pages/js/views/CancelRuleEditorView.js",
     "src/pages/js/views/ReplaceRuleEditorView.js",
     "src/pages/js/views/HeadersEditorView.js",
-    "src/pages/js/views/DeviceRuleEditorView.js",
+    "src/pages/js/views/UserAgentRuleEditorView.js",
     "src/pages/js/views/RuleIndexView.js",
     "src/pages/js/views/SharedRulesIndexView.js",
     "src/pages/js/views/SharedListIndexView.js",
