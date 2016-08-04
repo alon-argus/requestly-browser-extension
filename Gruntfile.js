@@ -29,7 +29,7 @@ module.exports = function (grunt) {
           { cwd: 'resources', src: '**', expand: true, dest: 'resources' },
           { src: 'manifest.json'}
         ],
-        outDir: 'build'
+        outDir: 'builds'
       }
     },
 
