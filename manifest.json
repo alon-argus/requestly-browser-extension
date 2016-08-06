@@ -26,7 +26,7 @@
   "applications": {
     "gecko": {
       "id": "requestly@mozilla.org",
-      "strict_min_version": "48.0.0"
+      "strict_min_version": "48.0"
     }
   },
 

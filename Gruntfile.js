@@ -27,9 +27,22 @@ module.exports = function (grunt) {
             dest: 'src'
           },
           { cwd: 'resources', src: '**', expand: true, dest: 'resources' },
-          { src: 'manifest.json'}
+          { src: 'manifest.json'},
+          { src: 'browser_config.js'}
         ],
         outDir: 'builds'
+      },
+      package_chrome: {
+        appName: '<%= zipup.package.appName %>',
+        version: '<%= zipup.package.version %>',
+        files: '<%= zipup.package.files %>',
+        outDir: 'builds/chrome'
+      },
+      package_firefox: {
+        appName: '<%= zipup.package.appName %>',
+        version: '<%= zipup.package.version %>',
+        files: '<%= zipup.package.files %>',
+        outDir: 'builds/firefox'
       }
     },
 
@@ -129,7 +142,9 @@ module.exports = function (grunt) {
   grunt.registerTask('select-chrome', ['copy:select_chrome']);
   grunt.registerTask('select-firefox', ['copy:select_firefox']);
   grunt.registerTask('build', ['handlebars', 'sass', 'concat']);
-  grunt.registerTask('bundle', ['build', 'zipup']);
+  grunt.registerTask('release-firefox', ['select-firefox', 'zipup:package_firefox']);
+  grunt.registerTask('release-chrome', ['select-chrome', 'zipup:package_chrome']);
+  grunt.registerTask('release', ['build', 'release-firefox', 'release-chrome']);
   grunt.registerTask('test', ['karma:unit']);
   grunt.registerTask('dev', ['watch']);
 };
