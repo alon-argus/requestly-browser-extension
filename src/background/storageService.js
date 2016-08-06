@@ -8,7 +8,7 @@
 var StorageService = {
   records: [],
   isRecordsFetched: false,
-  DB: chrome.storage.sync
+  DB: RQ.browserConfigs.storageType
 };
 
 StorageService.printRecords = function() {

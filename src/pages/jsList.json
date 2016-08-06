@@ -10,7 +10,8 @@
     "src/libs/handlebars.runtime-v3.0.3.js",
     "src/libs/bootstrap-toggle.min.js"
   ],
-  "src": [
+  "main": [
+    "browser_config.js",
     "src/background/storageService.js",
 
     "src/Shared/shared.js",

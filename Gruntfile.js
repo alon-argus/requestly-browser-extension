@@ -40,7 +40,7 @@ module.exports = function (grunt) {
       dist: {
         files: {
           'src/pages/libs.js': require('./src/pages/jsList.json')['libs'],
-          'src/pages/main.js': require('./src/pages/jsList.json')['src']
+          'src/pages/main.js': require('./src/pages/jsList.json')['main']
         }
       }
     },
@@ -96,6 +96,23 @@ module.exports = function (grunt) {
         files: ['**/*.spec.js'],
         tasks: ['karma:unit']
       }
+    },
+
+    copy: {
+      select_firefox: {
+        files: [
+          { src: 'manifest_firefox.json',
+            dest: 'manifest.json'
+          }
+        ]
+      },
+      select_chrome: {
+        files: [
+          { src: 'manifest_chrome.json',
+            dest: 'manifest.json'
+          }
+        ]
+      }
     }
   });
 
@@ -105,9 +122,12 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('templates', ['handlebars']);
   grunt.registerTask('libs', ['handlebars', 'concat']);
+  grunt.registerTask('select-chrome', ['copy:select_chrome']);
+  grunt.registerTask('select-firefox', ['copy:select_firefox']);
   grunt.registerTask('build', ['handlebars', 'sass', 'concat']);
   grunt.registerTask('bundle', ['build', 'zipup']);
   grunt.registerTask('test', ['karma:unit']);

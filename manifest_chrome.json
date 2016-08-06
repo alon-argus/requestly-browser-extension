@@ -23,13 +23,6 @@
     ]
   },
 
-  "applications": {
-    "gecko": {
-      "id": "requestly@mozilla.org",
-      "strict_min_version": "48.0.0"
-    }
-  },
-
   "content_security_policy": "script-src 'self' 'unsafe-eval' https://cdn.firebase.com https://*.firebaseio.com; object-src 'self'",
 
   "browser_action": {
