@@ -53,7 +53,7 @@ RQ.Utils.submitEvent = function(category, action, label) {
 RQ.Utils.removeLastPart = function(str, separater) {
   str = str || '';
 
-  // Return original string when separater is not present
+  // Return original string when separator is not present
   if (str.indexOf(separater) === -1) {
     return str;
   }
@@ -64,4 +64,21 @@ RQ.Utils.removeLastPart = function(str, separater) {
   str.length--;
 
   return str.join(separater);
+};
+
+/**
+ *
+ * @param mayBeDirtyHTML
+ * @returns sanitized and clean HTML which can be safely inserted into DOM
+ * @doc: https://github.com/requestly/sanitize-html
+ */
+RQ.Utils.sanitizeHTML = function(mayBeDirtyHTML) {
+  return sanitizeHtml(mayBeDirtyHTML, {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat([
+        'a', 'button', 'div', 'i', 'input', 'h1', 'h2', 'label', 'nav', 'span', 'section', 'select', 'tbody'
+    ]),
+    allowedAttributes: {
+      '*': [ 'active', 'class', 'checked', 'data-*', 'for', 'href', 'id', 'option', 'placeholder', 'selected', 'style', 'target', 'title', 'type', 'value' ]
+    }
+  });
 };

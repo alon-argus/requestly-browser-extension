@@ -14,21 +14,14 @@ module.exports = function(config) {
     files: [
       'tests/helpers/phantom-shim.js',
 
-      /* Libraries and Helper files */
-      "src/libs/firebase.js",
-      "src/libs/jquery-1.9.1.js",
-      "src/libs/bootstrap.min.js",
-      "src/libs/mdb.js",
+      /* Libraries */
+      'src/pages/generated/js/libs.js',
 
-      "src/libs/underscore-1.6.0.js",
-      "src/libs/backbone-1.1.2.js",
-      "src/libs/handlebars.runtime-v3.0.3.js",
-      "src/libs/bootstrap-toggle.min.js",
-
+      /* Helper files */
       'tests/helpers/chromeApiHelper.js',
       'tests/helpers/utils.js',
 
-      'src/pages/main.js',
+      'src/pages/generated/js/main.js',
 
       /* Code files */
       'src/background/storageService.js',

@@ -45,7 +45,7 @@ var BaseView = Backbone.View.extend({
 
     var markup = this.getMarkup(this.template);
 
-    this.$el.html(markup);
+    this.$el.html(RQ.Utils.sanitizeHTML(markup));
 
     this.initWidgets();
   },
