@@ -8,8 +8,8 @@
   "content_scripts": [
     {
       "matches": [ "*://web.requestly.in/*" ],
-      "css": [ "src/pages/main.css" ],
-      "js": [ "src/pages/libs.js", "src/pages/main.js" ]
+      "css": [ "src/pages/generated/css/main.css" ],
+      "js": [ "src/pages/generated/js/libs.js", "src/pages/generated/js/main.js" ]
     }
   ],
 

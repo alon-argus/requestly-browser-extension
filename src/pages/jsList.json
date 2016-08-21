@@ -25,7 +25,7 @@
 
     "src/pages/js/templateHelpers/handlebarHelpers.js",
     "src/pages/js/templateHelpers/templateHelper.js",
-    "src/pages/templates.hbs.js",
+    "src/pages/generated/js/templates.hbs.js",
 
     "src/pages/js/models/BaseModel.js",
     "src/pages/js/models/SharedListModel.js",

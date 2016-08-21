@@ -17,9 +17,9 @@ module.exports = function (grunt) {
           {
             cwd: 'src',
             src: [
-              'pages/libs.js',
-              'pages/main.js',
-              'pages/main.css',
+              'pages/generated/js/libs.js',
+              'pages/generated/js/main.js',
+              'pages/generated/css/main.css',
               'background/*',
               'Shared/*'
             ],
@@ -52,8 +52,8 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          'src/pages/libs.js': require('./src/pages/jsList.json')['libs'],
-          'src/pages/main.js': require('./src/pages/jsList.json')['main']
+          'src/pages/generated/js/libs.js': require('./src/pages/jsList.json')['libs'],
+          'src/pages/generated/js/main.js': require('./src/pages/jsList.json')['main']
         }
       }
     },
@@ -73,7 +73,7 @@ module.exports = function (grunt) {
           }
         },
         files: {
-          'src/pages/templates.hbs.js': 'src/pages/templates/**/*.hbs'
+          'src/pages/generated/js/templates.hbs.js': 'src/pages/templates/**/*.hbs'
         }
       }
     },
@@ -81,7 +81,7 @@ module.exports = function (grunt) {
     sass: {
       dist: {
         files: {
-          'src/pages/main.css': 'src/pages/css/sass/main.scss'
+          'src/pages/generated/css/main.css': 'src/pages/css/sass/main.scss'
         }
       }
     },
