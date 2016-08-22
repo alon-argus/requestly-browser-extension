@@ -4,6 +4,41 @@ Requestly [![Stories in Ready](https://badge.waffle.io/blunderboy/requestly.png?
 Requestly is a chrome extension using which user can redirect an HTTP(S) request.
 Requestly is available in [Chrome Store](https://chrome.google.com/webstore/detail/requestly/mdnleldcmiljblolnjhpnblkcekpdkpa).
 
+## For Review Process by Mozilla Team
+----------------------------------
+
+### Prerequisites
+1. Node JS (node v4.1+)
+2. grunt plugin
+3. Mozilla Firefox v48+
+
+### Libraries Used
+1. BackboneJs - v1.1.2 (Unminified)
+2. Bootstrap - v3.3.5 (Minified)
+3. Bootstrap Toggle - v2.2.0 (Minified) Link: http://www.bootstraptoggle.com
+4. Firebase - v2.4.0 (Minified)
+5. Handlebars runtime - v3.0.3 (Unminified)
+6. jQuery - v1.9.1 (Unminified)
+7. mdb.js - v2.0.1 (Purchased library. Here is the license - https://github.com/requestly/web/blob/gh-pages/libs/mdb/MDB%20License.pdf)
+8. sanitize-html.js - Source code available here: https://github.com/requestly/sanitize-html
+9. Underscore.js - v1.6.0 (Unminified)
+
+### How to generate obfuscated code
+
+    grunt concat
+
+### How to generate zip for mozilla firefox
+
+    grunt release-firefox
+
+Zip will be created in builds/firefox directory
+
+### Additional Notes
+
+- Handlebars is used for generating markup which is sanitized before injected into DOM. Code is inside BaseView.js.
+Inside app.js you may see jquery .html() but it just takes backbone views el and adds to empty element in DOM.
+Since Backbone views have sanitized html, above step is also safe.
+
 Why do I need Requestly ?
 -------------------------
 
