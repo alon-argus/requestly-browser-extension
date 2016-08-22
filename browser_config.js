@@ -11,7 +11,7 @@ function getBrowserConfigs(browser) {
       storageType: chrome.storage.local,
       contextMenuContexts: ['all']
     }
-  }
+  };
 
   return configs[browser];
 }
@@ -19,5 +19,5 @@ function getBrowserConfigs(browser) {
 RQ.manifestJson = chrome.runtime.getManifest();
 
 // We define applications as key in firefox manifest and not in chrome manifest
-RQ.currentBrowser = RQ.manifestJson['applications'] ? 'firefox' : 'chrome';
+RQ.currentBrowser = RQ.manifestJson['description'].indexOf('Firefox') !== -1 ? 'firefox' : 'chrome';
 RQ.browserConfigs = getBrowserConfigs(RQ.currentBrowser);

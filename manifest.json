@@ -23,13 +23,6 @@
     ]
   },
 
-  "applications": {
-    "gecko": {
-      "id": "requestly@mozilla.org",
-      "strict_min_version": "48.0"
-    }
-  },
-  
   "browser_action": {
     "default_icon": "resources/images/128x128.png",
     "default_title": "Modify HTTP/HTTPS requests"
