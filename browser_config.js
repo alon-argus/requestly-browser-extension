@@ -4,11 +4,11 @@ RQ.config = RQ.config || {};
 function getBrowserConfigs(browser) {
   var configs = {
     chrome: {
-      storageType: chrome.storage.sync,
+      storageType: 'sync',
       contextMenuContexts: ['browser_action']
     },
     firefox: {
-      storageType: chrome.storage.local,
+      storageType: 'local',
       contextMenuContexts: ['all']
     }
   };

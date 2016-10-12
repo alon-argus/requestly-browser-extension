@@ -21,6 +21,7 @@ module.exports = function(config) {
       'tests/helpers/chromeApiHelper.js',
       'tests/helpers/utils.js',
 
+      'browser_config.js',
       'src/pages/generated/js/main.js',
 
       /* Code files */

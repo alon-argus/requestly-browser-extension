@@ -41,8 +41,10 @@
     "karma": "^0.12.37",
     "karma-coverage": "^0.4.2",
     "karma-firefox-launcher": "^0.1.6",
+    "karma-handlebars-preprocessor": "^0.3.0",
     "karma-jasmine": "^0.1.5",
     "karma-junit-reporter": "^0.2.2",
-    "karma-phantomjs-launcher": "^0.2.0"
+    "karma-phantomjs-launcher": "^0.2.0",
+    "phantomjs": "^2.1.7"
   }
 }

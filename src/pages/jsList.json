@@ -1,7 +1,7 @@
 {
   "libs": [
     "src/libs/firebase.js",
-    "src/libs/jquery-1.9.1.js",
+    "src/libs/jquery-2.2.4.js",
     "src/libs/bootstrap.min.js",
     "src/libs/mdb.js",
     "src/libs/sanitize-html.js",

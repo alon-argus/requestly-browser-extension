@@ -38,7 +38,7 @@ describe('Storage Service', function() {
         }
       };
 
-      StorageService.updateRecords(changes, 'sync');
+      StorageService.updateRecords(changes, RQ.browserConfigs.storageType);
       expect(StorageService.records.length).toBe(2);
       expect(StorageService.getCachedRecordIndex('REPLACE_100')).toBe(0);
       expect(StorageService.getCachedRecordIndex('HEADERS_500')).toBe(1);
@@ -58,7 +58,7 @@ describe('Storage Service', function() {
         }
       };
 
-      StorageService.updateRecords(changes, 'sync');
+      StorageService.updateRecords(changes, RQ.browserConfigs.storageType);
       expect(StorageService.records[0].value).toBe('R2');
     });
 
@@ -84,7 +84,7 @@ describe('Storage Service', function() {
         }
       };
 
-      StorageService.updateRecords(changes, 'sync');
+      StorageService.updateRecords(changes, RQ.browserConfigs.storageType);
       expect(StorageService.records.length).toBe(1);
       expect(StorageService.getCachedRecordIndex('REPLACE_100')).toBe(-1);
       expect(StorageService.getCachedRecordIndex('REPLACE_200')).toBe(-1);
@@ -104,7 +104,7 @@ describe('Storage Service', function() {
         }
       };
 
-      StorageService.updateRecords(changes, 'sync');
+      StorageService.updateRecords(changes, RQ.browserConfigs.storageType);
 
       expect(StorageService.records.length).toBe(1);
       expect(StorageService.getCachedRecordIndex('REDIRECT_100')).toBe(0);

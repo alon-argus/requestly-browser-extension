@@ -3,6 +3,11 @@ chrome = {
     sendMessage: function() {},
     onMessage: {
       addListener: function() {}
+    },
+    getManifest: function() {
+      return {
+        description: 'Mozilla Firefox addon to modify HTTP requests (Redirect | Cancel | Replace | Modify Headers)'
+      }
     }
   },
   contextMenus: {
@@ -46,7 +51,43 @@ chrome = {
         var result;
 
         if (!key) {
-         result = this._records;
+          result = this._records;
+        } else {
+          result = this._records[key];
+        }
+
+        typeof callback === 'function' && callback.call(null, result);
+      },
+
+      set: function(object, callback) {
+        this._records = extend(this._records, object);
+
+        typeof callback === 'function' && callback.call(null, object);
+      },
+
+      remove: function(record, callback) {
+        var attrName;
+
+        for (attrName in record) {
+          delete this._records[attrName];
+        }
+
+        typeof callback === 'function' && callback.call(null);
+      },
+
+      clear: function() {
+        this._records = {};
+      }
+    },
+
+    local: {
+      _records: {},
+
+      get: function(key, callback) {
+        var result;
+
+        if (!key) {
+          result = this._records;
         } else {
           result = this._records[key];
         }

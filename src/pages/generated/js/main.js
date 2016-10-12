@@ -4,11 +4,11 @@ RQ.config = RQ.config || {};
 function getBrowserConfigs(browser) {
   var configs = {
     chrome: {
-      storageType: chrome.storage.sync,
+      storageType: 'sync',
       contextMenuContexts: ['browser_action']
     },
     firefox: {
-      storageType: chrome.storage.local,
+      storageType: 'local',
       contextMenuContexts: ['all']
     }
   };
@@ -32,8 +32,10 @@ RQ.browserConfigs = getBrowserConfigs(RQ.currentBrowser);
 var StorageService = {
   records: [],
   isRecordsFetched: false,
-  DB: RQ.browserConfigs.storageType
+  DB: chrome.storage[RQ.browserConfigs.storageType]
 };
+
+console.log(RQ.browserConfigs.storageType)
 
 StorageService.printRecords = function() {
   this.DB.get(null, function(o) {
@@ -130,6 +132,8 @@ StorageService.updateRecords = function(changes, namespace) {
         if (changedObject.newValue['avoidCache'] === true) {
           continue;
         }
+
+        console.log(objectExists)
 
         objectExists
           ? StorageService.records[changedObjectIndex] = changedObject.newValue    /* Update existing object (Edit) */
