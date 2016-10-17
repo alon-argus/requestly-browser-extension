@@ -16,8 +16,8 @@
 
     $downloadLink.attr('download', fileName || 'file');
 
-    if (window.webkitURL != null) {
-      $downloadLink.attr('href', window.webkitURL.createObjectURL(textFileAsBlob));
+    if (typeof window.URL !== 'undefined') {
+      $downloadLink.attr('href', window.URL.createObjectURL(textFileAsBlob));
     }
 
     $downloadLink.get(0).click();

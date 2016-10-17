@@ -35,8 +35,6 @@ var StorageService = {
   DB: chrome.storage[RQ.browserConfigs.storageType]
 };
 
-console.log(RQ.browserConfigs.storageType)
-
 StorageService.printRecords = function() {
   this.DB.get(null, function(o) {
     console.log(o);
@@ -132,8 +130,6 @@ StorageService.updateRecords = function(changes, namespace) {
         if (changedObject.newValue['avoidCache'] === true) {
           continue;
         }
-
-        console.log(objectExists)
 
         objectExists
           ? StorageService.records[changedObjectIndex] = changedObject.newValue    /* Update existing object (Edit) */
@@ -442,8 +438,8 @@ var Notification = {
 
     $downloadLink.attr('download', fileName || 'file');
 
-    if (window.webkitURL != null) {
-      $downloadLink.attr('href', window.webkitURL.createObjectURL(textFileAsBlob));
+    if (typeof window.URL !== 'undefined') {
+      $downloadLink.attr('href', window.URL.createObjectURL(textFileAsBlob));
     }
 
     $downloadLink.get(0).click();
