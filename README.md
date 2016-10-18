@@ -10,7 +10,7 @@ Requestly is available in [Chrome Store](https://chrome.google.com/webstore/deta
 ### Prerequisites
 1. Node JS (node v4.1+)
 2. grunt plugin
-3. Mozilla Firefox v48+
+3. Mozilla Firefox v49+
 
 ### Libraries Used
 1. BackboneJs - v1.1.2 (Unminified)
@@ -18,7 +18,7 @@ Requestly is available in [Chrome Store](https://chrome.google.com/webstore/deta
 3. Bootstrap Toggle - v2.2.0 (Minified) Link: http://www.bootstraptoggle.com
 4. Firebase - v2.4.0 (Minified)
 5. Handlebars runtime - v3.0.3 (Unminified)
-6. jQuery - v1.9.1 (Unminified)
+6. jQuery - v2.2.4 (Unminified)
 7. mdb.js - v2.0.1 (Purchased library. Here is the license - https://github.com/requestly/web/blob/gh-pages/libs/mdb/MDB%20License.pdf)
 8. sanitize-html.js - Source code available here: https://github.com/requestly/sanitize-html
 9. Underscore.js - v1.6.0 (Unminified)
@@ -27,11 +27,14 @@ Requestly is available in [Chrome Store](https://chrome.google.com/webstore/deta
 
     grunt concat
 
-### How to generate zip for mozilla firefox
+### How to generate signed xpi file for firefox
 
-    grunt release-firefox
-
-Zip will be created in builds/firefox directory
+    grunt select-firefox
+    # Create an alias if not already done like this. Write it inside ~/.bashrc
+    # alias sign_requestly_build="web-ext sign --api-key=??? --api-secret=???"
+    sign_requestly_build
+    cp -r web-ext-artifacts/* builds/web-ext-artifacts/
+    rm -rf web-ext-artifacts
 
 ### Additional Notes
 
